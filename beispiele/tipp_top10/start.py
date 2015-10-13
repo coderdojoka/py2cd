@@ -1,5 +1,3 @@
-from pgu.gui.input import Input
-
 __author__ = 'Mark Weinreuter'
 
 import sys
