@@ -24,8 +24,12 @@ boden = Linie((100, 300), (540, 300), ROT, 2)
 # Text an der Stelle 0x0 mit einer Schrift in der Größe: 20
 text = Text("Hallo Welt", 0, 0, Schrift(20))
 
-# setzt die Position an die gegebene Stelle: oben mittig mit Abstand 10 pixel vom Rand
+# setzt die Position an die gegebene Stelle: oben mittig mit Abstand 10 Pixel vom Rand
 text.setze_position((Spiel.breite - text.breite) / 2, Spiel.hoehe - text.hoehe - 10)
+
+# Viel einfacher kann man dies auch so machen:
+text.zentriere_horizontal();
+text.abstand_unten = 10
 
 Spiel.starten()
 """

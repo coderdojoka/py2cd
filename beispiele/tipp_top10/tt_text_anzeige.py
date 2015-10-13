@@ -6,7 +6,7 @@ import json
 
 from py2cd.farben import TRANSPARENT, ROT
 from py2cd.text import Text, Schrift
-from tipp_top10.level import schwierigkeit
+from level import schwierigkeit
 
 class TextUebersicht:
     __alle_texte = []

@@ -3,7 +3,7 @@ __author__ = 'Mark Weinreuter'
 
 class Zeichenbar:
     """
-    Überklasse für alle zeichenbaren Objekte. Diese haben ein Position (x,y) und eine Farbe.
+    Überklasse für alle zeichenbaren Objekte. Diese haben ein Position (x,y) und eine (Hintergrund-)Farbe.
     """
 
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche, position_geändert=lambda: None):
@@ -51,6 +51,11 @@ class Zeichenbar:
         """
         Die Breite der umgebenden Box
         :type:float
+        """
+
+        self.kollisions_maske = None
+        """
+        In Arbeit... Um auf pixelbasierte Kollistion zu testen wird diese 2-dimensionale Liste benötigt.
         """
 
         self.__sichtbar = True
@@ -268,7 +273,43 @@ class Zeichenbar:
 
         return not (r2_links > r1_rechts or r2_rechts < self.x or r2_oben > r1_unten or r2_unten < self.y)
 
-    def beruehrt_umgebendes_rechteck(self, zeichenbar):
+    def ueberschneidung_rechteck(self, r2_links, r2_oben, breite, hoehe):
+
+        if (self.beruehrt_rechteck(r2_links, r2_oben, breite, hoehe)):
+            return None
+
+        if self.__x > r2_links:
+            links = self.__x
+        else:
+            links = r2_links
+
+        if self.__x + self.breite < r2_links + breite:
+            rechts_oben = self.__x + self.breite
+        else:
+            rechts_oben = r2_links + breite
+
+        if self.__y > r2_oben:
+            oben = self.__y
+        else:
+            oben = r2_oben
+
+        if self.__y + self.hoehe < r2_oben + hoehe:
+            links_unten = self.__y + self.hoehe
+        else:
+            links_unten = r2_oben + hoehe
+
+        # Die überlagernde Region
+        return [links, oben, rechts_oben - links, links_unten - oben]
+
+    def beruehrt_objekt(self, zeichenbar):
+        """
+        Überprüft, ob dieses Objekt das übergebene Objekt berührt. Genauer, ob das umgebende Rechteck dieses Objektes, das umgebende Rechteckt
+        des andren Objektes berührt
+        :param zeichenbar: das andere Objekt
+        :type zeichenbar: Zeichenbar
+        :return: True oder False
+        :rtype: {bool}
+        """
         return self.beruehrt_rechteck(zeichenbar.x, zeichenbar.y, zeichenbar.breite, zeichenbar.hoehe)
 
     def beruehrt_linken_oder_rechten_rand(self):
@@ -299,6 +340,7 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
+
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
         if eltern_flaeche is None:
             # falls keine Elternfläche angegeben wurde, dann wir die Haupt-Zeichenfläche verwendet

@@ -1,12 +1,13 @@
 __author__ = 'Mark Weinreuter'
 
-import sys
+import sys, os
+sys.path.append(os.path.dirname(__file__))
 
 from py2cd import *
-from tipp_top10.gui import CheckBox, KlickText, Anklickbar, RadioButtonGruppe
-from tipp_top10.konstanten import *
-from tipp_top10.tt_tastatur import *
-from tipp_top10.spiele.ufos_und_schafe import *
+from gui import CheckBox, KlickText, Anklickbar, RadioButtonGruppe
+from konstanten import *
+from tt_tastatur import *
+from spiele.ufos_und_schafe import *
 
 class TTHaupt(Spiel):
     aktuelles_spiel = None
@@ -18,6 +19,7 @@ class TTHaupt(Spiel):
 
     def __init__(cls):
         super().__init__()
+
 
     @classmethod
     def initialisiere(cls):
@@ -131,9 +133,6 @@ class TTHaupt(Spiel):
         cls.lektionen_index = 0
         cls.lektionenText = Text("dd", 0, 500, schrift)
         cls.lektion_wechseln(0)
-
-        RadioButtonGruppe(3)
-
 
         # b = BildWechsler(100, 40, ["pfeil_r_normal", "pfeil_r_ueber", "pfeil_r_aktiv"])
 

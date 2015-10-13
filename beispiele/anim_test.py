@@ -10,10 +10,8 @@ def aktualiserungs_funktion(t):
 
 
 Spiel.init(400, 400, "Hallo Animation", aktualiserungs_funktion)
-HINTER_GRUND = (100, 50, 50)
-
-zf = Spiel.gib_zeichen_flaeche()
-zf.farbe = HINTER_GRUND
+hintergrund_farbe = (100, 50, 50)
+Spiel.setze_hintergrund_farbe(hintergrund_farbe)
 
 zeit = 1000 / 11
 Spiel.fps = 30

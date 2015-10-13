@@ -1,6 +1,7 @@
 # Von der Pygame Webseite geklaut :D muss noch angepasst werden
 # http://www.pygame.org/wiki/FastPixelPerfect?parent=CookBook
 
+
 def check_collision(obj1, obj2):
     """checks if two objects have collided, using hitmasks"""
     try:
@@ -16,9 +17,7 @@ def check_collision(obj1, obj2):
     for x in range(rect.width):
         for y in range(rect.height):
             if hm1[x1 + x][y1 + y] and hm2[x2 + x][y2 + y]:
-                return True
-            else:
-                continue
+                return True            
 
     return False
 
@@ -36,7 +35,7 @@ def get_colorkey_hitmask(image, rect, key=None):
     for x in range(rect.width):
         mask.append([])
         for y in range(rect.height):
-            mask[x].append(not image.get_at((x, y)) == colorkey)
+            mask[x].append(image.get_at((x, y)) != colorkey)
     return mask
 
 
@@ -49,7 +48,7 @@ def get_alpha_hitmask(image, rect, alpha=0):
     for x in range(rect.width):
         mask.append([])
         for y in range(rect.height):
-            mask[x].append(not image.get_at((x, y))[3] == alpha)
+            mask[x].append(image.get_at((x, y))[3] > alpha)
     return mask
 
 

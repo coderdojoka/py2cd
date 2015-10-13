@@ -70,7 +70,7 @@ class Spiel:
     """ :type: callable|None """
 
     @classmethod
-    def init(cls,breite=640, hoehe=480, titel="Python Spiel", aktualisierungs_funktion=lambda zeit: None):
+    def init(cls,breite=640, hoehe=480, titel="Py2cd Zeichenbiblothek", aktualisierungs_funktion=lambda zeit: None):
         """
         Initialisiert das Spiel.
         HINWEIS: Das Spiel muss! als Erstes initialisiert werden
@@ -188,6 +188,10 @@ class Spiel:
         :rtype:
         """
         pygame.display.set_caption(titel)
+
+    @staticmethod
+    def setze_hintergrund_farbe(farbe):
+        Spiel.__haupt_flaeche.farbe = farbe
 
     @staticmethod
     def registriere_taste_gedrueckt(taste, funktion):

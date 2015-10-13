@@ -29,7 +29,8 @@ def maus_bewegt(evt):
         reckt.farbe = GELB
 
 
-bewegung_x = 4
+# Geschwindigkeit in x (rechts/links) und y (oben/unten) Richtung
+bewegung_x = 3
 bewegung_y = 4
 
 
@@ -37,16 +38,12 @@ bewegung_y = 4
 def aktualisiere_spiel(delta):
     global bewegung_x, bewegung_y
 
-    if box.x <= 0:
+	# am rechten und linken Rand die richtung ändern
+    if box.beruehrt_linken_oder_rechten_rand():
         bewegung_x *= -1
 
-    elif box.breite + box.x >= Spiel.breite:
-        bewegung_x *= -1
-
-    if box.y <= 0:
-        bewegung_y *= -1
-
-    elif box.hoehe + box.y >= Spiel.hoehe:
+	# am obereren und unteren Rand die richtung ändern
+    if box.beruehrt_oberen_oder_unteren_rand():
         bewegung_y *= -1
 
     # bewege die Box
@@ -54,7 +51,7 @@ def aktualisiere_spiel(delta):
 
 reckt = Rechteck(270, 200, 100, 100,  GELB)
 
-dreieck = Polygon([(270, 300), (320, 340), (370, 300)],  ROT)
+dreieck = Polygon([(270, 200), (320, 160), (370, 200)],  ROT)
 
 box = Rechteck(10, 10, 50, 50,  GRUEN)
 

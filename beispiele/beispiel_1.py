@@ -27,7 +27,7 @@ def aktualisiere(dt):
     if unten_down:
         r.aendere_position(0, speed)
 
-    beruehrt = r.beruehrt_umgebendes_rechteck(kollision)
+    beruehrt = r.beruehrt_objekt(kollision)
     if beruehrt:
         kollision.farbe = ROT
     else:

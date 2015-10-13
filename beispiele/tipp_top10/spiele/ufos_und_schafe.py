@@ -3,9 +3,9 @@ __author__ = 'Mark Weinreuter'
 from py2cd.anim import Animation, AnimationSpeicher
 from py2cd.bild import Bild, BildSpeicher
 from py2cd.spiel import Spiel
-from tipp_top10.tt_basis import TTBasis
-from tipp_top10.tt_text_anzeige import *
-from tipp_top10.level import schwierigkeit
+from tt_basis import TTBasis
+from tt_text_anzeige import *
+from level import schwierigkeit
 
 
 class UfoUndSchafeSpiel(TTBasis):
@@ -36,7 +36,7 @@ class UfoUndSchafeSpiel(TTBasis):
         zeit = 1000 / 6
         bilder_zeiten = []
         for i in range(1, 6):
-            BildSpeicher.lade_bild("rauch_%d" % i, "../beispiele/testimages/smoke_puff_000%d.png" % i, True)
+            BildSpeicher.lade_bild("rauch_%d" % i, "../testimages/smoke_puff_000%d.png" % i, True)
             bilder_zeiten.append(("rauch_%d" % i, zeit))
 
         AnimationSpeicher.registriere_animation("rauch", bilder_zeiten)

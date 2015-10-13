@@ -1,3 +1,7 @@
+# Pycharm settins
+/.idea/
+/beispiele/tipp_top10/.idea/
+
 # Compiled python modules.
 *.pyc
 

@@ -43,7 +43,7 @@ def aktualisiere(dt):
 
 
     # Kollision der zwei Rechtecke überprüfen
-    beruehrt = rechteck.beruehrt_umgebendes_rechteck(kollision)
+    beruehrt = rechteck.beruehrt_objekt(kollision)
     if beruehrt:
         kollision.farbe = ROT
     else:

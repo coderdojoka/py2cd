@@ -1,5 +1,5 @@
 from py2cd.spiel import Spiel
-from tipp_top10.tt_text_anzeige import TextUebersicht
+from tt_text_anzeige import TextUebersicht
 
 __author__ = 'Mark Weinreuter'
 
