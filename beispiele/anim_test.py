@@ -1,8 +1,9 @@
 from py2cd import *
 from pygame.constants import *
+from py2cd.farben import *
 
 __author__ = 'Mark Weinreuter'
-
+# Images from and based on: http://inventwithpython.com/pyganim/
 
 def aktualiserungs_funktion(t):
     pass

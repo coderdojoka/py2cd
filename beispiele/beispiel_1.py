@@ -1,6 +1,8 @@
 __author__ = 'Mark Weinreuter'
 
 from py2cd import *
+from py2cd.farben import *
+from pygame.constants import *
 
 links_down = False
 rechts_down = False
@@ -53,8 +55,6 @@ def unten(gedrueckt, e):
 
 
 Spiel.init(300, 300, "Hallo Welt", aktualisiere)
-zf = Spiel.gib_zeichen_flaeche()
-flaeche = ZeichenFlaeche(0, 0, neue_pygame_flaeche(300, 300, True), (0, 0, 0, 0), zf)
 
 p = Polygon([(20, 200), (10, 240), (40, 250), (50, 220)], ROT)
 l = Linien([(300, 20), (400, 40), (50, 200)], geschlossen=True)
@@ -70,8 +70,6 @@ p_box = Rechteck(l.x, l.y, l.breite, l.hoehe, (255, 0, 0, 120))
 
 k = Kreis(260, 260, 50, GRUEN)
 
-flaeche.zentriere()
-flaeche.fuege_hinzu(p_box)
 t.zentriere()
 
 Spiel.registriere_taste_gedrueckt(K_a, links)

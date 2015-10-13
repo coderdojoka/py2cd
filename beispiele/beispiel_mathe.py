@@ -3,6 +3,7 @@ __author__ = 'Mark Weinreuter'
 import math
 
 from py2cd import *
+from py2cd.farben import *
 
 Spiel.init(640, 480, "Hallo Mathe")
 
