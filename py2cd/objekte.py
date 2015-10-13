@@ -340,7 +340,6 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
-
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
         if eltern_flaeche is None:
             # falls keine Elternfläche angegeben wurde, dann wir die Haupt-Zeichenfläche verwendet
@@ -348,7 +347,40 @@ class ZeichenbaresElement(Zeichenbar):
 
             eltern_flaeche = Spiel.standard_flaeche
 
+        self.__abprallen = False
+
+        self.__geschwindigkeit_x = 5
+        """
+        Die Bewgung X-Richtung
+        """
+
+        self.__geschwindigkeit_y = 5
+        """
+        Die Bewgung in Y-Richtung
+        """
+
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche, position_geaendert)
+
+    def pralle_vom_rand_ab(self, abprallen):
+        self.__abprallen = abprallen
+
+    def setze_geschwindigkeit(self, x=5, y=5):
+        self.__geschwindigkeit_x = x
+        self.__geschwindigkeit_y = y
+
+    def bewege(self, schritte=1):
+
+        while schritte:
+            if self.__abprallen:
+                if self.beruehrt_oberen_oder_unteren_rand():
+                    self.__geschwindigkeit_y *= -1
+
+                if self.beruehrt_linken_oder_rechten_rand():
+                    self.__geschwindigkeit_x *= -1
+
+            self.aendere_position(self.__geschwindigkeit_x, self.__geschwindigkeit_y)
+
+            schritte -= 1
 
     def render(self, pyg_zeichen_flaeche):
         """

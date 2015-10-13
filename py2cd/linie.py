@@ -34,7 +34,7 @@ class Linie(ZeichenbaresElement):
 
         # punkte umrechnen, so dass diese bei 0,0 beginnen, und start zu x,y Position wird
         self.__start = start
-        self.__ende = (ende[0] - start[0], -(ende[1] - start[1]))
+        self.__ende = (ende[0] - start[0], (ende[1] - start[1]))
         self.dicke = dicke
 
         self.__verschobenes_ende = self.__ende
@@ -45,3 +45,4 @@ class Linie(ZeichenbaresElement):
 
         super().__init__(start[0], start[1], self.__ende[0], self.__ende[1],
                          farbe, eltern_flaeche, position_geaendert=self.aktualisiere_end_punkt)
+

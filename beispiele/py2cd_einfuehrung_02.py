@@ -28,32 +28,48 @@ def maus_bewegt(evt):
     else:
         reckt.farbe = GELB
 
-
 # Geschwindigkeit in x (rechts/links) und y (oben/unten) Richtung
-bewegung_x = 3
-bewegung_y = 4
-
+bewegung_x = -5
+bewegung_y = -4
 
 # Diese Funktion wird aufgerufen, wenn das Spiel aktualisiert wird
 def aktualisiere_spiel(delta):
-    global bewegung_x, bewegung_y
+    global bewegung_x,bewegung_y
 
-	# am rechten und linken Rand die richtung ändern
-    if box.beruehrt_linken_oder_rechten_rand():
+    # 1. Variante: Die Box bewegen, prallt automatisch von der Wand ab
+    box.bewege()
+
+    # 2. Variante, wir müssen selbst auf Kollision mit der Wand testen
+
+    # am rechten und linken Rand die x-Richtung ändern
+    if box2.beruehrt_linken_oder_rechten_rand():
         bewegung_x *= -1
 
-	# am obereren und unteren Rand die richtung ändern
-    if box.beruehrt_oberen_oder_unteren_rand():
+    # am obereren und unteren Rand die y-Richtung ändern
+    if box2.beruehrt_oberen_oder_unteren_rand():
         bewegung_y *= -1
 
     # bewege die Box
-    box.aendere_position(bewegung_x, bewegung_y)
+    box2.aendere_position(bewegung_x, bewegung_y)
 
-reckt = Rechteck(270, 200, 100, 100,  GELB)
+    # Wenn die beiden Boxen sich berühren, Farbe ändern
+    if box.beruehrt_objekt(box2):
+        box.farbe = BLAU
+    else:
+        box.farbe = GRUEN
 
-dreieck = Polygon([(270, 200), (320, 160), (370, 200)],  ROT)
+reckt = Rechteck(270, 200, 100, 100, GELB)
 
-box = Rechteck(10, 10, 50, 50,  GRUEN)
+dreieck = Polygon([(270, 200), (320, 160), (370, 200)], ROT)
+
+box = Rechteck(13, 10, 50, 50, GRUEN)
+box2 = Rechteck(107, 120, 80, 80, ROT)
+
+
+# Geschwindigkeit in x (rechts/links) und y (oben/unten) Richtung
+box.setze_geschwindigkeit(5,5)
+# Vom Rand abprallen aktivieren
+box.pralle_vom_rand_ab(True)
 
 # Funktion die aufgerufen wird, wenn die Maus bewegt wurde
 Spiel.registriere_maus_bewegt(maus_bewegt)

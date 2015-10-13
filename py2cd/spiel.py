@@ -4,8 +4,8 @@ import sys
 
 import pygame
 import pygame.freetype
-
 from pygame.constants import *
+
 
 class Spiel:
     """
@@ -70,7 +70,7 @@ class Spiel:
     """ :type: callable|None """
 
     @classmethod
-    def init(cls,breite=640, hoehe=480, titel="Py2cd Zeichenbiblothek", aktualisierungs_funktion=lambda zeit: None):
+    def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbiblothek", aktualisierungs_funktion=lambda zeit: None):
         """
         Initialisiert das Spiel.
         HINWEIS: Das Spiel muss! als Erstes initialisiert werden
@@ -192,6 +192,25 @@ class Spiel:
     @staticmethod
     def setze_hintergrund_farbe(farbe):
         Spiel.__haupt_flaeche.farbe = farbe
+
+    @staticmethod
+    def zeichne_gitter(groesse=50):
+        # Wir importieren diese erst hier, um Kreis-Abhängigkeiten zu verhindern
+        from py2cd import Linie, Text
+        from py2cd.farben import HELL_GRAU
+
+        # Anzahl an horizontalen Gitterlinien
+        anzahl = round(Spiel.breite / groesse)
+        for i in range(1, anzahl):
+            Linie((i * groesse, 0), (i * groesse, Spiel.hoehe), HELL_GRAU)
+            t = Text("%d" % (i * groesse), i * groesse, 2)
+
+
+        # Anzahl an vertikalen Gitterlinien
+        anzahl = round(Spiel.hoehe / groesse)
+        for i in range(1, anzahl):
+            Linie((0, i * groesse), (Spiel.breite, i * groesse), HELL_GRAU)
+            t = Text("%d" % (i * groesse), 2, i * groesse)
 
     @staticmethod
     def registriere_taste_gedrueckt(taste, funktion):
