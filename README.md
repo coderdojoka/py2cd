@@ -12,6 +12,7 @@ herunterladen werden. In der Kommandozeile/Konsole kann pygame dann mittels:
 pip install --use-wheel pygame‑1.9.2a0‑cp34‑none‑win32.whl
 ```
 installiert werden.   
+__TIpp:__ Hält man im Windows-Explorer die Shift-Taste gedrückt und Rechts-klickt auf den Ordner, so kann man im Menü den Eintrag: 'Kommandozeile hier öffnen' auswählen.
 
 Eine detailiertere Anleitung ist [hier](https://github.com/coderdojoka/Materialien/raw/master/Installation/installation_pygame.pdf) zu finden.
 
@@ -29,7 +30,7 @@ Für Ubuntu ist es komplizierter, da die pygame für Python3 selbst kompiliert w
 
 
 ## py2cd-Installation
-Das Repository Klonen oder als Zip-Datei herunterladen und entpacken.
+Das Repository Klonen oder als [Zip-Datei](https://github.com/coderdojoka/py2cd/archive/master.zip) herunterladen und entpacken.
 
 Da py2cd sich noch im Entwicklungsstatus befindet ist es am Besten, py2cd als Development-Version zu installieren. D.h. wenn die Source-Dateien aktualisiert werden, bleibt py2cd aktuell, der heruntergeladene Ordner muss allerdings an der gleichen Stelle bleiben!    
 
@@ -37,10 +38,14 @@ Im heruntergeladenen Ordner dann folgenden Befehl in der Kommandozeile/Konsole a
 ```
 python setup.py develop
 ```
+
+
 Alternativ als normale Installation (erfordert u.U. Adminrechte) mit:
 ```python
 python setup.py install
 ```
+## Tutorials
+Im [Materialien](https://github.com/coderdojoka/Materialien/tree/master/Python/Roter%20G%C3%BCrtel/Tutorials/py2cd) Repository sind Tutorials zu py2cd zu finden.
 
 ## Beispiele
-Im Ordner Beispiele sind ein paar (kommentierte) Beispileprogramme zu finden.
+Im Ordner [Beispiele](https://github.com/coderdojoka/py2cd/tree/master/beispiele/) sind ein paar (kommentierte) Beispielprogramme zu finden. Sowie im [Materialien-Repository](https://github.com/coderdojoka/Materialien/tree/master/Python/Beispiele/py2cd/)
