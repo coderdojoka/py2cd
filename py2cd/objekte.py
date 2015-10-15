@@ -348,6 +348,9 @@ class ZeichenbaresElement(Zeichenbar):
             eltern_flaeche = Spiel.standard_flaeche
 
         self.__abprallen = False
+        """
+        Falls gesetzt, wird beim Aufruf von bewege() auf Kollision mit dem Rand überprüft
+        """
 
         self.__geschwindigkeit_x = 5
         """
@@ -361,12 +364,31 @@ class ZeichenbaresElement(Zeichenbar):
 
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche, position_geaendert)
 
-    def pralle_vom_rand_ab(self, abprallen):
+    def pralle_vom_rand_ab(self, abprallen=True):
         self.__abprallen = abprallen
+
+    def x_bewegung(self):
+        return self.__geschwindigkeit_x
+
+    def y_bewegung(self):
+        return self.__geschwindigkeit_y
+
+    def x_bewegung_umkehren(self):
+        self.__geschwindigkeit_x *= -1
+
+    def y_bewegung_umkehren(self):
+        self.__geschwindigkeit_y *= -1
 
     def setze_geschwindigkeit(self, x=5, y=5):
         self.__geschwindigkeit_x = x
         self.__geschwindigkeit_y = y
+
+    def aendere_geschwindigkeit(self, x=0,y=0):
+        self.__geschwindigkeit_x += x
+        self.__geschwindigkeit_y += y
+
+    def geschwindigkeit(self):
+        return self.__geschwindigkeit_x, self.__geschwindigkeit_y
 
     def bewege(self, schritte=1):
 

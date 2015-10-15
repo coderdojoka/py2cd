@@ -37,39 +37,39 @@ def aktualisiere_spiel(delta):
     global bewegung_x,bewegung_y
 
     # 1. Variante: Die Box bewegen, prallt automatisch von der Wand ab
-    box.bewege()
+    box_gruen.bewege()
 
     # 2. Variante, wir müssen selbst auf Kollision mit der Wand testen
 
     # am rechten und linken Rand die x-Richtung ändern
-    if box2.beruehrt_linken_oder_rechten_rand():
+    if box_rot.beruehrt_linken_oder_rechten_rand():
         bewegung_x *= -1
 
     # am obereren und unteren Rand die y-Richtung ändern
-    if box2.beruehrt_oberen_oder_unteren_rand():
+    if box_rot.beruehrt_oberen_oder_unteren_rand():
         bewegung_y *= -1
 
     # bewege die Box
-    box2.aendere_position(bewegung_x, bewegung_y)
+    box_rot.aendere_position(bewegung_x, bewegung_y)
 
     # Wenn die beiden Boxen sich berühren, Farbe ändern
-    if box.beruehrt_objekt(box2):
-        box.farbe = BLAU
+    if box_gruen.beruehrt_objekt(box_rot):
+        box_gruen.farbe = BLAU
     else:
-        box.farbe = GRUEN
+        box_gruen.farbe = GRUEN
 
 reckt = Rechteck(270, 200, 100, 100, GELB)
 
 dreieck = Polygon([(270, 200), (320, 160), (370, 200)], ROT)
 
-box = Rechteck(13, 10, 50, 50, GRUEN)
-box2 = Rechteck(107, 120, 80, 80, ROT)
+box_gruen = Rechteck(13, 10, 50, 50, GRUEN)
+box_rot = Rechteck(107, 120, 80, 80, ROT)
 
 
 # Geschwindigkeit in x (rechts/links) und y (oben/unten) Richtung
-box.setze_geschwindigkeit(5,5)
+box_gruen.setze_geschwindigkeit(5,5)
 # Vom Rand abprallen aktivieren
-box.pralle_vom_rand_ab(True)
+box_gruen.pralle_vom_rand_ab(True)
 
 # Funktion die aufgerufen wird, wenn die Maus bewegt wurde
 Spiel.registriere_maus_bewegt(maus_bewegt)

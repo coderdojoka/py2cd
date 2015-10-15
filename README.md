@@ -6,14 +6,14 @@ Es ist auf Deutsch geschrieben und dient als Python3-Spiele Framework für das C
 Als Abhängigkeit wird pygame benötigt. Dies muss zuerst installiert werden.
 
 ### Windows
-Für Windows kann [hier](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame) die Datei pygame‑1.9.2a0‑cp34‑none‑win32.whl
-herunterladen und mittels:    
+Für Windows kann [hier](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame) die Datei _pygame‑1.9.2a0‑cp34‑none‑win32.whl_
+herunterladen werden. In der Kommandozeile/Konsole kann pygame dann mittels:    
 ```
 pip install --use-wheel pygame‑1.9.2a0‑cp34‑none‑win32.whl
 ```
 installiert werden.   
 
-Eine detailierter Anleitung ist [hier](https://github.com/coderdojoka/Materialien/raw/master/Installation/installation_pygame.pdf) zu finden.
+Eine detailiertere Anleitung ist [hier](https://github.com/coderdojoka/Materialien/raw/master/Installation/installation_pygame.pdf) zu finden.
 
 ### Linux
 
@@ -29,7 +29,11 @@ Für Ubuntu ist es komplizierter, da die pygame für Python3 selbst kompiliert w
 
 
 ## py2cd-Installation
-Da py2cd sich noch im Entwicklungsstatus befindet ist es am Besten, py2cd als Development-Version zu installieren. D.h. wenn die Source-Dateien aktualisiert werden, bleibt py2cd aktuell:    
+Das Repository Klonen oder als Zip-Datei herunterladen und entpacken.
+
+Da py2cd sich noch im Entwicklungsstatus befindet ist es am Besten, py2cd als Development-Version zu installieren. D.h. wenn die Source-Dateien aktualisiert werden, bleibt py2cd aktuell, der heruntergeladene Ordner muss allerdings an der gleichen Stelle bleiben!    
+
+Im heruntergeladenen Ordner dann folgenden Befehl in der Kommandozeile/Konsole ausführen:
 ```
 python setup.py develop
 ```

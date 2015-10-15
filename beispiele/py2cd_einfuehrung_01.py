@@ -31,6 +31,9 @@ text.setze_position((Spiel.breite - text.breite) / 2, Spiel.hoehe - text.hoehe -
 text.zentriere_horizontal();
 text.abstand_unten = 10
 
+# Hilfsgitter anzeigen
+Spiel.zeichne_gitter()
+
 Spiel.starten()
 """
 Um das Spiel zu starten, muss Spiel.start() aufgerufen werden. Dies sollte immer die letzte Anweisung sein!
