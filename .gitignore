@@ -12,7 +12,6 @@
 # Sphinx-Doku
 *.rst
 doc/.*
-doc/_*
 Makefile
 conf.py
 

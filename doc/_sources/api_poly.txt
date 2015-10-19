@@ -1,0 +1,14 @@
+Polygon - Linien
+================
+
+ Ein Polygon/Linienzug ist definiert durch eine Liste von Punkten. Jeder Punkt selbst besteht aus einer x- und y-Komponente und wird als Tupel (x, y) dargestellt. Die Punkte werden der Reihe nach zu einem Polygon bzw. Linienzug zusammengefügt.
+
+.. automodule:: py2cd.poly
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

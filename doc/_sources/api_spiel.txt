@@ -1,0 +1,13 @@
+Spiel - Die Hauptklasse
+=======================
+ Die Hauptfunktionen von py2cd sind hier gebündelt. Spiel.init() und Spiel.starten() sind die beiden wichtigsten Funktionen.
+
+.. automodule:: py2cd.spiel
+    :members:
+    :inherited-members:
+    :undoc-members:
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

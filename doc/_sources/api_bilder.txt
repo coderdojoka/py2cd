@@ -1,0 +1,22 @@
+Bilder
+======
+ Bilder können über den BildSpeicher geladen werden. Dieser verwaltet alle Bilder und stellt diese über einen frei wählbaren Schlüssel zur Verfügung.
+
+.. autoclass:: py2cd.bild.BildSpeicher
+    :members:
+    :inherited-members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+
+.. autoclass:: py2cd.bild.Bild
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

@@ -11,7 +11,7 @@ Py2cd kann immer über dieses Skript installiert/aktualisiert werden.
  Zur Installation muss die neuste Version als [Zip-Archiv](https://github.com/coderdojoka/py2cd/archive/master.zip) heruntergeladen und entpackt werden.
 
 #### Schritt 2:
-Anschließend wird die Installation gestartet, indem man das Python-Skript _'installation.py'_ ausgeführt.
+Anschließend wird die Installation gestartet, indem man das Python-Skript _'installation.py'_ ausführt.
  Hat alles geklappt, können die unten stehenden Installations-Schritte übersprungen werden. 
 
 #### Schritt 3:

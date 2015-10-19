@@ -1,0 +1,37 @@
+Formen und Objekte
+==================
+ Jedes zeichenbare Objekt, wie ein Rechteck oder Kreis erbt von dieser Klasse und die unten aufgeführten Attribute.
+
+.. automodule:: py2cd.objekte
+    :members:
+    :inherited-members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+Eine Fläche ist ein Container-Objekt für andere Objekte.
+
+.. automodule:: py2cd.flaeche
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+.. automodule:: py2cd.kreis
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+.. automodule:: py2cd.linie
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+.. automodule:: py2cd.poly
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

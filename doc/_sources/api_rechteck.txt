@@ -1,0 +1,14 @@
+Rechtecke
+=========
+
+ Ein einfaches Rechteck, das durch seine Position (x, y), Breite, Höhe definiert ist.
+
+.. automodule:: py2cd.rechteck
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

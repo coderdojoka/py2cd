@@ -1,0 +1,14 @@
+Kreis
+=====
+
+Ein Kreis ist durch seinen Radius definiert. Die Postion wird am Besten über die Funktion mitte = (x,y) gesetzt.
+
+.. automodule:: py2cd.kreis
+    :members:
+    :undoc-members:
+    :special-members: __init__, __str__
+
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
