@@ -30,9 +30,10 @@ boltAnim = Animation([('testimages/bolt_strike_0001.png', zeit),
 boltAnim.start()
 boltAnim.setze_wiederhole(True)
 boltAnim.setze_position(200, 250)
-boltAnim.abstand_oben = 0
-boltAnim.abstand_rechts = Spiel.breite - boltAnim.breite - 10
+boltAnim.oben = 20
+boltAnim.rechts = Spiel.breite - boltAnim.breite - 10
 boltAnim.zentriere_horizontal()
+
 zeit = 1000 / 6
 fireAnim = Animation([("testimages/flame_a_0001.png", zeit),
                       ("testimages/flame_a_0002.png", zeit),
@@ -43,8 +44,8 @@ fireAnim = Animation([("testimages/flame_a_0001.png", zeit),
 fireAnim.start()
 fireAnim.setze_wiederhole(True)
 fireAnim.setze_position(200, 200)
-fireAnim.abstand_unten = 0
-fireAnim.abstand_links = 12
+fireAnim.unten = 0
+fireAnim.links = 12
 fireAnim.zentriere_vertikal()
 
 

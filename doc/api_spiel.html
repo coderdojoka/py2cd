@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Spiel - Die Hauptklasse &mdash; py2cd Spiele-/Zeichenframework v0.6 Dokumentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="py2cd Spiele-/Zeichenframework v0.6 Dokumentation" href="index.html"/>
+        <link rel="next" title="Formen und Objekte" href="api_objekte.html"/>
+        <link rel="prev" title="Willkommen zur py2cd Spiele-/Zeichenframework Dokumentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> py2cd Spiele-/Zeichenframework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Spiel - Die Hauptklasse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_objekte.html">Formen und Objekte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_rechteck.html">Rechtecke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_kreis.html">Kreis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_poly.html">Polygon - Linien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_bilder.html">Bilder</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">py2cd Spiele-/Zeichenframework</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Spiel - Die Hauptklasse</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api_spiel.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spiel-die-hauptklasse">
+<h1>Spiel - Die Hauptklasse<a class="headerlink" href="#spiel-die-hauptklasse" title="Link zu dieser Überschrift">¶</a></h1>
+<blockquote>
+<div>Die Hauptfunktionen von py2cd sind hier gebündelt. Spiel.init() und Spiel.starten() sind die beiden wichtigsten Funktionen.</div></blockquote>
+<span class="target" id="module-py2cd.spiel"></span><dl class="class">
+<dt id="py2cd.spiel.Spiel">
+<em class="property">class </em><code class="descclassname">py2cd.spiel.</code><code class="descname">Spiel</code><a class="headerlink" href="#py2cd.spiel.Spiel" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Hauptklasse des Spiels.
+Es muss Spiel.init() und Spiel.starten() aufgerufen werden.</p>
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.beenden">
+<em class="property">static </em><code class="descname">beenden</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.beenden" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Beendet das Spiel und schließt das Fenster.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.spiel.Spiel.breite">
+<code class="descname">breite</code><em class="property"> = 640</em><a class="headerlink" href="#py2cd.spiel.Spiel.breite" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Breite des Spiels (Fensters).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.entferne_aktualisierung">
+<em class="property">static </em><code class="descname">entferne_aktualisierung</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.entferne_aktualisierung" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt die Aktualisierugsfuntion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.spiel.Spiel.fps">
+<code class="descname">fps</code><em class="property"> = 30</em><a class="headerlink" href="#py2cd.spiel.Spiel.fps" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Anzahl der Aktualisierungen pro Sekunde (&#8220;Frames per second).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.gib_zeichen_flaeche">
+<em class="property">static </em><code class="descname">gib_zeichen_flaeche</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.gib_zeichen_flaeche" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die Hauptzeichenfläche des Spiels zurück. Darauf kann (muss) gezeichnet werden.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Die Zeichenfläche</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><a class="reference internal" href="api_objekte.html#py2cd.flaeche.ZeichenFlaeche" title="py2cd.flaeche.ZeichenFlaeche">py2cd.flaeche.ZeichenFlaeche</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.spiel.Spiel.hoehe">
+<code class="descname">hoehe</code><em class="property"> = 480</em><a class="headerlink" href="#py2cd.spiel.Spiel.hoehe" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Höhe des Spiels (Fensters).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="py2cd.spiel.Spiel.init">
+<em class="property">classmethod </em><code class="descname">init</code><span class="sig-paren">(</span><em>breite=640</em>, <em>hoehe=480</em>, <em>titel='Py2cd Zeichenbiblothek'</em>, <em>aktualisierungs_funktion=&lt;function Spiel.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.init" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Initialisiert das Spiel.</p>
+<p>HINWEIS: Diese Funktion muss aufgerufen werden, bevor py2cd Funktionen verwendet werden können.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>breite</strong> (<em>int</em>) &#8211; die Fensterbreite</li>
+<li><strong>hoehe</strong> (<em>int</em>) &#8211; die Fensterhöhe</li>
+<li><strong>titel</strong> (<em>str</em>) &#8211; Der Fenstertitel</li>
+<li><strong>aktualisierungs_funktion</strong> (<em>(float) -&gt; None</em>) &#8211; die Aktualisierungsfunktion, die bei jedem Neuzeichnen aufgerufen wird (fps mal pro sekunde)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.registriere_maus_bewegt">
+<em class="property">static </em><code class="descname">registriere_maus_bewegt</code><span class="sig-paren">(</span><em>funktion</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.registriere_maus_bewegt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Registriert eine Funktion, die ausgeführt wird, wenn eine Maus-Taste gedrückt wird.
+Wenn die Funktion aufgerufen wird, wird ihr ein Objekt übergeben, das so aufgebaut ist:</p>
+<blockquote>
+<div>button: 1-3 # welche Taste: 1 = Links, ...
+pos: (x,y) # Tupel mit der Position</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>funktion</strong> (<em>(object) -&gt; None</em>) &#8211; Die Funktion die aufgerufen werden soll, wenn eine Taste gedrückt wurde</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.registriere_maus_gedrueckt">
+<em class="property">static </em><code class="descname">registriere_maus_gedrueckt</code><span class="sig-paren">(</span><em>funktion</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.registriere_maus_gedrueckt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Registriert eine Funktion, die aufgerufen wird, wenn eine Maustaste gedrückt wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>funktion</strong> (<em>(object)-&gt;None</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.registriere_maus_losgelassen">
+<em class="property">static </em><code class="descname">registriere_maus_losgelassen</code><span class="sig-paren">(</span><em>funktion</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.registriere_maus_losgelassen" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Registriert eine Funktion, die aufgerufen wird, wenn eine Maustaste losgelassen wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>funktion</strong> (<em>(object)-&gt;None</em>) &#8211; Die Funktion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.registriere_taste_gedrueckt">
+<em class="property">static </em><code class="descname">registriere_taste_gedrueckt</code><span class="sig-paren">(</span><em>taste</em>, <em>funktion</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.registriere_taste_gedrueckt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Registriert eine Funktion, die ausgeführt wird, wenn die angegebene Taste gedrückt wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>taste</strong> (<em>int</em>) &#8211; die Taste z.B. die a-Taste ist 97. Alle Tasten sind vordefiniert, so entspricht K_a der &#8216;a&#8217;-Taste</li>
+<li><strong>funktion</strong> &#8211; Die Funktion die aufgerufen wird. Sie muss 2 Parameter akzeptieren, der</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Erste gibt an, ob die Taste gedrückt oder losgelassen ist und der Zweite ist das Event Objekt
+:type funktion: (bool, object) -&gt; None</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.setze_aktualisierung">
+<em class="property">static </em><code class="descname">setze_aktualisierung</code><span class="sig-paren">(</span><em>funktion</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.setze_aktualisierung" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die Funktion, die einmal pro Spiel Update-Durchlauf aufgerufen wird, in der Spiel-Objekte
+aktualisiert werden können.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>funktion</strong> (<em>(float) -&gt; None</em>) &#8211; die Aktualisierungsfunktion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.setze_fenster_titel">
+<em class="property">static </em><code class="descname">setze_fenster_titel</code><span class="sig-paren">(</span><em>titel</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.setze_fenster_titel" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt den Titel für das Fenster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>titel</strong> (<em>str</em>) &#8211; Der Fenstertitel</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.setze_hintergrund_farbe">
+<em class="property">static </em><code class="descname">setze_hintergrund_farbe</code><span class="sig-paren">(</span><em>farbe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.setze_hintergrund_farbe" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die Hintergrundfarbe des Fensters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>farbe</strong> (<em>tuple(int)</em>) &#8211; Die Farbe</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.spiel.Spiel.standard_flaeche">
+<code class="descname">standard_flaeche</code><em class="property"> = None</em><a class="headerlink" href="#py2cd.spiel.Spiel.standard_flaeche" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Fläche zu der Objekte standartmäßig hinzugefügt werden, falls die Elternfläche nicht explizit angegben ist.
+:type: py2cd.zeichen_flaeche.ZeichenFlaeche</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.starten">
+<em class="property">static </em><code class="descname">starten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.starten" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Startet das Spiel. Hinweis, diese Funktion blockiert und kehrt nie zurück!</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.spiel.Spiel.zeichne_gitter">
+<em class="property">static </em><code class="descname">zeichne_gitter</code><span class="sig-paren">(</span><em>groesse=50</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.spiel.Spiel.zeichne_gitter" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet ein Hilfsgitter mit der gegebenen Gittergröße.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>groesse</strong> (<em>int</em>) &#8211; die Größe, Standart: 50</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.spiel.Spiel.zeit_unterschied_ms">
+<code class="descname">zeit_unterschied_ms</code><em class="property"> = 0</em><a class="headerlink" href="#py2cd.spiel.Spiel.zeit_unterschied_ms" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Zeitunterschied zwischen den aktuellen Frames.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Stichwortverzeichnis</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Modulindex</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Suche</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_objekte.html" class="btn btn-neutral float-right" title="Formen und Objekte" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Willkommen zur py2cd Spiele-/Zeichenframework Dokumentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Mark Weinreuter.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

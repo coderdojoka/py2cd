@@ -5,7 +5,6 @@ from unittest.case import TestCase
 import pygame
 
 from py2cd.anim import Animation
-
 from py2cd.farben import *
 from py2cd.flaeche import neue_pygame_flaeche
 from py2cd.linie import Linie
@@ -29,7 +28,23 @@ class PositionTest(TestCase):
     def setUp(self):
         Spiel.init(PositionTest.fenster_breite, PositionTest.fenster_hoehe, "Test", PositionTest.beenden_timer)
 
-    def dimension_test(self, zeichenbar):
+    def test1(self):
+        r = Rechteck(0, 10, 100.533343343434, 10.3340, BLAU)
+        p = Polygon([(20.444, 210.22), (200, 200), (450, 150)], ROT, 1)
+        l = Linie((50, 50.67667), (200, 200), (150, 250, 50), 4)
+        ll = Linien([(233, 456), (5.55, 2.21)], True, SCHWARZ)
+        al = AALinien([(400, 450), (530.3304, 500)], True, GRUEN)
+        a = Animation([(neue_pygame_flaeche(400, 400), 10)], True)
+
+        self._dimension_check(r)
+        self._dimension_check(p)
+        self._dimension_check(l)
+        self._dimension_check(ll)
+        self._dimension_check(al)
+        self._dimension_check(a)
+        Spiel.starten()
+
+    def _dimension_check(self, zeichenbar=None):
         """
 
         :param zeichenbar:
@@ -37,20 +52,23 @@ class PositionTest(TestCase):
         :return:
         :rtype:
         """
+        if zeichenbar is None:
+            return
+
         print("Test abstand_xy()")
         abstand = 12.534234234235
         stellen = 5
 
-        zeichenbar.abstand_links = abstand
+        zeichenbar.links = abstand
         self.assertAlmostEqual(abstand, zeichenbar.x, stellen)
 
-        zeichenbar.abstand_rechts = abstand
+        zeichenbar.rechts = abstand
         self.assertAlmostEqual(zeichenbar._eltern_flaeche.breite - abstand - zeichenbar.breite, zeichenbar.x, stellen)
 
-        zeichenbar.abstand_oben = abstand
+        zeichenbar.oben = abstand
         self.assertAlmostEqual(abstand, zeichenbar.y, stellen)
 
-        zeichenbar.abstand_unten = abstand
+        zeichenbar.unten = abstand
         self.assertAlmostEqual(zeichenbar._eltern_flaeche.hoehe - zeichenbar.hoehe - abstand, zeichenbar.y, stellen)
 
         print("Done")
@@ -61,22 +79,6 @@ class PositionTest(TestCase):
         self.assertAlmostEqual((PositionTest.fenster_breite - zeichenbar.breite) / 2, zeichenbar.x, stellen)
         self.assertAlmostEqual((PositionTest.fenster_hoehe - zeichenbar.hoehe) / 2, zeichenbar.y, stellen)
         print("Done.")
-
-    def test1(self):
-        r = Rechteck(0, 10, 100.533343343434, 10.3340, BLAU)
-        p = Polygon([(20.444, 210.22), (200, 200), (450, 150)], ROT, 1)
-        l = Linie((50, 50.67667), (200, 200), (150, 250, 50), 4)
-        ll = Linien([(233, 456), (5.55, 2.21)], True, SCHWARZ)
-        al = AALinien([(400, 450), (530.3304, 500)], True, GRUEN)
-        a = Animation([(neue_pygame_flaeche(400, 400), 10)], True)
-
-        self.dimension_test(r)
-        self.dimension_test(p)
-        self.dimension_test(l)
-        self.dimension_test(ll)
-        self.dimension_test(al)
-        self.dimension_test(a)
-        Spiel.starten()
 
     def tearDown(self):
         pygame.quit()

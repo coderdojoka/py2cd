@@ -8,17 +8,16 @@ from py2cd.objekte import *
 class Polygon(ZeichenbaresElement):
     def __init__(self, punkte, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
         """
-        Erstellt ein neues Polygon mit den gegebenen Eckpunkte
-        :param punkte:
+        Erstellt ein neues Polygon mit den gegebenen Eckpunkte.
+
+        :param punkte: Die Punkte, die das Polygone ausmachen. Jeder Punkt besteht aus einem Tupel von x, y Koordinaten
         :type: punkte: list [int, int]
-        :param eltern_flaeche:
+        :param eltern_flaeche: die Elternfläche
         :type eltern_flaeche: py2cd.flaeche.ZeichenFlaeche
         :param farbe:
-        :type: farbe: tuple [int]
-        :param dicke:
+        :type farbe: tuple [int]
+        :param dicke: die Dicke des Rahmens, für dicke = 0 ist das Polygon gefüllt
         :type: dicke: int
-        :return:
-        :rtype:
         """
 
         # Konvertiere die Punkte so, das der erset Punkt bei (0,0) liegt und der erste Punkt wird als x,y-Koordinaten
@@ -42,13 +41,16 @@ class Polygon(ZeichenbaresElement):
         self._punkte = [(p[0] - x_min, (p[1] - y_min)) for p in punkte]
         """
         Die Punkteliste. Die Punkte werden so umgerechnet, dass sie relativ zum Startpunkt sind.
+
         :type: list[int, int]
         """
         self._verschobene_punkte = punkte
         """ Interne Liste mit x,y Verschiebung """
 
         self.dicke = dicke
-        """ Die Dicke mit der das Polygon gezeichnet wird, 0=> gefüllt
+        """
+        Die Dicke mit der das Polygon gezeichnet wird, 0=> gefüllt.
+
         :type: int
         """
 
@@ -73,7 +75,8 @@ class Linien(Polygon):
 
     def __init__(self, punkte, geschlossen=False, farbe=(0, 0, 0), dicke=1, eltern_flaeche=None):
         """
-        Erstellt ein neues Liniensystem aus den gegebenen Punkten
+        Erstellt ein neues Liniensystem aus den gegebenen Punkten.
+
         :param punkte:
         :type punkte: list[tuple[float]]
         :param eltern_flaeche:
@@ -84,8 +87,6 @@ class Linien(Polygon):
         :type farbe: tuple[int]
         :param dicke:
         :type dicke: int
-        :return:
-        :rtype:
         """
         self._geschlossen = geschlossen
 
@@ -103,7 +104,8 @@ class AALinien(Polygon):
 
     def __init__(self, punkte, geschlossen=False, farbe=(0, 0, 0), eltern_flaeche=None):
         """
-        Erstellt ein neues Liniensystem aus den gegebenen Punkten
+        Erstellt ein neues Liniensystem aus den gegebenen Punkten.
+
         :param punkte:
         :type punkte: list[tuple[float]]
         :param eltern_flaeche:
@@ -112,8 +114,6 @@ class AALinien(Polygon):
         :type geschlossen: bool
         :param farbe:
         :type farbe: tuple[int]
-        :return:
-        :rtype:
         """
         self._geschlossen = geschlossen
 

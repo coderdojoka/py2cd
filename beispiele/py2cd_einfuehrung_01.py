@@ -29,7 +29,7 @@ text.setze_position((Spiel.breite - text.breite) / 2, Spiel.hoehe - text.hoehe -
 
 # Viel einfacher kann man dies auch so machen:
 text.zentriere_horizontal();
-text.abstand_unten = 10
+text.unten = 10
 
 # Hilfsgitter anzeigen
 Spiel.zeichne_gitter()

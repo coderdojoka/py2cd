@@ -119,13 +119,13 @@ class TTHaupt(Spiel):
 
         ktStart = KlickText(200, 200, "Start", cls.spiel_starten, schriftGross)
         ktStart.zentriere_horizontal()
-        ktStart.abstand_unten = 25
+        ktStart.unten = 25
 
         mitte = cls.titel_bild.mitte
         ktRechts = KlickText(0, mitte[1], " - ", lambda: cls.spiel_wechseln(-1), schriftGross)
         ktLinks = KlickText(0, mitte[1], " + ", lambda: cls.spiel_wechseln(1), schriftGross)
-        ktLinks.abstand_rechts = 25
-        ktRechts.abstand_links = 25
+        ktLinks.rechts = 25
+        ktRechts.links = 25
 
         cls.naechsteLektion = KlickText(0, mitte[1], " + ", lambda: cls.lektion_wechseln(1), schriftGross)
         cls.vorherigeLektion = KlickText(0, 600, " - ", lambda: cls.lektion_wechseln(-1), schriftGross)

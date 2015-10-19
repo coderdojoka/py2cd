@@ -1,13 +1,14 @@
-"""
-              _____         _
-             / __  \       | |
- _ __  _   _ `' / /' ___ __| |
-| '_ \| | | |  / /  / __/ _` |
-| |_) | |_| |./ /__| (_| (_| |
-| .__/ \__, |\_____/\___\__,_|
-| |     __/ |
-|_|    |___/
 
+#               _____         _
+#              / __  \       | |
+#  _ __  _   _ `' / /' ___ __| |
+# | '_ \| | | |  / /  / __/ _` |
+# | |_) | |_| |./ /__| (_| (_| |
+# | .__/ \__, |\_____/\___\__,_|
+# | |     __/ |
+# |_|    |___/
+
+"""
 py2cd ist ein (hoffentlich) einfach zu verwendendes "2D-Framework" in Deutsch.
 
 Es können graphische Objekte, wie Rechtecke, Linien, Kreise, Polygone gezeichnet werden.
@@ -49,3 +50,5 @@ from py2cd.bild import *
 
 # Animationen
 from py2cd.anim import *
+
+version = "0.6"

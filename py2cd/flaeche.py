@@ -35,7 +35,8 @@ class ZeichenFlaeche(Zeichenbar):
 
     def __init__(self, x, y, pygame_flaeche_breite, farbe=(0, 0, 0, 0), eltern_flaeche=None):
         """
-        Eine neue Zeichenfläche
+        Eine neue Zeichenfläche.
+
         :param x:
         :type x: float
         :param y:

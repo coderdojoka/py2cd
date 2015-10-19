@@ -82,7 +82,7 @@ schrift = Schrift(20)
 t = Text("wasd zum bewegen", 0, 10, schrift, GRAU)
 
 # 5 Pixel vom rechten Rand plazieren
-t.abstand_rechts = 5
+t.rechts = 5
 
 ball = Kreis(10, 10, 20, GRUEN)
 

@@ -7,7 +7,6 @@ __author__ = 'Mark Weinreuter'
 # Inspired by Al Sweigarts pyganim: http://inventwithpython.com/pyganim/
 
 from py2cd.spiel import Spiel
-from py2cd.flaeche import ZeichenFlaeche
 from py2cd.objekte import ZeichenbaresElement
 
 GESTOPPT = 0
@@ -23,17 +22,13 @@ class Animation(ZeichenbaresElement):
 
     def __init__(self, pygame_flaechen_und_zeiten, wiederhole=False, alpha=True):
         """
-        Erstellt einen neue Instanz aus den Flächen.
-        :param pygame_flaechen_und_zeiten:
-        :type pygame_flaechen_und_zeiten:list[(str|ZeichenFlaeche, int)]
-        :param wiederhole:
-        :type wiederhole: bool
-        :param alpha:
-        :type alpha:bool
-        :return:
-        :rtype:
-        """
+        Ein neues Animationsobjekt.
 
+        :param pygame_flaechen_und_zeiten:
+        :param wiederhole:
+        :param alpha:
+        :raise AttributeError:
+        """
         self._wiederhole_animation = wiederhole
         """
         Gibt an ob die Animation wiederholt wird oder nicht
@@ -93,11 +88,10 @@ class Animation(ZeichenbaresElement):
 
     def render(self, pyg_zeichen_flaeche):
         """
-        Zeichnet das aktuelle Bild dieser Animation
-        :param pyg_zeichen_flaeche:
-        :type pyg_zeichen_flaeche:
-        :return:
-        :rtype:
+        Zeichnet das aktuelle Bild dieser Animation.
+
+        :param pyg_zeichen_flaeche: die Fläche, auf der gezeichnet wird
+        :type pyg_zeichen_flaeche: pygame.Surface
         """
         if self._zustand == GESTARTET:
             self._vergangen += Spiel.zeit_unterschied_ms

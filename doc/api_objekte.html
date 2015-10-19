@@ -1,0 +1,1670 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Formen und Objekte &mdash; py2cd Spiele-/Zeichenframework v0.6 Dokumentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="py2cd Spiele-/Zeichenframework v0.6 Dokumentation" href="index.html"/>
+        <link rel="next" title="Rechtecke" href="api_rechteck.html"/>
+        <link rel="prev" title="Spiel - Die Hauptklasse" href="api_spiel.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> py2cd Spiele-/Zeichenframework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api_spiel.html">Spiel - Die Hauptklasse</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Formen und Objekte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_rechteck.html">Rechtecke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_kreis.html">Kreis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_poly.html">Polygon - Linien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_bilder.html">Bilder</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">py2cd Spiele-/Zeichenframework</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Formen und Objekte</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api_objekte.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="formen-und-objekte">
+<h1>Formen und Objekte<a class="headerlink" href="#formen-und-objekte" title="Link zu dieser Überschrift">¶</a></h1>
+<blockquote>
+<div>Jedes zeichenbare Objekt, wie ein Rechteck oder Kreis erbt von dieser Klasse und die unten aufgeführten Attribute.</div></blockquote>
+<span class="target" id="module-py2cd.objekte"></span><dl class="class">
+<dt id="py2cd.objekte.Zeichenbar">
+<em class="property">class </em><code class="descclassname">py2cd.objekte.</code><code class="descname">Zeichenbar</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>breite</em>, <em>hoehe</em>, <em>farbe</em>, <em>eltern_flaeche</em>, <em>position_geändert=&lt;function Zeichenbar.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überklasse für alle zeichenbaren Objekte. Diese haben ein Position (x,y) und eine (Hintergrund-)Farbe.</p>
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>breite</em>, <em>hoehe</em>, <em>farbe</em>, <em>eltern_flaeche</em>, <em>position_geändert=&lt;function Zeichenbar.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ein neues Zeichenbares Objekt mit der gegebenen (Hintergrund-)Farbe und Elternflaeche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; </li>
+<li><strong>y</strong> (<em>float</em>) &#8211; </li>
+<li><strong>breite</strong> (<em>float</em>) &#8211; </li>
+<li><strong>hoehe</strong> (<em>float</em>) &#8211; </li>
+<li><strong>farbe</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:type farbe:tuple[int]|None
+:param eltern_flaeche:
+:type eltern_flaeche: py2cd.flaeche.ZeichenFlaeche
+:param position_geändert: die Funktion, die aufgerufen wird, wenn sich die Position dieses Objekts geändert hat
+:type position_geändert: () -&gt; None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.__str__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt den Typ dieses Objektes, seine Position und seine Größe aus.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Objekt-Info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.aendere_position">
+<code class="descname">aendere_position</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.aendere_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ändert die Position um den gegebenen Wert, d.h: self._x = self._x + x.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; Änderung des x-Wertes</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; Änderung des y-Wertes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_linken_oder_rechten_rand">
+<code class="descname">beruehrt_linken_oder_rechten_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_linken_oder_rechten_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den linken oder rechten Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_linken_rand">
+<code class="descname">beruehrt_linken_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_linken_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den linken Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_oberen_oder_unteren_rand">
+<code class="descname">beruehrt_oberen_oder_unteren_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_oberen_oder_unteren_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den oberen oder unteren Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_oberen_rand">
+<code class="descname">beruehrt_oberen_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_oberen_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den oberen Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_objekt">
+<code class="descname">beruehrt_objekt</code><span class="sig-paren">(</span><em>zeichenbar</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_objekt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt das übergebene Objekt berührt. Genauer, ob das umgebende Rechteck dieses Objektes, das umgebende Rechteckt
+des andren Objektes berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>zeichenbar</strong> (<a class="reference internal" href="#py2cd.objekte.Zeichenbar" title="py2cd.objekte.Zeichenbar"><em>Zeichenbar</em></a>) &#8211; das andere Objekt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_rand">
+<code class="descname">beruehrt_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den Rand der Elternfläche an irgendeiner Stelle berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Wahr, falls berührt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_rechteck">
+<code class="descname">beruehrt_rechteck</code><span class="sig-paren">(</span><em>r2_links</em>, <em>r2_oben</em>, <em>breite</em>, <em>hoehe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft ob das umgebende Rechteck das Rechteck mit den angegeben Eckdaten berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>r2_links</strong> (<em>float</em>) &#8211; x-Wert</li>
+<li><strong>r2_oben</strong> (<em>float</em>) &#8211; y-Wert</li>
+<li><strong>breite</strong> (<em>float</em>) &#8211; die Breite des Rechtecks</li>
+<li><strong>hoehe</strong> (<em>float</em>) &#8211; die Höhe des Rechtecks</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Wahr, falls berührt</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_rechten_rand">
+<code class="descname">beruehrt_rechten_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_rechten_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den rechten Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.beruehrt_unternen_rand">
+<code class="descname">beruehrt_unternen_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.beruehrt_unternen_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den unteren Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.breite">
+<code class="descname">breite</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.breite" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Breite der umgebenden Box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Breite</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.farbe">
+<code class="descname">farbe</code><em class="property"> = None</em><a class="headerlink" href="#py2cd.objekte.Zeichenbar.farbe" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Farbe dieses Objekts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple[int]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.hoehe">
+<code class="descname">hoehe</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.hoehe" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Höhe der umgebenden Box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Breite</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.kollisions_maske">
+<code class="descname">kollisions_maske</code><em class="property"> = None</em><a class="headerlink" href="#py2cd.objekte.Zeichenbar.kollisions_maske" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>In Arbeit... Um auf pixelbasierte Kollistion zu testen wird diese 2-dimensionale Liste benötigt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.lese_welt_position">
+<code class="descname">lese_welt_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.lese_welt_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Falls das Objekt in einer geschachtelten Elternfläche ist, wird die Positon aller Elternflächen berücksichtigt.
+:return: die Position
+:rtype: tuple[float]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.links">
+<code class="descname">links</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.links" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum linken Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.mitte">
+<code class="descname">mitte</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.mitte" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Mittelpunkt dieses Objektes, genauer Mittelpunkt des umgebenden Rechtecks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Mittelpunkt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">tuple[float]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.nach_vorne">
+<code class="descname">nach_vorne</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.nach_vorne" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Sorgt dafür, dass dieses Objekt als Letztes und damit ganz oben gezeichnet wird.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.oben">
+<code class="descname">oben</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.oben" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum oberen Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.position">
+<code class="descname">position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die aktuelle Position als Tupel zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Positon als Tupel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">tuple[float]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.position_geaendert">
+<code class="descname">position_geaendert</code><em class="property"> = None</em><a class="headerlink" href="#py2cd.objekte.Zeichenbar.position_geaendert" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Funktion die aufgerufen wird, wenn die Position geändert wurde.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(None)-&gt;None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.punkt_in_rechteck">
+<code class="descname">punkt_in_rechteck</code><span class="sig-paren">(</span><em>punkt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.punkt_in_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Punkt im umgebenden Rechteckt liegt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>punkt</strong> &#8211; Der zu testende Punkt</td>
+</tr>
+</tbody>
+</table>
+<p>:type punkt:tuple(float)
+:return: Wahr, falls der Punkt innerhalb des Rechtecks ist
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.rechts">
+<code class="descname">rechts</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.rechts" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum rechten Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.render" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet dieses Objekt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>pyg_zeichen_flaeche</strong> (<em>pygame.Surface</em>) &#8211; die Elternfläche</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body">pygame.Rect</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.selbst_entfernen">
+<code class="descname">selbst_entfernen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.selbst_entfernen" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt dieses Objekt von seiner Elternfläche und wird damit nicht mehr gezeichnet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.setze_position">
+<code class="descname">setze_position</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.setze_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die Postion dieses Objektes auf die angegebenen Koordinaten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; x-Koordinate</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; y-Koordinate</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.ueberschneidung_rechteck">
+<code class="descname">ueberschneidung_rechteck</code><span class="sig-paren">(</span><em>r2_links</em>, <em>r2_oben</em>, <em>breite</em>, <em>hoehe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.ueberschneidung_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Berechnet das Überschneidungsrechteck.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>r2_links</strong> &#8211; </li>
+<li><strong>r2_oben</strong> &#8211; </li>
+<li><strong>breite</strong> &#8211; </li>
+<li><strong>hoehe</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.unten">
+<code class="descname">unten</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.unten" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum unteren Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.verstecke">
+<code class="descname">verstecke</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.verstecke" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Versteckt dieses Objekt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.x">
+<code class="descname">x</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.x" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der x-Wert gemessen am linken Rand des Elternelementes.</p>
+<p>:return:x-Wert
+:rtype: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.Zeichenbar.y">
+<code class="descname">y</code><a class="headerlink" href="#py2cd.objekte.Zeichenbar.y" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der y-Wert gemessen am oberern Rand des Elternelementes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">y-Wert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zeichne">
+<code class="descname">zeichne</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zeichne" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet das aktuelle Objekt, genauer ruft render() auf, falls das Objekt sichtbar ist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zeige">
+<code class="descname">zeige</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zeige" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeigt dieses Objekt an, nachdem es versteckt wurde.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zentriere">
+<code class="descname">zentriere</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zentriere" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt in seiner Elternflaeche.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zentriere_horizontal">
+<code class="descname">zentriere_horizontal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zentriere_horizontal" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt horizontal in seiner Elternflaeche.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zentriere_in_objekt">
+<code class="descname">zentriere_in_objekt</code><span class="sig-paren">(</span><em>objekt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zentriere_in_objekt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt in dem angegebenen Objekt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.Zeichenbar.zentriere_vertikal">
+<code class="descname">zentriere_vertikal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.Zeichenbar.zentriere_vertikal" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt vertikal in seiner Elternflaeche.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="py2cd.objekte.ZeichenbaresElement">
+<em class="property">class </em><code class="descclassname">py2cd.objekte.</code><code class="descname">ZeichenbaresElement</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>breite</em>, <em>hoehe</em>, <em>farbe</em>, <em>eltern_flaeche=None</em>, <em>position_geaendert=&lt;function ZeichenbaresElement.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>breite</em>, <em>hoehe</em>, <em>farbe</em>, <em>eltern_flaeche=None</em>, <em>position_geaendert=&lt;function ZeichenbaresElement.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; die x-Koordinate</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; die y-Koordinate</li>
+<li><strong>breite</strong> (<em>float</em>) &#8211; die Breite des umgebenden Rechtecks</li>
+<li><strong>hoehe</strong> (<em>float</em>) &#8211; die Höhe des umgebenden Rechtecks</li>
+<li><strong>farbe</strong> (<em>tuple[int]</em>) &#8211; die (Hintergrund-) Farbe</li>
+<li><strong>eltern_flaeche</strong> (<em>py2cd.flaeche.Flaeche</em>) &#8211; die Elternfläche (Standard: Spiel.haupt_flaeche)</li>
+<li><strong>position_geaendert</strong> (<em>() -&gt; None</em>) &#8211; die Funktion, die bei Positonsänderung aufgerufen wird</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.__str__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt den Typ dieses Objektes, seine Position und seine Größe aus.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Objekt-Info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.aendere_geschwindigkeit">
+<code class="descname">aendere_geschwindigkeit</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.aendere_geschwindigkeit" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ändert die x- und y-Geschwindigkeit für dieses Objekt um den gegenenen Wert.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; x-Geschwindigkeit</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; y-Geschwindigkeit</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.aendere_position">
+<code class="descname">aendere_position</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.aendere_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ändert die Position um den gegebenen Wert, d.h: self._x = self._x + x.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; Änderung des x-Wertes</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; Änderung des y-Wertes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_linken_oder_rechten_rand">
+<code class="descname">beruehrt_linken_oder_rechten_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_linken_oder_rechten_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den linken oder rechten Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_linken_rand">
+<code class="descname">beruehrt_linken_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_linken_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den linken Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_oberen_oder_unteren_rand">
+<code class="descname">beruehrt_oberen_oder_unteren_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_oberen_oder_unteren_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den oberen oder unteren Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_oberen_rand">
+<code class="descname">beruehrt_oberen_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_oberen_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den oberen Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_objekt">
+<code class="descname">beruehrt_objekt</code><span class="sig-paren">(</span><em>zeichenbar</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_objekt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt das übergebene Objekt berührt. Genauer, ob das umgebende Rechteck dieses Objektes, das umgebende Rechteckt
+des andren Objektes berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>zeichenbar</strong> (<a class="reference internal" href="#py2cd.objekte.Zeichenbar" title="py2cd.objekte.Zeichenbar"><em>Zeichenbar</em></a>) &#8211; das andere Objekt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_rand">
+<code class="descname">beruehrt_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den Rand der Elternfläche an irgendeiner Stelle berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Wahr, falls berührt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_rechteck">
+<code class="descname">beruehrt_rechteck</code><span class="sig-paren">(</span><em>r2_links</em>, <em>r2_oben</em>, <em>breite</em>, <em>hoehe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft ob das umgebende Rechteck das Rechteck mit den angegeben Eckdaten berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>r2_links</strong> (<em>float</em>) &#8211; x-Wert</li>
+<li><strong>r2_oben</strong> (<em>float</em>) &#8211; y-Wert</li>
+<li><strong>breite</strong> (<em>float</em>) &#8211; die Breite des Rechtecks</li>
+<li><strong>hoehe</strong> (<em>float</em>) &#8211; die Höhe des Rechtecks</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Wahr, falls berührt</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_rechten_rand">
+<code class="descname">beruehrt_rechten_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_rechten_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den rechten Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.beruehrt_unternen_rand">
+<code class="descname">beruehrt_unternen_rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.beruehrt_unternen_rand" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob dieses Objekt den unteren Rand der Elternfläche berührt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.bewege">
+<code class="descname">bewege</code><span class="sig-paren">(</span><em>schritte=1</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.bewege" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt dieses Objekt um die gegebene Anzahl an Schritten mit der definierten Geschwindigkeit. Falls die gewünscht wird auch auf Kollision
+mit dem Rand überprüft.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>schritte</strong> (<em>int</em>) &#8211; die Anzahl an Schritten</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.breite">
+<code class="descname">breite</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.breite" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Breite der umgebenden Box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Breite</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.gib_geschwindigkeit">
+<code class="descname">gib_geschwindigkeit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.gib_geschwindigkeit" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die aktuelle Geschwindigkeit dieses Objekts als Tupel zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">x-, y-Geschindigkeit als Tupel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">tuple[float]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.hoehe">
+<code class="descname">hoehe</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.hoehe" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Höhe der umgebenden Box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Breite</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.lese_welt_position">
+<code class="descname">lese_welt_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.lese_welt_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Falls das Objekt in einer geschachtelten Elternfläche ist, wird die Positon aller Elternflächen berücksichtigt.
+:return: die Position
+:rtype: tuple[float]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.links">
+<code class="descname">links</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.links" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum linken Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.mitte">
+<code class="descname">mitte</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.mitte" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Mittelpunkt dieses Objektes, genauer Mittelpunkt des umgebenden Rechtecks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Mittelpunkt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">tuple[float]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.nach_vorne">
+<code class="descname">nach_vorne</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.nach_vorne" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Sorgt dafür, dass dieses Objekt als Letztes und damit ganz oben gezeichnet wird.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.oben">
+<code class="descname">oben</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.oben" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum oberen Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.position">
+<code class="descname">position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die aktuelle Position als Tupel zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die Positon als Tupel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">tuple[float]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.pralle_vom_rand_ab">
+<code class="descname">pralle_vom_rand_ab</code><span class="sig-paren">(</span><em>abprallen=True</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.pralle_vom_rand_ab" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Wird aprallen auf Wahr gesetzt, dann prallt diese vom Rand ab, falls die bewege-Funktion verwendet wird.
+:param abprallen:
+:type abprallen:
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.punkt_in_rechteck">
+<code class="descname">punkt_in_rechteck</code><span class="sig-paren">(</span><em>punkt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.punkt_in_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Punkt im umgebenden Rechteckt liegt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>punkt</strong> &#8211; Der zu testende Punkt</td>
+</tr>
+</tbody>
+</table>
+<p>:type punkt:tuple(float)
+:return: Wahr, falls der Punkt innerhalb des Rechtecks ist
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.rechts">
+<code class="descname">rechts</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.rechts" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum rechten Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.render" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Diese Methode muss überschrieben werden.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>pyg_zeichen_flaeche</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>:rtype:pygame.Rect</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.selbst_entfernen">
+<code class="descname">selbst_entfernen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.selbst_entfernen" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt dieses Objekt von seiner Elternfläche und wird damit nicht mehr gezeichnet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.setze_geschwindigkeit">
+<code class="descname">setze_geschwindigkeit</code><span class="sig-paren">(</span><em>x=5</em>, <em>y=5</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.setze_geschwindigkeit" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die x- und y-Geschwindigkeit für dieses Objekt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; x-Geschwindigkeit</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; y-Geschwindigkeit</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.setze_position">
+<code class="descname">setze_position</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.setze_position" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die Postion dieses Objektes auf die angegebenen Koordinaten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; x-Koordinate</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; y-Koordinate</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.ueberschneidung_rechteck">
+<code class="descname">ueberschneidung_rechteck</code><span class="sig-paren">(</span><em>r2_links</em>, <em>r2_oben</em>, <em>breite</em>, <em>hoehe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.ueberschneidung_rechteck" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Berechnet das Überschneidungsrechteck.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>r2_links</strong> &#8211; </li>
+<li><strong>r2_oben</strong> &#8211; </li>
+<li><strong>breite</strong> &#8211; </li>
+<li><strong>hoehe</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.unten">
+<code class="descname">unten</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.unten" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Abstand zum unteren Rand der Elternfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">der Abstand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.verstecke">
+<code class="descname">verstecke</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.verstecke" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Versteckt dieses Objekt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.x">
+<code class="descname">x</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.x" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der x-Wert gemessen am linken Rand des Elternelementes.</p>
+<p>:return:x-Wert
+:rtype: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.x_bewegung_umkehren">
+<code class="descname">x_bewegung_umkehren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.x_bewegung_umkehren" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Kehrt die Bewegungsrichtung um. D.h. falls das Objekt sich zur Zeit nach rechts bewegt (eine positive x-Geschwindigkeit hat),
+wird diese Geschwindigkeit invertiert und die Bewegung findet nun in die entgegengesetze Richtung (nach links) statt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.x_geschwindigkeit">
+<code class="descname">x_geschwindigkeit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.x_geschwindigkeit" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die x-Geschwindigkeit zurück, d.h. die Strecke in Pixeln,
+die pro bewege()-Aufruf weiter bewegt wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die x-Geschwindigkeit</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.objekte.ZeichenbaresElement.y">
+<code class="descname">y</code><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.y" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der y-Wert gemessen am oberern Rand des Elternelementes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">y-Wert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.y_bewegung_umkehren">
+<code class="descname">y_bewegung_umkehren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.y_bewegung_umkehren" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Kehrt die Bewegungsrichtung um. D.h. falls das Objekt sich zur Zeit nach unten bewegt (eine positive y-Geschwindigkeit hat),
+wird diese Geschwindigkeit invertiert und die Bewegung findet nun in die entgegengesetze Richtung (nach oben) statt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.y_geschwindigkeit">
+<code class="descname">y_geschwindigkeit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.y_geschwindigkeit" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die y-Geschwindigkeit zurück, d.h. die Strecke in Pixeln,
+die pro bewege()-Aufruf weiter bewegt wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">die y-Geschwindigkeit</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabetyp:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zeichne">
+<code class="descname">zeichne</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zeichne" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet das aktuelle Objekt, genauer ruft render() auf, falls das Objekt sichtbar ist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zeige">
+<code class="descname">zeige</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zeige" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeigt dieses Objekt an, nachdem es versteckt wurde.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zentriere">
+<code class="descname">zentriere</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zentriere" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt in seiner Elternflaeche.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zentriere_horizontal">
+<code class="descname">zentriere_horizontal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zentriere_horizontal" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt horizontal in seiner Elternflaeche.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zentriere_in_objekt">
+<code class="descname">zentriere_in_objekt</code><span class="sig-paren">(</span><em>objekt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zentriere_in_objekt" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt in dem angegebenen Objekt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.objekte.ZeichenbaresElement.zentriere_vertikal">
+<code class="descname">zentriere_vertikal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.objekte.ZeichenbaresElement.zentriere_vertikal" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zentriert dieses Objekt vertikal in seiner Elternflaeche.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Eine Fläche ist ein Container-Objekt für andere Objekte.</p>
+<span class="target" id="module-py2cd.flaeche"></span><dl class="class">
+<dt id="py2cd.flaeche.ZeichenFlaeche">
+<em class="property">class </em><code class="descclassname">py2cd.flaeche.</code><code class="descname">ZeichenFlaeche</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>pygame_flaeche_breite</em>, <em>farbe=(0</em>, <em>0</em>, <em>0</em>, <em>0)</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Eine Fläche auf der gezeichnet werden kann. Es können z.B. Rechtecke oder Bilder gezeichnet werden.</p>
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>pygame_flaeche_breite</em>, <em>farbe=(0</em>, <em>0</em>, <em>0</em>, <em>0)</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Eine neue Zeichenfläche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; </li>
+<li><strong>y</strong> (<em>float</em>) &#8211; </li>
+<li><strong>pygame_flaeche_breite</strong> (<em>pygame.Surface|tuple(int,int,bool)</em>) &#8211; </li>
+<li><strong>eltern_flaeche</strong> &#8211; </li>
+<li><strong>farbe</strong> (<em>tuple[int]</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.entferne">
+<code class="descname">entferne</code><span class="sig-paren">(</span><em>objekt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.entferne" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Löscht das übergebene Objekt von dieser Zeichenfläche, falls es vorhanden ist
+:param objekt:
+:type objekt:
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.fuege_hinzu">
+<code class="descname">fuege_hinzu</code><span class="sig-paren">(</span><em>objekt</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.fuege_hinzu" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Fügt ein zeichenbares Objekt zur Liste hinzu, d.h. es wird in jedem Update gezeichnet.
+:param objekt: das zeichenbare Objekt
+:type objekt:Zeichenbar
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.lese_farbmaske">
+<code class="descname">lese_farbmaske</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.lese_farbmaske" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.setze_farbmaske">
+<code class="descname">setze_farbmaske</code><span class="sig-paren">(</span><em>farbe</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.setze_farbmaske" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="py2cd.flaeche.ZeichenFlaeche.zeichne_alles">
+<code class="descname">zeichne_alles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.ZeichenFlaeche.zeichne_alles" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="py2cd.flaeche.neue_pygame_flaeche">
+<code class="descclassname">py2cd.flaeche.</code><code class="descname">neue_pygame_flaeche</code><span class="sig-paren">(</span><em>breite</em>, <em>hoehe</em>, <em>alpha=False</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.flaeche.neue_pygame_flaeche" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt einen neues pygame.Surface Objekt, das intern zum Zeichnen verwendet wird.
+:param breite:
+:type breite: int
+:param hoehe:
+:type hoehe: int
+:param alpha:
+:type alpha: bool
+:return:
+:rtype:pygame.Surface</p>
+</dd></dl>
+
+<span class="target" id="module-py2cd.kreis"></span><dl class="class">
+<dt id="py2cd.kreis.Kreis">
+<em class="property">class </em><code class="descclassname">py2cd.kreis.</code><code class="descname">Kreis</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>radius</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=0</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.kreis.Kreis" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ein Rechteck, das angezeigt werden kann.</p>
+<dl class="method">
+<dt id="py2cd.kreis.Kreis.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>radius</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=0</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.kreis.Kreis.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt ein neues Rechteck mit den gegebenen Maßen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; </li>
+<li><strong>y</strong> (<em>float</em>) &#8211; </li>
+<li><strong>radius</strong> (<em>float</em>) &#8211; der Kreisradius</li>
+<li><strong>eltern_flaeche</strong> (<a class="reference internal" href="#py2cd.flaeche.ZeichenFlaeche" title="py2cd.flaeche.ZeichenFlaeche"><em>py2cd.flaeche.ZeichenFlaeche</em></a>) &#8211; </li>
+<li><strong>farbe</strong> (<em>tuple[inŧ]</em>) &#8211; </li>
+<li><strong>dicke</strong> (<em>int</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.kreis.Kreis.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.kreis.Kreis.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-py2cd.linie"></span><dl class="class">
+<dt id="py2cd.linie.Linie">
+<em class="property">class </em><code class="descclassname">py2cd.linie.</code><code class="descname">Linie</code><span class="sig-paren">(</span><em>start</em>, <em>ende</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=1</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.linie.Linie" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Eine Linie die angezeigt werden kann.</p>
+<dl class="method">
+<dt id="py2cd.linie.Linie.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>start</em>, <em>ende</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=1</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.linie.Linie.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt eine neue Linie zwischen den beiden gegebenen Punkten.</p>
+<p>:param start der Startpunkt
+:type start: tuple[float]
+:param ende der Endpunkt
+:type ende: tuple[float]
+:param farbe:
+:type farbe: tuple[int]
+:param dicke:
+:type dicke: int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.linie.Linie.aktualisiere_end_punkt">
+<code class="descname">aktualisiere_end_punkt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.linie.Linie.aktualisiere_end_punkt" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="py2cd.linie.Linie.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.linie.Linie.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-py2cd.poly"></span><dl class="class">
+<dt id="py2cd.poly.AALinien">
+<em class="property">class </em><code class="descclassname">py2cd.poly.</code><code class="descname">AALinien</code><span class="sig-paren">(</span><em>punkte</em>, <em>geschlossen=False</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.AALinien" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Mehrere Linie zwischen den angegebenen Punkten. Alle Punkte werden der Reihe nach verbunden. 1 -&gt; 2 -&gt; 3...</p>
+<dl class="method">
+<dt id="py2cd.poly.AALinien.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>punkte</em>, <em>geschlossen=False</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.AALinien.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt ein neues Liniensystem aus den gegebenen Punkten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>punkte</strong> (<em>list[tuple[float]]</em>) &#8211; </li>
+<li><strong>eltern_flaeche</strong> (<a class="reference internal" href="#py2cd.flaeche.ZeichenFlaeche" title="py2cd.flaeche.ZeichenFlaeche"><em>py2cd.flaeche.ZeichenFlaeche</em></a>) &#8211; </li>
+<li><strong>geschlossen</strong> (<em>bool</em>) &#8211; </li>
+<li><strong>farbe</strong> (<em>tuple[int]</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.poly.AALinien.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.AALinien.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="py2cd.poly.Linien">
+<em class="property">class </em><code class="descclassname">py2cd.poly.</code><code class="descname">Linien</code><span class="sig-paren">(</span><em>punkte</em>, <em>geschlossen=False</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=1</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Linien" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Mehrere Linie zwischen den angegebenen Punkten. Alle Punkte werden der Reihe nach verbunden. 1 -&gt; 2 -&gt; 3...</p>
+<dl class="method">
+<dt id="py2cd.poly.Linien.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>punkte</em>, <em>geschlossen=False</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=1</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Linien.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt ein neues Liniensystem aus den gegebenen Punkten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>punkte</strong> (<em>list[tuple[float]]</em>) &#8211; </li>
+<li><strong>eltern_flaeche</strong> (<a class="reference internal" href="#py2cd.flaeche.ZeichenFlaeche" title="py2cd.flaeche.ZeichenFlaeche"><em>py2cd.flaeche.ZeichenFlaeche</em></a>) &#8211; </li>
+<li><strong>geschlossen</strong> (<em>bool</em>) &#8211; </li>
+<li><strong>farbe</strong> (<em>tuple[int]</em>) &#8211; </li>
+<li><strong>dicke</strong> (<em>int</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.poly.Linien.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Linien.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="py2cd.poly.Polygon">
+<em class="property">class </em><code class="descclassname">py2cd.poly.</code><code class="descname">Polygon</code><span class="sig-paren">(</span><em>punkte</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=0</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Polygon" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="py2cd.poly.Polygon.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>punkte</em>, <em>farbe=(0</em>, <em>0</em>, <em>0)</em>, <em>dicke=0</em>, <em>eltern_flaeche=None</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Polygon.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Erstellt ein neues Polygon mit den gegebenen Eckpunkte.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>punkte</strong> &#8211; Die Punkte, die das Polygone ausmachen. Jeder Punkt besteht aus einem Tupel von x, y Koordinaten</li>
+<li><strong>eltern_flaeche</strong> (<a class="reference internal" href="#py2cd.flaeche.ZeichenFlaeche" title="py2cd.flaeche.ZeichenFlaeche"><em>py2cd.flaeche.ZeichenFlaeche</em></a>) &#8211; die Elternfläche</li>
+<li><strong>farbe</strong> (<em>tuple [int]</em>) &#8211; </li>
+<li><strong>dicke</strong> &#8211; die Dicke des Rahmens, für dicke = 0 ist das Polygon gefüllt</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first">punkte: list [int, int]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><p class="first last">dicke: int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.poly.Polygon.dicke">
+<code class="descname">dicke</code><em class="property"> = None</em><a class="headerlink" href="#py2cd.poly.Polygon.dicke" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Die Dicke mit der das Polygon gezeichnet wird, 0=&gt; gefüllt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.poly.Polygon.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.poly.Polygon.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Stichwortverzeichnis</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Modulindex</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Suche</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_rechteck.html" class="btn btn-neutral float-right" title="Rechtecke" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_spiel.html" class="btn btn-neutral" title="Spiel - Die Hauptklasse" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Mark Weinreuter.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

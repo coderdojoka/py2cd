@@ -18,11 +18,12 @@ class Kreis(ZeichenbaresElement):
     def __init__(self, x, y, radius, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
         """
         Erstellt ein neues Rechteck mit den gegebenen Maßen.
+
         :param x:
         :type x: float
         :param y:
         :type y: float
-        :param radius:
+        :param radius: der Kreisradius
         :type radius: float
         :param eltern_flaeche:
         :type eltern_flaeche: py2cd.flaeche.ZeichenFlaeche

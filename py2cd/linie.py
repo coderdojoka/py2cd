@@ -20,16 +20,15 @@ class Linie(ZeichenbaresElement):
     def __init__(self, start, ende, farbe=(0, 0, 0), dicke=1, eltern_flaeche=None):
         """
         Erstellt eine neue Linie zwischen den beiden gegebenen Punkten.
-        :param start
+
+        :param start der Startpunkt
         :type start: tuple[float]
-        :param ende
+        :param ende der Endpunkt
         :type ende: tuple[float]
         :param farbe:
         :type farbe: tuple[int]
         :param dicke:
         :type dicke: int
-        :return:
-        :rtype:
         """
 
         # punkte umrechnen, so dass diese bei 0,0 beginnen, und start zu x,y Position wird

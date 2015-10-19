@@ -11,17 +11,16 @@ class Bild(ZeichenbaresElement):
 
     def __init__(self, x, y, bild, eltern_flaeche=None, position_geaendert=lambda: None):
         """
+        Ein neues Bild, das gezeichnet wird.
 
-        :param x:
-        :type x:
-        :param y:
-        :type y:
-        :param bild:
-        :type bild:str|pygame.Surface
-        :param alpha:
-        :type alpha:
-        :return:
-        :rtype:
+        :param x: die x-Position
+        :type x: float
+        :param y: die y-Position
+        :type y: float
+        :param bild: Entweder der Schlüssel für den BilderSpeicher oder eine pygame Surface
+        :type bild: str|pygame.Surface
+        :param alpha: Wahr, falls das Bild einen Alpha-Kanal hat (Transparenz)
+        :type alpha: bool
         """
         if isinstance(bild, str):
             self.__pygame_bild = BildSpeicher.gib_pygame_flaeche(bild)
@@ -53,7 +52,6 @@ class BildWechsler(ZeichenbaresElement):
 
             self.__pygame_bilder.append(pg_bild)
 
-
         self.anzahl_bilder = len(self.__pygame_bilder)
 
         super().__init__(x, y, *groesse, farbe=None, eltern_flaeche=eltern_flaeche,
@@ -82,7 +80,7 @@ class BildWechsler(ZeichenbaresElement):
     def render(self, pyg_zeichen_flaeche):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
-        pyg_zeichen_flaeche.blit(bild, (self.x +(self.breite-bild.get_width())/2, self.y+(self.hoehe-bild.get_height())/2))
+        pyg_zeichen_flaeche.blit(bild, (self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
 
 
 class BildSpeicher:
@@ -97,12 +95,13 @@ class BildSpeicher:
         """
         Lädt das Bild aus der beschrieben Datei.
         ACHTUNG: Kann das Bild nicht geladen werden, wird ein Fehler geworfen!
-        :param pfad:
-        :type pfad:str
+
+        :param pfad: Pfad des Bildes, das geladen werden soll
+        :type pfad: str
         :param alpha: Falls das Bild Transparenz unterstüzten soll
-        :type alpha:bool
-        :return:
-        :rtype:
+        :type alpha: bool
+        :return: die pygame Surface
+        :rtype: pygame.Surface
         """
         try:
             bild = pygame.image.load(pfad)

@@ -50,7 +50,6 @@ class Text(ZeichenbaresElement):
         :param text:
         :type text:str
         :param x:
-
         :type x: int
         :param y:
         :type y: int
@@ -60,8 +59,6 @@ class Text(ZeichenbaresElement):
         :type farbe:tuple[int]
         :param hintergrund:
         :type hintergrund: tuple[int]
-        :return:
-        :rtype:
         """
         self.hintergrund = hintergrund
         """

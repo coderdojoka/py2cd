@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bilder &mdash; py2cd Spiele-/Zeichenframework v0.6 Dokumentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="py2cd Spiele-/Zeichenframework v0.6 Dokumentation" href="index.html"/>
+        <link rel="prev" title="Polygon - Linien" href="api_poly.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> py2cd Spiele-/Zeichenframework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api_spiel.html">Spiel - Die Hauptklasse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_objekte.html">Formen und Objekte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_rechteck.html">Rechtecke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_kreis.html">Kreis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_poly.html">Polygon - Linien</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Bilder</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">py2cd Spiele-/Zeichenframework</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Bilder</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api_bilder.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bilder">
+<h1>Bilder<a class="headerlink" href="#bilder" title="Link zu dieser Überschrift">¶</a></h1>
+<blockquote>
+<div>Bilder können über den BildSpeicher geladen werden. Dieser verwaltet alle Bilder und stellt diese über einen frei wählbaren Schlüssel zur Verfügung.</div></blockquote>
+<dl class="class">
+<dt id="py2cd.bild.BildSpeicher">
+<em class="property">class </em><code class="descclassname">py2cd.bild.</code><code class="descname">BildSpeicher</code><a class="headerlink" href="#py2cd.bild.BildSpeicher" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="py2cd.bild.BildSpeicher.__init__">
+<code class="descname">__init__</code><a class="headerlink" href="#py2cd.bild.BildSpeicher.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="py2cd.bild.BildSpeicher.__str__">
+<code class="descname">__str__</code><a class="headerlink" href="#py2cd.bild.BildSpeicher.__str__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="py2cd.bild.BildSpeicher.gib_bild">
+<em class="property">classmethod </em><code class="descname">gib_bild</code><span class="sig-paren">(</span><em>schluessel</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.BildSpeicher.gib_bild" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="py2cd.bild.BildSpeicher.gib_pygame_flaeche">
+<em class="property">classmethod </em><code class="descname">gib_pygame_flaeche</code><span class="sig-paren">(</span><em>schluessel</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.BildSpeicher.gib_pygame_flaeche" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="py2cd.bild.BildSpeicher.ist_bild_vorhanden">
+<em class="property">classmethod </em><code class="descname">ist_bild_vorhanden</code><span class="sig-paren">(</span><em>schluessel</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.BildSpeicher.ist_bild_vorhanden" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="py2cd.bild.BildSpeicher.lade_bild">
+<em class="property">classmethod </em><code class="descname">lade_bild</code><span class="sig-paren">(</span><em>schluessel</em>, <em>pfad</em>, <em>alpha=True</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.BildSpeicher.lade_bild" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="py2cd.bild.BildSpeicher.lade_bild_aus_datei">
+<em class="property">static </em><code class="descname">lade_bild_aus_datei</code><span class="sig-paren">(</span><em>pfad</em>, <em>alpha=True</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.BildSpeicher.lade_bild_aus_datei" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Lädt das Bild aus der beschrieben Datei.
+ACHTUNG: Kann das Bild nicht geladen werden, wird ein Fehler geworfen!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>pfad</strong> (<em>str</em>) &#8211; Pfad des Bildes, das geladen werden soll</li>
+<li><strong>alpha</strong> (<em>bool</em>) &#8211; Falls das Bild Transparenz unterstüzten soll</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">die pygame Surface</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last">pygame.Surface</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="py2cd.bild.Bild">
+<em class="property">class </em><code class="descclassname">py2cd.bild.</code><code class="descname">Bild</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>bild</em>, <em>eltern_flaeche=None</em>, <em>position_geaendert=&lt;function Bild.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.Bild" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="py2cd.bild.Bild.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>bild</em>, <em>eltern_flaeche=None</em>, <em>position_geaendert=&lt;function Bild.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.Bild.__init__" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ein neues Bild, das gezeichnet wird.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; die x-Position</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; die y-Position</li>
+<li><strong>bild</strong> (<em>str|pygame.Surface</em>) &#8211; Entweder der Schlüssel für den BilderSpeicher oder eine pygame Surface</li>
+<li><strong>alpha</strong> (<em>bool</em>) &#8211; Wahr, falls das Bild einen Alpha-Kanal hat (Transparenz)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py2cd.bild.Bild.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>pyg_zeichen_flaeche</em><span class="sig-paren">)</span><a class="headerlink" href="#py2cd.bild.Bild.render" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Stichwortverzeichnis</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Modulindex</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Suche</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="api_poly.html" class="btn btn-neutral" title="Polygon - Linien" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Mark Weinreuter.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

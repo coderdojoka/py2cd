@@ -18,7 +18,8 @@ class Rechteck(ZeichenbaresElement):
     def __init__(self, x, y, breite, hoehe, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
         """
         Erstellt ein neues Rechteck mit den gegebenen Maßen.
-        :param x:
+
+        :param x: die x-Koordinate
         :type x: float
         :param y:
         :type y: float
@@ -30,10 +31,8 @@ class Rechteck(ZeichenbaresElement):
         :type eltern_flaeche: py2cd.flaeche.ZeichenFlaeche
         :param farbe:
         :type farbe: tuple[inŧ]
-        :param dicke:
+        :param dicke: die Rahmendicke
         :type dicke: int
-        :return:
-        :rtype:
         """
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche)
         self.dicke = dicke
