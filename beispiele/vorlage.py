@@ -1,5 +1,3 @@
-__author__ = 'Mark Weinreuter'
-
 from py2cd import *
 from py2cd.farben import *
 
@@ -10,6 +8,8 @@ Spiel.init(640, 480, "Mein Spiel")
 
 # Diese Funktion wird aufgerufen, wenn das Spiel aktualisiert wird
 def aktualisiere_spiel(delta):
+    # Anstelle von pass sollte hier Code stehen, der wiederholt
+    # ausgeführt wird, z.B. bewegungen und kollisionserkennung
     pass
 
 # Ein Quadrat an der Position 300x200

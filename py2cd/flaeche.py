@@ -104,6 +104,9 @@ class ZeichenFlaeche(Zeichenbar):
             self._zeichenbareObjekte.remove(objekt)
             objekt._eltern_flaeche = None
 
+    def zeichne_rechteck_direkt(self, x=0, y=0, breite=1, hoehe=1, farbe=(0, 0, 0), dicke=0):
+        pygame.draw.rect(self.pyg_flaeche, farbe, (x, y, breite, hoehe), dicke)
+
     def zeichne_alles(self):
 
         if self.farbe is not None:

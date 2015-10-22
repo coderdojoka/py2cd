@@ -1,5 +1,7 @@
 __author__ = 'Mark Weinreuter'
 
+import math
+
 import pygame
 
 from py2cd.objekte import ZeichenbaresElement
@@ -14,8 +16,15 @@ class Linie(ZeichenbaresElement):
         pygame.draw.line(pyg_zeichen_flaeche, self.farbe,
                          (self.x, self.y), self.__verschobenes_ende, self.dicke)
 
-    def aktualisiere_end_punkt(self):
+    def setze_ende(self, ende):
+        self.__ende = (ende[0] - self.__start[0], (ende[1] - self.__start[1]))
+        self._aktualisiere_end_punkt()
+
+    def _aktualisiere_end_punkt(self):
         self.__verschobenes_ende = (self.x + self.__ende[0], self.y + self.__ende[1])
+
+    def laenge(self):
+        return math.sqrt(self.__ende[0] ** 2 + self.__ende[1] ** 2)
 
     def __init__(self, start, ende, farbe=(0, 0, 0), dicke=1, eltern_flaeche=None):
         """
@@ -31,7 +40,7 @@ class Linie(ZeichenbaresElement):
         :type dicke: int
         """
 
-        # punkte umrechnen, so dass diese bei 0,0 beginnen, und start zu x,y Position wird
+        # punkte umrechnen, so dass diese bei 0,0 beginnen, und start zu x,y-Position wird
         self.__start = start
         self.__ende = (ende[0] - start[0], (ende[1] - start[1]))
         self.dicke = dicke
@@ -43,5 +52,4 @@ class Linie(ZeichenbaresElement):
         """
 
         super().__init__(start[0], start[1], self.__ende[0], self.__ende[1],
-                         farbe, eltern_flaeche, position_geaendert=self.aktualisiere_end_punkt)
-
+                         farbe, eltern_flaeche, position_geaendert=self._aktualisiere_end_punkt)

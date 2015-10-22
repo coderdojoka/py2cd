@@ -1,6 +1,6 @@
 __author__ = 'Mark Weinreuter'
 
-from py2cd.anim import Animation, AnimationSpeicher
+from py2cd.anim import BildAnimation, BildAnimationSpeicher
 from py2cd.bild import Bild, BildSpeicher
 from py2cd.spiel import Spiel
 from tt_basis import TTBasis
@@ -39,8 +39,8 @@ class UfoUndSchafeSpiel(TTBasis):
             BildSpeicher.lade_bild("rauch_%d" % i, "../testimages/smoke_puff_000%d.png" % i, True)
             bilder_zeiten.append(("rauch_%d" % i, zeit))
 
-        AnimationSpeicher.registriere_animation("rauch", bilder_zeiten)
-        AnimationSpeicher.registriere_animation("such_strahl",
+        BildAnimationSpeicher.registriere_animation("rauch", bilder_zeiten)
+        BildAnimationSpeicher.registriere_animation("such_strahl",
                                                 [("such_strahl1", 300), ("such_strahl2", 500), ("such_strahl3", 300)])
 
         sonne = BildSpeicher.gib_bild("sonne")
@@ -84,7 +84,7 @@ class UfoUndSchafeSpiel(TTBasis):
         return s
 
 
-class Schaf(Animation):
+class Schaf(BildAnimation):
     MODUS_GRASSEND = 1
     MODUS_HOCHFLIEGEN = 2
     MODUS_FALLSCHIRM = 3
@@ -182,7 +182,7 @@ class Ufo(Bild):
 
         super().__init__(x, 0, pygame_ufo)
         self.text = UfoUndSchafeSpiel.neues_wort(self, 0, -30, self.zerstoert)
-        self.such_strahl = AnimationSpeicher.gib_animation("such_strahl")
+        self.such_strahl = BildAnimationSpeicher.gib_animation("such_strahl")
         self.such_strahl.start()
         self.such_strahl.setze_wiederhole()
         self.such_strahl.verstecke()
@@ -272,7 +272,7 @@ class Ufo(Bild):
         if self.entfuertes_schaf is not None:
             self.entfuertes_schaf.fallschirm_rettung(*self.position())
 
-        rauch_animation = AnimationSpeicher.gib_animation("rauch")
+        rauch_animation = BildAnimationSpeicher.gib_animation("rauch")
         rauch_animation.aendere_position(*self.position())
         rauch_animation.start()
         UfoUndSchafeSpiel.neues_ufo()

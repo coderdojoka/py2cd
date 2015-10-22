@@ -1,4 +1,3 @@
-
 #               _____         _
 #              / __  \       | |
 #  _ __  _   _ `' / /' ___ __| |
@@ -19,8 +18,8 @@ Außerdem wird das Anzeigen von Bilder und Animationen, als schnelle Abfolge von
 from py2cd.farben import *
 
 __all__ = ['Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien', 'Polygon', 'Rechteck', 'Kreis', 'Plot', 'Text',
-           'Schrift', 'Bild', 'BildSpeicher', 'BildWechsler', 'Animation',
-           'AnimationSpeicher']
+           'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie', 'BildSpeicher', 'BildWechsler', 'BildAnimation',
+           'BildAnimationSpeicher']
 
 import pygame
 
@@ -41,6 +40,7 @@ from py2cd.kreis import *
 
 from py2cd.mathe import *
 
+from py2cd.animation import *
 
 # Text
 from py2cd.text import *

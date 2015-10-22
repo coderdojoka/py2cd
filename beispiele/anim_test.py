@@ -16,7 +16,7 @@ Spiel.setze_hintergrund_farbe(hintergrund_farbe)
 zeit = 1000 / 11
 Spiel.fps = 30
 
-boltAnim = Animation([('testimages/bolt_strike_0001.png', zeit),
+boltAnim = BildAnimation([('testimages/bolt_strike_0001.png', zeit),
                       ('testimages/bolt_strike_0002.png', zeit),
                       ('testimages/bolt_strike_0003.png', zeit),
                       ('testimages/bolt_strike_0004.png', zeit),
@@ -35,7 +35,7 @@ boltAnim.rechts = Spiel.breite - boltAnim.breite - 10
 boltAnim.zentriere_horizontal()
 
 zeit = 1000 / 6
-fireAnim = Animation([("testimages/flame_a_0001.png", zeit),
+fireAnim = BildAnimation([("testimages/flame_a_0001.png", zeit),
                       ("testimages/flame_a_0002.png", zeit),
                       ("testimages/flame_a_0003.png", zeit),
                       ("testimages/flame_a_0004.png", zeit),

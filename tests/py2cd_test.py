@@ -4,7 +4,7 @@ from unittest.case import TestCase
 
 import pygame
 
-from py2cd.anim import Animation
+from py2cd.anim import BildAnimation
 from py2cd.farben import *
 from py2cd.flaeche import neue_pygame_flaeche
 from py2cd.linie import Linie
@@ -34,7 +34,7 @@ class PositionTest(TestCase):
         l = Linie((50, 50.67667), (200, 200), (150, 250, 50), 4)
         ll = Linien([(233, 456), (5.55, 2.21)], True, SCHWARZ)
         al = AALinien([(400, 450), (530.3304, 500)], True, GRUEN)
-        a = Animation([(neue_pygame_flaeche(400, 400), 10)], True)
+        a = BildAnimation([(neue_pygame_flaeche(400, 400), 10)], True)
 
         self._dimension_check(r)
         self._dimension_check(p)

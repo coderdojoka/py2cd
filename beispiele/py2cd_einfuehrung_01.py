@@ -28,7 +28,7 @@ text = Text("Hallo Welt", 0, 0, Schrift(20))
 text.setze_position((Spiel.breite - text.breite) / 2, Spiel.hoehe - text.hoehe - 10)
 
 # Viel einfacher kann man dies auch so machen:
-text.zentriere_horizontal();
+text.zentriere_horizontal()
 text.unten = 10
 
 # Hilfsgitter anzeigen

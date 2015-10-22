@@ -14,7 +14,7 @@ GESTARTET = 1
 PAUSIERT = 2
 
 
-class Animation(ZeichenbaresElement):
+class BildAnimation(ZeichenbaresElement):
     """
     Zeigt einen Animation an, indem eine Liste von Bildern(ZeichenFlaechen) in angegeben Zeitabschnitten
     durch gewechselt werden.
@@ -138,7 +138,7 @@ class Animation(ZeichenbaresElement):
         self._zustand = PAUSIERT
 
 
-class AnimationSpeicher:
+class BildAnimationSpeicher:
     __alle_animationen = {}
 
     @classmethod
@@ -149,11 +149,11 @@ class AnimationSpeicher:
     def registriere_animation(cls, schluessel, bilder_und_zeiten, wiederhole=False, alpha=True):
         cls.__alle_animationen[schluessel] = (bilder_und_zeiten, wiederhole, alpha)
 
-        return Animation(*cls.__alle_animationen[schluessel])
+        return BildAnimation(*cls.__alle_animationen[schluessel])
 
     @classmethod
     def gib_animation(cls, schluessel):
         if schluessel not in cls.__alle_animationen:
             raise ValueError("Animation nicht im Speicher vorhanden.")
 
-        return Animation(*cls.__alle_animationen[schluessel])
+        return BildAnimation(*cls.__alle_animationen[schluessel])

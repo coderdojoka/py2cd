@@ -20,7 +20,39 @@ class Polygon(ZeichenbaresElement):
         :type: dicke: int
         """
 
-        # Konvertiere die Punkte so, das der erset Punkt bei (0,0) liegt und der erste Punkt wird als x,y-Koordinaten
+        self._punkte = []
+        """
+        Die Punkteliste. Die Punkte werden so umgerechnet, dass sie relativ zum Startpunkt sind.
+
+        :type: list[int, int]
+        """
+        self._verschobene_punkte = []
+        """
+        Interne Liste mit x,y Verschiebung
+
+        :type: list[int, int]
+        """
+
+        self.dicke = dicke
+        """
+        Die Dicke mit der das Polygon gezeichnet wird, 0=> gefüllt.
+
+        :type: int
+        """
+
+        x, y, breite, hoehe = self.setze_punkte(punkte)
+
+        # Eltern init()
+        super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche, self._aktualisiere_punkte)
+
+    def render(self, pyg_zeichen_flaeche):
+        return pygame.draw.polygon(pyg_zeichen_flaeche, self.farbe, self._verschobene_punkte, self.dicke)
+
+    def _aktualisiere_punkte(self):
+        self._verschobene_punkte = [(p[0] + self.x, p[1] + self.y) for p in self._punkte]
+
+    def setze_punkte(self, punkte):
+        # Konvertiere die Punkte so, das der erste Punkt bei (0,0) liegt und der erste Punkt wird als x,y-Koordinaten angesehen
         x_min = punkte[0][0]
         x_max = punkte[0][0]
         y_min = punkte[0][1]
@@ -39,29 +71,10 @@ class Polygon(ZeichenbaresElement):
                 y_max = punkt[1]
 
         self._punkte = [(p[0] - x_min, (p[1] - y_min)) for p in punkte]
-        """
-        Die Punkteliste. Die Punkte werden so umgerechnet, dass sie relativ zum Startpunkt sind.
+        self._verschobene_punkte = punkte.copy()
 
-        :type: list[int, int]
-        """
-        self._verschobene_punkte = punkte
-        """ Interne Liste mit x,y Verschiebung """
-
-        self.dicke = dicke
-        """
-        Die Dicke mit der das Polygon gezeichnet wird, 0=> gefüllt.
-
-        :type: int
-        """
-
-        # Eltern init()
-        super().__init__(x_min, y_min, x_max - x_min, y_max - y_min, farbe, eltern_flaeche, self._aktualisiere_punkte)
-
-    def render(self, pyg_zeichen_flaeche):
-        return pygame.draw.polygon(pyg_zeichen_flaeche, self.farbe, self._verschobene_punkte, self.dicke)
-
-    def _aktualisiere_punkte(self):
-        self._verschobene_punkte = [(p[0] + self.x, p[1] + self.y) for p in self._punkte]
+        # x-, y-Position, Breite, Höhe
+        return x_min, y_min, x_max - x_min, y_max - y_min
 
 
 class Linien(Polygon):
