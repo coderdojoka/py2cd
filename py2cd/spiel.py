@@ -90,6 +90,13 @@ class Spiel:
     :type: (object) -> None
     """
 
+    _spiel_wird_beendet = lambda: None
+    """
+    Funktion die aufgerufen wird, wenn das Spiel beendet wird.
+
+    :type: () -> None
+    """
+
     _maus_taste_losgelassen = None
     """
     Die Funktion die aufgerufen wird, wenn die Maus losgelassen wird.
@@ -140,11 +147,12 @@ class Spiel:
         # setze ESC handler um das Fenster zu schließen
         Spiel.registriere_taste_gedrueckt(K_ESCAPE, lambda down, y: Spiel.beenden())
 
-    @staticmethod
-    def beenden():
+    @classmethod
+    def beenden(cls):
         """
         Beendet das Spiel und schließt das Fenster.
         """
+        cls._spiel_wird_beendet()
         pygame.quit()
         sys.exit()
 
@@ -212,15 +220,15 @@ class Spiel:
         """
         pygame.display.set_caption(titel)
 
-    @staticmethod
-    def setze_hintergrund_farbe(farbe):
+    @classmethod
+    def setze_hintergrund_farbe(cls, farbe):
         """
         Setzt die Hintergrundfarbe des Fensters.
 
         :param farbe: Die Farbe
         :type farbe: tuple(int)
         """
-        Spiel.__haupt_flaeche.farbe = farbe
+        cls.__haupt_flaeche.farbe = farbe
 
     @staticmethod
     def zeichne_gitter(groesse=50):
@@ -285,6 +293,16 @@ class Spiel:
         :type funktion: (object)->None
         """
         Spiel._maus_taste_losgelassen = funktion
+
+    @staticmethod
+    def registriere_spiel_wird_beendet(funktion):
+        """
+        Registriert eine Funktion, die aufgerufen wird, wenn das Spiel beendet wird.
+
+        :param funktion: Die Funktion
+        :type funktion: (object)->None
+        """
+        Spiel._spiel_wird_beendet = funktion
 
     @staticmethod
     def registriere_maus_gedrueckt(funktion):

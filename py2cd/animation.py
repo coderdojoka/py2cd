@@ -152,7 +152,7 @@ class AnimationenKette(Animation):
         self._aktuelle_animation.start()
 
     def _eine_animation_gestoppt(self):
-        print("Animation %d gestoppt." % self._aktueller_index)
+        # print("Animation %d gestoppt." % self._aktueller_index)
         self._aktueller_index += 1
 
         # Alle Animationen abgearbeitet
@@ -183,9 +183,8 @@ class AnimierteLinie(Animation):
         # Zeit berechnen
         if geschwindigkeit is not None:
             l = math.sqrt((ende[0] - start[0]) ** 2 + (ende[1] - start[1]) ** 2)
-            print("Länge: ", l)
+
             zeit_in_ms = l / geschwindigkeit
-            print(zeit_in_ms)
 
         super().__init__(zeit_in_ms, self._aktualisiere, self._gestartet)
 

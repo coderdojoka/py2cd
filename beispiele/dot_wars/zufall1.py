@@ -5,11 +5,12 @@ __author__ = 'Mark Weinreuter'
 
 GRENZE = 50
 
+
 class Zufall1(Spieler):
     def gib_richtung(self):
 
         # Überprüfen, ob wir nicht mehr weiter können
-        if (self.counter == self.offset) or self.letzter_zustand == RAND or self.letzter_zustand == BELEGT:
+        if (self.counter == self.offset) or self._letzter_zustand == RAND or self._letzter_zustand == BELEGT:
 
             self.counter = 0
             self.offset = random.randint(10, GRENZE)

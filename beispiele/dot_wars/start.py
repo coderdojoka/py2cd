@@ -1,12 +1,9 @@
-from zufall1 import Zufall1
-from spielfeld import SpielFeld
-
-__author__ = 'Mark Weinreuter'
-
 from py2cd import *
 from py2cd.farben import *
 
-LIMIT_ZUEGE = 20000
+from spielfeld import SpielFeld
+
+__author__ = "Mark Weinreuter"
 
 # Der erste Schritt, um ein Spiel zu starten ist immer init() aufzurufen
 Spiel.init(640, 480, "dotWars")
@@ -14,7 +11,7 @@ Spiel.init(640, 480, "dotWars")
 
 def hintergrund(delta):
     delta = int(delta * 1000) % 200
-    print(delta)
+
     if delta < 100:
         Spiel.setze_hintergrund_farbe(MATT_GRUEN)
         text.farbe = WEISS
@@ -25,44 +22,39 @@ def hintergrund(delta):
         text2.farbe = WEISS
 
 
-counter = 0
-b = 0
-
-
 def aktualisiere_spiel(delta):
-    global counter, b
-
     ak1.aktualisiere()
     ak2.aktualisiere()
     ak3.aktualisiere()
     anim.aktualisiere()
 
 
-def spiel_aktualisiere(delta):
-    schritte = 0
-    while schritte < 20:
-        schritte += 1
-        algo2.aktualisiere()
-        algo1.aktualisiere()
+def beenden():
+    Spiel.setze_aktualisierung(lambda dt: None)
+    text.schrift = Schrift(90)
+    text.hintergrund = HELL_GRAU
 
+    if SpielFeld.punkte[0] > SpielFeld.punkte[1]:
+        text.setze_text("Algo 1 gewinnt!")
+    else:
+        text.setze_text("Algo 2 gewinnt!")
+
+    text.zeige()
+    text.zentriere()
+
+    text.nach_vorne()
+
+
+def spiel_aktualisiere(delta):
+    SpielFeld.aktualisiere()
+
+    # Texte aktualisieren
     txt_zuege.setze_text("Runde: " + str(SpielFeld.zuege))
     txt_spieler1.setze_text("Algo 1: " + str(SpielFeld.punkte[0]))
     txt_spieler2.setze_text("Algo 2: " + str(SpielFeld.punkte[1]))
 
-    if SpielFeld.zuege >= LIMIT_ZUEGE:
-        Spiel.setze_aktualisierung(lambda dt: None)
-        text.schrift = Schrift(90)
-        text.hintergrund = HELL_GRAU
-
-        if SpielFeld.punkte[0] > SpielFeld.punkte[1]:
-            text.setze_text("Algo 1 gewinnt!")
-        else:
-            text.setze_text("Algo 2 gewinnt!")
-
-        text.zeige()
-        text.zentriere()
-
-        text.nach_vorne()
+    if not SpielFeld.laueft_noch():
+        beenden()
 
 
 # Funktion die aufgerufen wird, wenn das Spiel aktualisiert wird (fps mal)
@@ -80,7 +72,6 @@ txt_spieler2 = Text("Algo 2: 0", 30, 90, farbe=WEISS)
 
 
 def init_animation():
-    global ak1, ak2, ak3, anim
     farbe1 = BLAU
     dicke1 = 6
     abstand = 10
@@ -99,7 +90,6 @@ def init_animation():
     a5 = AnimierteLinie((end_breite, abstand), (spiel_haelfte, abstand), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
 
     ak1 = AnimationenKette([a1, a2, a3, a4, a5])
-    ak1.start()
 
     farbe2 = ROT
     dicke2 = 2
@@ -110,7 +100,6 @@ def init_animation():
     a52 = AnimierteLinie((end_breite, abstand), (spiel_haelfte, abstand), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
 
     ak2 = AnimationenKette([a12, a22, a32, a42, a52])
-    ak2.start()
 
     farbe3 = GRAU
     dicke3 = 2
@@ -129,13 +118,18 @@ def init_animation():
     a53 = AnimierteLinie((spiel_haelfte, abstand), (end_breite, abstand), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
 
     ak3 = AnimationenKette([a53, a43, a33, a23, a13])
-    ak3.start()
 
     anim = Animation(dauer_ms, hintergrund)
+
+    ak1.start()
+    ak2.start()
+    ak3.start()
     anim.start()
 
+    return ak1, ak2, ak3, anim
 
-init_animation()
+
+ak1, ak2, ak3, anim = init_animation()
 
 
 def intro_ende():
@@ -145,16 +139,14 @@ def intro_ende():
     SpielFeld.flaeche.zeige()
     Spiel.setze_aktualisierung(spiel_aktualisiere)
 
+    SpielFeld.start()
+
 
 ak3.setze_animation_gestoppt(intro_ende)
 
-algo1 = Zufall1()
-algo1.start(1, 2)
+SpielFeld.init("zufall1", "Zufall1", "zufall1", "Zufall1")
 
-algo2 = Zufall1()
-algo2.start(2, 1)
-
-SpielFeld.init()
+Spiel.registriere_spiel_wird_beendet(SpielFeld.beenden)
 
 # Um das Spiel zu starten, muss Spiel.start() aufgerufen werden. Dies sollte immer die letzte Anweisung sein.
 Spiel.starten()
