@@ -163,7 +163,6 @@ class Spiel:
         """
         # erster tick für zeit_unterschied_ms
         Spiel._clock.tick(Spiel.fps)
-
         while Spiel._ist_aktiv:  # spiel schleife
 
             # wir gehen alle events durch

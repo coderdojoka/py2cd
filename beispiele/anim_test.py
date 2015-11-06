@@ -29,6 +29,7 @@ boltAnim = BildAnimation([('testimages/bolt_strike_0001.png', zeit),
 
 boltAnim.start()
 boltAnim.setze_wiederhole(True)
+
 boltAnim.setze_position(200, 250)
 boltAnim.oben = 20
 boltAnim.rechts = Spiel.breite - boltAnim.breite - 10
@@ -52,5 +53,7 @@ fireAnim.zentriere_vertikal()
 
 Spiel.registriere_taste_gedrueckt(K_p, lambda a, b: boltAnim.pause())
 Spiel.registriere_taste_gedrueckt(K_s, lambda a, b: boltAnim.start())
+
+
 
 Spiel.starten()

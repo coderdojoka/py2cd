@@ -1,9 +1,9 @@
 __author__ = 'Mark Weinreuter'
 
-from py2cd import *
-from py2cd.farben import *
 from pygame.constants import *
 
+from py2cd import *
+from py2cd.farben import *
 
 links_down = False
 rechts_down = False
@@ -70,6 +70,7 @@ def unten(gedrueckt, e):
     global unten_down
     unten_down = gedrueckt
 
+
 # Initialisiert das Fenster
 Spiel.init(400, 400, "Steuere das Rechteck!", aktualisiere)
 
@@ -84,7 +85,10 @@ t = Text("wasd zum bewegen", 0, 10, schrift, GRAU)
 # 5 Pixel vom rechten Rand plazieren
 t.rechts = 5
 
-ball = Kreis(10, 10, 20, GRUEN)
+# Bild laden in den Speicher laden und unter dem Schlüssel "scratch" ablegen
+BildSpeicher.lade_bild("scratch", "testimages/scratch.png")
+# Bild aus dem Speicher über seinen Schlüssel holen
+ball = BildSpeicher.gib_bild("scratch", 10, 10)
 
 # Tastendrücke-Funktionen registrien. Wird die Taste K_a = 'a' gedrückt, so wird die
 # Funktion mit dem Namen links aufgerufen
