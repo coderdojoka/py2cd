@@ -1,7 +1,6 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
-
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -29,13 +28,20 @@ class Bild(ZeichenbaresElement):
         else:
             raise ValueError("Bitte Schlüssel des Bildes im Bildspeicher angeben.")
 
+        self.__quelle = bild
+
         super().__init__(x, y, self.__pygame_bild.get_width(), self.__pygame_bild.get_height(), farbe=None,
                          eltern_flaeche=eltern_flaeche,
                          position_geaendert=position_geaendert)
 
+    def klone(self, x, y):
+        b = Bild(x, y, self.__quelle, self._eltern_flaeche)
+        return b
+
 
 class BildWechsler(ZeichenbaresElement):
     def __init__(self, x, y, bilder_namen_liste, eltern_flaeche=None, position_geaendert=lambda: None):
+        self.__name_liste = bilder_namen_liste
         self.__pygame_bilder = []
         self.aktuelles_bild = 0
         self.zeige_erstes_bild = lambda: self.zeige_bild(0)
@@ -80,7 +86,11 @@ class BildWechsler(ZeichenbaresElement):
     def render(self, pyg_zeichen_flaeche):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
-        pyg_zeichen_flaeche.blit(bild, (self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
+        pyg_zeichen_flaeche.blit(bild, (
+            self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
+
+    def klone(self, x, y):
+        BildWechsler(x, y, self.__name_liste, self._eltern_flaeche)
 
 
 class BildSpeicher:

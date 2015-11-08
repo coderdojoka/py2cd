@@ -1,9 +1,7 @@
 __author__ = 'Mark Weinreuter'
 
 import math
-
 import pygame
-
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -53,3 +51,11 @@ class Linie(ZeichenbaresElement):
 
         super().__init__(start[0], start[1], self.__ende[0], self.__ende[1],
                          farbe, eltern_flaeche, position_geaendert=self._aktualisiere_end_punkt)
+
+    def klone(self, x, y):
+        start = (self.__start[0], self.__start[1])
+        ende = (self.__start[0] + self.__ende[1], self.__start[1] + self.__ende[1])
+        l = Linie(start, ende, self.farbe, self.dicke, self._eltern_flaeche)
+        l.setze_position(x, y)
+
+        return l

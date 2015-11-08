@@ -1,5 +1,4 @@
 import pygame
-
 from py2cd.bild import BildSpeicher
 
 __author__ = 'Mark Weinreuter'
@@ -47,6 +46,10 @@ class BildAnimation(ZeichenbaresElement):
         # zur Ermittlung der Dimension
         breite = 0
         hoehe = 0
+
+        # Für klone()
+        self.__quelle = pygame_flaechen_und_zeiten
+        self.__alpha = alpha
 
         for zf in pygame_flaechen_und_zeiten:
 
@@ -136,6 +139,11 @@ class BildAnimation(ZeichenbaresElement):
 
     def pause(self):
         self._zustand = PAUSIERT
+
+    def klone(self, x, y):
+        ba = BildAnimation(self.__quelle, self._wiederhole_animation, self.__alpha)
+        ba.setze_position(x, y)
+        return ba
 
 
 class BildAnimationSpeicher:

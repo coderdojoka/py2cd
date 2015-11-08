@@ -155,6 +155,7 @@ class Zeichenbar:
         self.__y = mitte[1] - (self.hoehe / 2)
         self.position_geaendert()
 
+
     @property
     def oben(self):
         """
@@ -340,8 +341,8 @@ class Zeichenbar:
         """
         Sorgt dafür, dass dieses Objekt als Letztes und damit ganz oben gezeichnet wird.
         """
-        self._eltern_flaeche._zeichenbareObjekte.remove(self)
-        self._eltern_flaeche._zeichenbareObjekte.append(self)
+        self._eltern_flaeche.zeichenbareObjekte.remove(self)
+        self._eltern_flaeche.zeichenbareObjekte.append(self)
 
     def selbst_entfernen(self):
         """
@@ -407,7 +408,7 @@ class Zeichenbar:
         :rtype:
         """
 
-        if (self.beruehrt_rechteck(r2_links, r2_oben, breite, hoehe)):
+        if self.beruehrt_rechteck(r2_links, r2_oben, breite, hoehe):
             return None
 
         if self.__x > r2_links:
@@ -523,6 +524,7 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
+
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
         """
 
@@ -569,6 +571,9 @@ class ZeichenbaresElement(Zeichenbar):
         """
 
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche, position_geaendert)
+
+    def klone(self, x, y):
+        raise NotImplementedError("Muss überschrieben werden")
 
     def pralle_vom_rand_ab(self, abprallen=True):
         """

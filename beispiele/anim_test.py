@@ -49,6 +49,8 @@ fireAnim.unten = 0
 fireAnim.links = 12
 fireAnim.zentriere_vertikal()
 
+fire2 = fireAnim.klone(200, 100)
+fire2.start()
 
 
 Spiel.registriere_taste_gedrueckt(K_p, lambda a, b: boltAnim.pause())

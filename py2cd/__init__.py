@@ -51,4 +51,4 @@ from py2cd.bild import *
 # Animationen
 from py2cd.anim import *
 
-version = "0.6"
+version = "0.2.2"

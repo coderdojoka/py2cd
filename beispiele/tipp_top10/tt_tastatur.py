@@ -65,7 +65,7 @@ def initialisiere_tasten(flaeche):
     tastatur_schrift = Schrift(schrift_groesse, schrift)
 
     def mache_box(breite=groesse, hoehe=groesse):
-        return (0, 0), (breite, 0), (breite, hoehe), (0, hoehe)
+        return [(0, 0), (breite, 0), (breite, hoehe), (0, hoehe)]
 
     # Die verschiedenen Formen für die Tasten definieren
     normale_box = mache_box()
@@ -80,8 +80,8 @@ def initialisiere_tasten(flaeche):
     enter_breite = groesse * 1.5 + abstand * .5
     unterschied = enter_breite - groesse - abstand
 
-    enter_box = ((0, 0), (enter_breite, 0), (enter_breite, enter_hoehe), (unterschied, enter_hoehe),
-                 (unterschied, groesse), (0, groesse))
+    enter_box = [(0, 0), (enter_breite, 0), (enter_breite, enter_hoehe), (unterschied, enter_hoehe),
+                 (unterschied, groesse), (0, groesse)]
     leer_box = mache_box(5 * groesse + 4 * abstand)
 
     finger = [
