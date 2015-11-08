@@ -125,3 +125,7 @@ class ZeichenFlaeche(Zeichenbar):
 
     def lese_farbmaske(self):
         return self.pyg_flaeche.get_colorkey()
+
+    @property
+    def zeichenbareObjekte(self):
+        return self._zeichenbareObjekte

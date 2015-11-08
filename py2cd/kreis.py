@@ -1,7 +1,6 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
-
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -37,3 +36,7 @@ class Kreis(ZeichenbaresElement):
         super().__init__(x, y, radius * 2, radius * 2, farbe, eltern_flaeche)
         self.radius = radius
         self.dicke = dicke
+
+    def klone(self, x, y):
+        k = Kreis(x, y, self.radius, self.farbe, self.dicke, self._eltern_flaeche)
+        return k

@@ -2,7 +2,8 @@ __author__ = 'Mark Weinreuter'
 
 import pygame
 
-from py2cd.objekte import ZeichenbaresElement, SkalierbaresElement
+from py2cd.objekte import SkalierbaresElement
+from py2cd.objekte import ZeichenbaresElement
 
 
 class Bild(ZeichenbaresElement, SkalierbaresElement):
@@ -30,21 +31,28 @@ class Bild(ZeichenbaresElement, SkalierbaresElement):
             raise ValueError("Bitte Schlüssel des Bildes im Bildspeicher angeben.")
 
         self.__orginal_pygame_surface = self.__pygame_bild
+        self.__quelle = bild
 
         SkalierbaresElement.__init__(self, self)
         ZeichenbaresElement.__init__(self, x, y, self.__pygame_bild.get_width(), self.__pygame_bild.get_height(), farbe=None,
                                      eltern_flaeche=eltern_flaeche,
                                      position_geaendert=position_geaendert)
 
-    def _rotation_skalierung_anwenden(self, alte_mitte):
+    def _rotation_skalierung_anwenden(self):
         self.__pygame_bild = pygame.transform.rotozoom(self.__orginal_pygame_surface, self._winkel, self._skalierung)
 
         # das umgebende Rechteck hat sich geändert => Bild Zentrum anpassen
         rect = self.__pygame_bild.get_rect()
-        return (rect.width, rect.height)
+        return rect.width, rect.height
+
+    def klone(self, x, y):
+        b = Bild(x, y, self.__quelle, self._eltern_flaeche)
+        return b
+
 
 class BildWechsler(ZeichenbaresElement):
     def __init__(self, x, y, bilder_namen_liste, eltern_flaeche=None, position_geaendert=lambda: None):
+        self.__name_liste = bilder_namen_liste
         self.__pygame_bilder = []
         self.aktuelles_bild = 0
         self.zeige_erstes_bild = lambda: self.zeige_bild(0)
@@ -89,7 +97,11 @@ class BildWechsler(ZeichenbaresElement):
     def render(self, pyg_zeichen_flaeche):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
-        pyg_zeichen_flaeche.blit(bild, (self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
+        pyg_zeichen_flaeche.blit(bild, (
+            self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
+
+    def klone(self, x, y):
+        BildWechsler(x, y, self.__name_liste, self._eltern_flaeche)
 
 
 class BildSpeicher:

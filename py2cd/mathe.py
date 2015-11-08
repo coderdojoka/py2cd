@@ -46,3 +46,6 @@ class Plot(AALinien):
 
         # Eltern Konstruktor
         super().__init__(punkte, False, farbe, eltern_flaeche)
+
+    def klone(self, x, y):
+        raise NotImplementedError("Sorry, noch nicht implementiert, bzw. wird nicht unterstützt.")

@@ -1,5 +1,4 @@
 import math
-
 from py2cd import Spiel
 from py2cd import Linie
 
@@ -15,7 +14,8 @@ class Animation:
     Eine Animation, die für eine gegebene Zeit abgearbeitet wird.
     """
 
-    def __init__(self, zeit_in_ms, aktualisiere, animation_gestartet=lambda wiederholung: None, animation_gestoppt=lambda: None,
+    def __init__(self, zeit_in_ms, aktualisiere, animation_gestartet=lambda wiederholung: None,
+                 animation_gestoppt=lambda: None,
                  animation_pausiert=lambda: None, wiederhole=False):
         """
         Ein neues Animationsobjekt.

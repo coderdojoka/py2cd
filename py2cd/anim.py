@@ -48,6 +48,10 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         breite = 0
         hoehe = 0
 
+        # Für klone()
+        self.__quelle = pygame_flaechen_und_zeiten.copy()
+        self.__alpha = alpha
+
         for zf in pygame_flaechen_und_zeiten:
 
             animations_bild = zf[0]
@@ -75,9 +79,11 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             self._flaechen_zeiten.append((animations_bild, zf[1]))
             self._gesamt_zeit += zf[1]
 
+        self.__rotations_flaechen = None
         self._anzahl_flaechen = len(self._flaechen_zeiten)
 
-        super().__init__(0, 0, breite, hoehe, None)
+        SkalierbaresElement.__init__(self, self)
+        ZeichenbaresElement.__init__(self, 0, 0, breite, hoehe, None)
 
     def start(self):
         if self._zustand == GESTOPPT:
@@ -138,12 +144,25 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         self._zustand = PAUSIERT
 
     def _rotation_skalierung_anwenden(self):
-        for flaeche, zeit in self._flaechen_zeiten:
-            pyg_surface = flaeche.rotozoom(self._winkel, self._skalierung)
 
-        rect = pyg_surface.get_rect()
+        if self.__rotations_flaechen is None:
+            # lazy init um Speicher zu sparen, falls nicht benötigt
+            self.__rotations_flaechen = self._flaechen_zeiten.copy()
 
-        return (rect.width, rect.height)
+        index = 0
+        for flaeche, zeit in self.__rotations_flaechen:
+            self._flaechen_zeiten[index] = (pygame.transform.rotozoom(flaeche,
+                                                                      self._winkel, self._skalierung), zeit)
+            index += 1
+
+        rect = self._flaechen_zeiten[0][0].get_rect()
+
+        return rect.width, rect.height
+
+    def klone(self, x, y):
+        ba = BildAnimation(self.__quelle, self._wiederhole_animation, self.__alpha)
+        ba.setze_position(x, y)
+        return ba
 
 
 class BildAnimationSpeicher:

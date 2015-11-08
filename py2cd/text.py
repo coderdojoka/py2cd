@@ -2,7 +2,6 @@ __author__ = 'Mark Weinreuter'
 
 import pygame
 import pygame.freetype
-
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -81,3 +80,7 @@ class Text(ZeichenbaresElement):
 
         # Eltern Konstruktor
         super().__init__(x, y, dim[0], dim[1], farbe, eltern_flaeche)
+
+    def klone(self, x, y):
+        t = Text(self.__text, x, y, self.schrift, self.farbe, self.hintergrund, self._eltern_flaeche)
+        return t

@@ -155,6 +155,7 @@ class Zeichenbar:
         self.__y = mitte[1] - (self.hoehe / 2)
         self.position_geaendert()
 
+
     @property
     def oben(self):
         """
@@ -340,8 +341,8 @@ class Zeichenbar:
         """
         Sorgt dafür, dass dieses Objekt als Letztes und damit ganz oben gezeichnet wird.
         """
-        self._eltern_flaeche._zeichenbareObjekte.remove(self)
-        self._eltern_flaeche._zeichenbareObjekte.append(self)
+        self._eltern_flaeche.zeichenbareObjekte.remove(self)
+        self._eltern_flaeche.zeichenbareObjekte.append(self)
 
     def selbst_entfernen(self):
         """
@@ -407,7 +408,7 @@ class Zeichenbar:
         :rtype:
         """
 
-        if (self.beruehrt_rechteck(r2_links, r2_oben, breite, hoehe)):
+        if self.beruehrt_rechteck(r2_links, r2_oben, breite, hoehe):
             return None
 
         if self.__x > r2_links:
@@ -523,6 +524,7 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
+
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
         """
 
@@ -569,6 +571,9 @@ class ZeichenbaresElement(Zeichenbar):
         """
 
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche, position_geaendert)
+
+    def klone(self, x, y):
+        raise NotImplementedError("Muss überschrieben werden")
 
     def pralle_vom_rand_ab(self, abprallen=True):
         """
@@ -683,13 +688,18 @@ class ZeichenbaresElement(Zeichenbar):
 
 
 class SkalierbaresElement:
+    """
+    Klasse für skalierbare Element. Skalieren und Rotieren ist kombiniert in einem Aufruf von rotozoom.
+    Tranformationen sind kostenintensive Operationen!
+    """
+
     def __init__(self, zeichenbaresElement):
         self._winkel = 0
         self._skalierung = 1.0
         self.__zeichenbaresElement = zeichenbaresElement
 
     def rotiere(self, winkel):
-        self.rotiere_und_skaliere(winkel, self._winkel)
+        self.rotiere_und_skaliere(winkel, self._skalierung)
 
     def aendere_rotation(self, winkel_anderung):
         self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung)
@@ -704,6 +714,15 @@ class SkalierbaresElement:
         self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung + skalierungs_aenderung)
 
     def rotiere_und_skaliere(self, winkel, skalierung):
+        """
+        Rotiert und skaliert das aktuelle Objekt um den gegebenen Winkel
+        und skaliert das Objekt um den angebenen Faktor.
+
+        :param winkel: Rotation in Grad
+        :type winkel: float
+        :param skalierung: Skalierung, 1.0 ist die Orginalgröße
+        :type skalierung: float
+        """
         self._winkel = winkel
         self._skalierung = skalierung
 
@@ -711,8 +730,16 @@ class SkalierbaresElement:
         alte_mitte = self.__zeichenbaresElement.mitte
 
         neue_dimension = self._rotation_skalierung_anwenden()
-        self.__zeichenbaresElement.aendere_groesse(*neue_dimension)
+        self.__zeichenbaresElement._aendere_groesse(*neue_dimension)
         self.__zeichenbaresElement.mitte = alte_mitte
 
     def _rotation_skalierung_anwenden(self):
+        """
+
+        Diese Methode wird von rotiere_und_skaliere() aufgerufen. Hier muss die eigentliche Operation
+        implementiert werden.
+
+        :return: ein Tupel mit der neuen Größe
+        :rtype: (float, float)
+        """
         raise NotImplementedError("Muss überschrieben werden!")

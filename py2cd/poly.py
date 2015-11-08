@@ -1,7 +1,6 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
-
 from py2cd.objekte import *
 
 
@@ -76,6 +75,11 @@ class Polygon(ZeichenbaresElement):
         # x-, y-Position, Breite, Höhe
         return x_min, y_min, x_max - x_min, y_max - y_min
 
+    def klone(self, x, y):
+        p = Polygon(self._punkte.copy(), self.farbe, self.dicke, self._eltern_flaeche)
+        p.setze_position(x, y)
+        return p
+
 
 class Linien(Polygon):
     """
@@ -105,6 +109,11 @@ class Linien(Polygon):
 
         super().__init__(punkte, farbe, dicke, eltern_flaeche)
 
+    def klone(self, x, y):
+        l = Linien(self._punkte.copy(), self._geschlossen, self.farbe, self.dicke, self._eltern_flaeche)
+        l.setze_position(x, y)
+        return l
+
 
 class AALinien(Polygon):
     """
@@ -131,3 +140,8 @@ class AALinien(Polygon):
         self._geschlossen = geschlossen
 
         super().__init__(punkte, farbe, eltern_flaeche=eltern_flaeche)
+
+    def klone(self, x, y):
+        aal = AALinien(self._punkte.copy(), self._geschlossen, self.farbe, self._eltern_flaeche)
+        aal.setze_position(x, y)
+        return all

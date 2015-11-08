@@ -1,7 +1,6 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
-
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -36,3 +35,7 @@ class Rechteck(ZeichenbaresElement):
         """
         super().__init__(x, y, breite, hoehe, farbe, eltern_flaeche)
         self.dicke = dicke
+
+    def klone(self, x, y):
+        r = Rechteck(x, y, self.breite, self.hoehe, self.farbe, self.dicke, self._eltern_flaeche)
+        return r
