@@ -1,6 +1,6 @@
-import sys
-import subprocess
 import os
+import subprocess
+import sys
 import urllib.request
 
 __author__ = 'Mark Weinreuter'
@@ -55,11 +55,23 @@ def install_pygame():
         download("http://weinreuter.org/python/" + datei_name, datei_name)
         print("Fertig heruntergeladen.")
 
-    # In neuem Prozess versuchen zu installieren
-    process = subprocess.Popen(["pip", "install", "--use-wheel", datei_name])
-    code = process.wait()
+    fertig = False
+    pip_pfad = "pip"
+    pip_code = -1
 
-    if code == 0:
+    while not fertig:
+        try:
+            # In neuem Prozess versuchen zu installieren
+            process = subprocess.Popen([pip_pfad, "install", "--use-wheel", datei_name])
+            pip_code = process.wait()
+            fertig = True
+
+        except FileNotFoundError as e:
+            print("Fehler beim Installieren mit pip: ", e)
+            pip_pfad = input("Pip konnte nicht gefunden werden. Bitte gib den Pfad zu pip an (z.B.: C:\Python34\Scripts\pip.exe) : ")
+            print()
+
+    if pip_code == 0:
         print("\n\nDie Installation scheint funktioniert zu haben. Überprüfe die Ausgabe, um sicher zu sein.")
         ist_pygame_installiert()
 
@@ -76,12 +88,12 @@ print("Du verwendest: Python", vMajor + "." + vMinor, "\n")
 
 if vMajor != "3":
     print("Py2cd ist für Python 3 augelegt, du verwendest:", vMajor + "." + vMinor)
+    print("Falls du Python3 installiert hast, bitte starte dieses Skript damit.")
     exit(-1)
 
 ist_windows = (os.name == "nt")
 hat_pygame = ist_pygame_installiert()
 hat_py2cd = ist_py2cd_installiert()
-
 
 # Windows Info :D
 if ist_windows:
@@ -105,20 +117,9 @@ if not hat_py2cd:
     print("Py2cd ist nicht installiert.")
     print("Installiere Py2cd")
 else:
-    print("Aktualisiere py2cd")
+    print("Aktualisiere py2cd...")
 
-
-variante = "install"
-"""
-erg = input(
-    "Willst du py2cd als Entwicklungsversion installieren?\nWenn du dir nicht sicher bist antworte mit n. Tippe 'j' für Ja und 'n' für nein. [j/n]:")
-
-
-if erg[0].lower() == "j":
-    variante = "develop"
-"""
-
-process = subprocess.Popen(["python", "setup.py", variante])
+process = subprocess.Popen(["python", "setup.py", "install"])
 code = process.wait()
 
 if code == 0:

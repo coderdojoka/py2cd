@@ -2,10 +2,10 @@ __author__ = 'Mark Weinreuter'
 
 import pygame
 
-from py2cd.objekte import ZeichenbaresElement
+from py2cd.objekte import ZeichenbaresElement, SkalierbaresElement
 
 
-class Bild(ZeichenbaresElement):
+class Bild(ZeichenbaresElement, SkalierbaresElement):
     def render(self, pyg_zeichen_flaeche):
         pyg_zeichen_flaeche.blit(self.__pygame_bild, (self.x, self.y))
 
@@ -29,10 +29,19 @@ class Bild(ZeichenbaresElement):
         else:
             raise ValueError("Bitte Schlüssel des Bildes im Bildspeicher angeben.")
 
-        super().__init__(x, y, self.__pygame_bild.get_width(), self.__pygame_bild.get_height(), farbe=None,
-                         eltern_flaeche=eltern_flaeche,
-                         position_geaendert=position_geaendert)
+        self.__orginal_pygame_surface = self.__pygame_bild
 
+        SkalierbaresElement.__init__(self, self)
+        ZeichenbaresElement.__init__(self, x, y, self.__pygame_bild.get_width(), self.__pygame_bild.get_height(), farbe=None,
+                                     eltern_flaeche=eltern_flaeche,
+                                     position_geaendert=position_geaendert)
+
+    def _rotation_skalierung_anwenden(self, alte_mitte):
+        self.__pygame_bild = pygame.transform.rotozoom(self.__orginal_pygame_surface, self._winkel, self._skalierung)
+
+        # das umgebende Rechteck hat sich geändert => Bild Zentrum anpassen
+        rect = self.__pygame_bild.get_rect()
+        return (rect.width, rect.height)
 
 class BildWechsler(ZeichenbaresElement):
     def __init__(self, x, y, bilder_namen_liste, eltern_flaeche=None, position_geaendert=lambda: None):

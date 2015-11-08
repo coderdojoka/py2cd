@@ -680,3 +680,39 @@ class ZeichenbaresElement(Zeichenbar):
         :rtype:pygame.Rect
         """
         raise NotImplementedError("render() Methode muss überschrieben werden!")
+
+
+class SkalierbaresElement:
+    def __init__(self, zeichenbaresElement):
+        self._winkel = 0
+        self._skalierung = 1.0
+        self.__zeichenbaresElement = zeichenbaresElement
+
+    def rotiere(self, winkel):
+        self.rotiere_und_skaliere(winkel, self._winkel)
+
+    def aendere_rotation(self, winkel_anderung):
+        self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung)
+
+    def skaliere(self, skalierung):
+        self.rotiere_und_skaliere(self._winkel, skalierung)
+
+    def aendere_skalierung(self, skalierungs_aenderung):
+        self.rotiere_und_skaliere(self._winkel, self._skalierung + skalierungs_aenderung)
+
+    def aendere_rotation_und_skalierung(self, winkel_anderung, skalierungs_aenderung):
+        self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung + skalierungs_aenderung)
+
+    def rotiere_und_skaliere(self, winkel, skalierung):
+        self._winkel = winkel
+        self._skalierung = skalierung
+
+        # die Mitte ist ein Fixpunkt! so können wir später die Position wieder herstellen
+        alte_mitte = self.__zeichenbaresElement.mitte
+
+        neue_dimension = self._rotation_skalierung_anwenden()
+        self.__zeichenbaresElement.aendere_groesse(*neue_dimension)
+        self.__zeichenbaresElement.mitte = alte_mitte
+
+    def _rotation_skalierung_anwenden(self):
+        raise NotImplementedError("Muss überschrieben werden!")

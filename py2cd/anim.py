@@ -7,14 +7,14 @@ __author__ = 'Mark Weinreuter'
 # Inspired by Al Sweigarts pyganim: http://inventwithpython.com/pyganim/
 
 from py2cd.spiel import Spiel
-from py2cd.objekte import ZeichenbaresElement
+from py2cd.objekte import ZeichenbaresElement, SkalierbaresElement
 
 GESTOPPT = 0
 GESTARTET = 1
 PAUSIERT = 2
 
 
-class BildAnimation(ZeichenbaresElement):
+class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
     """
     Zeigt einen Animation an, indem eine Liste von Bildern(ZeichenFlaechen) in angegeben Zeitabschnitten
     durch gewechselt werden.
@@ -136,6 +136,14 @@ class BildAnimation(ZeichenbaresElement):
 
     def pause(self):
         self._zustand = PAUSIERT
+
+    def _rotation_skalierung_anwenden(self):
+        for flaeche, zeit in self._flaechen_zeiten:
+            pyg_surface = flaeche.rotozoom(self._winkel, self._skalierung)
+
+        rect = pyg_surface.get_rect()
+
+        return (rect.width, rect.height)
 
 
 class BildAnimationSpeicher:
