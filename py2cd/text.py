@@ -11,6 +11,13 @@ class Schrift:
     """
 
     def __init__(self, schrift_groesse, schrift_art=None):
+        """
+
+        :param schrift_groesse: Gröpße der Schrift
+        :type schrift_groesse: int
+        :param schrift_art: Der Name der Schrift, z.B. Arial
+        :type schrift_art: str
+        """
         self.schrift_art = schrift_art
         self.schrift_groesse = schrift_groesse
         self._pyg_schrift = pygame.font.SysFont(schrift_art, schrift_groesse)
@@ -27,6 +34,15 @@ class Schrift:
 
     def render(self, text, aa, farbe, hintergrund):
         return self._pyg_schrift.render(text, aa, farbe, hintergrund)
+
+    @classmethod
+    def gib_vorhandene_schriftarten(cls):
+        fonts = pygame.font.get_fonts()
+        return fonts
+
+    @classmethod
+    def gib_standart_schrift(cls):
+        return pygame.font.get_default_font()
 
 
 class Text(ZeichenbaresElement):

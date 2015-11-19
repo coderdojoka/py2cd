@@ -7,12 +7,13 @@ def readme():
 
 
 setup(name='py2cd',
-      version='0.2.2',
+      version='0.2.3',
       description='Wrapper for pygame to provide a simple drawing and gaming framework in German.'
                   ' This project is develop for the use in the CoderDojo Karlsruhe.',
       url='http://github.com/coderdojoka/py2cd',
       author='CoderDojo Karlsruhe, Mark Weinreuter',
-      packages=['py2cd'],
+      packages=['py2cd', 'py2cd.pygameui'],
+      package_data={'py2cd': ['pygameui/resources/*/*']},
       install_requires=[
           'pygame'
       ],

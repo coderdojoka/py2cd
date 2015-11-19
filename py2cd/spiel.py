@@ -1,10 +1,17 @@
+import logging
+
+import py2cd
+
 __author__ = 'Mark Weinreuter'
 
 import sys
-
 import pygame
 import pygame.freetype
 from pygame.constants import *
+from py2cd.farben import *
+import py2cd.pygameui as ui
+
+logger = logging.getLogger(__name__)
 
 
 class Spiel:
@@ -12,6 +19,8 @@ class Spiel:
     Die Hauptklasse des Spiels.
     Es muss Spiel.init() und Spiel.starten() aufgerufen werden.
     """
+
+    _zeige_gui = False
 
     _ist_aktiv = True
     """
@@ -122,8 +131,8 @@ class Spiel:
         """
 
         # Versions Info
-        print("Python: ", sys.version)
-        print("Pygame: ", pygame.version.ver)
+        logger.debug("Python: ", sys.version)
+        logger.debug("Pygame: ", pygame.version.ver)
 
         # die spiel schleife
         Spiel.__aktualisiere = aktualisierungs_funktion
@@ -137,7 +146,7 @@ class Spiel:
 
         # die Hauptzeichenfläche des Spiels!
         Spiel.__haupt_flaeche = ZeichenFlaeche(0, 0, pygame.display.set_mode((breite, hoehe)),
-                                               (255, 255, 255))
+                                               WEISS)
 
         Spiel.standard_flaeche = Spiel.__haupt_flaeche
 
@@ -172,42 +181,53 @@ class Spiel:
                 if ereignis.type == QUIT:
                     Spiel.beenden()
 
-                # Maus bewegt
-                elif ereignis.type == MOUSEMOTION:
-                    if Spiel._mausBewegt:
-                        Spiel._mausBewegt(ereignis)
+                if not Spiel._zeige_gui or not ui.reagiere(ereignis):
+                    # Maus bewegt
+                    if ereignis.type == MOUSEMOTION:
+                        if Spiel._mausBewegt:
+                            Spiel._mausBewegt(ereignis)
 
-                # Maustaste gedrückt
-                elif ereignis.type == MOUSEBUTTONDOWN:
-                    if Spiel._maus_taste_gedrueckt:
-                        Spiel._maus_taste_gedrueckt(ereignis)
+                    # Maustaste gedrückt
+                    elif ereignis.type == MOUSEBUTTONDOWN:
+                        if Spiel._maus_taste_gedrueckt:
+                            Spiel._maus_taste_gedrueckt(ereignis)
 
-                # Maustaste losgelassen
-                elif ereignis.type == MOUSEBUTTONUP:
-                    if Spiel._maus_taste_losgelassen:
-                        Spiel._maus_taste_losgelassen(ereignis)
+                    # Maustaste losgelassen
+                    elif ereignis.type == MOUSEBUTTONUP:
+                        if Spiel._maus_taste_losgelassen:
+                            Spiel._maus_taste_losgelassen(ereignis)
 
-                # Taste losgelassen
-                elif ereignis.type == KEYUP:
-                    if ereignis.key in Spiel._tasten:
-                        Spiel._tasten[ereignis.key](False, ereignis)
+                    # Taste losgelassen
+                    elif ereignis.type == KEYUP:
+                        if ereignis.key in Spiel._tasten:
+                            Spiel._tasten[ereignis.key](False, ereignis)
 
-                # Taste gedrückt
-                elif ereignis.type == KEYDOWN:
-                    if ereignis.key in Spiel._tasten:
-                        Spiel._tasten[ereignis.key](True, ereignis)
+                    # Taste gedrückt
+                    elif ereignis.type == KEYDOWN:
+                        if ereignis.key in Spiel._tasten:
+                            Spiel._tasten[ereignis.key](True, ereignis)
 
-            Spiel.zeit_unterschied_ms = Spiel._clock.get_time()
+            # lässt das Spiel mit ca. dieser fps laufen und fragt vergangene Zeit ab
+            Spiel.zeit_unterschied_ms = Spiel._clock.tick(Spiel.fps)
+
             Spiel.__aktualisiere(Spiel.zeit_unterschied_ms / Spiel.fps)
 
             # zeichne alles!!!
             Spiel.__haupt_flaeche.zeichne_alles()
 
-            # muss aufgerufen werden um Änderungen anzuzeigen
-            pygame.display.update()
+            # falls wir eine GUI haben
+            if Spiel._zeige_gui:
+                ui.aktualisiere(Spiel.zeit_unterschied_ms)
+                ui.zeichne(Spiel.__haupt_flaeche.pyg_flaeche)
 
-            # lässt das Spiel mit ca. dieser fps laufen
-            Spiel._clock.tick(Spiel.fps)
+                # muss aufgerufen werden um Änderungen anzuzeigen
+            pygame.display.flip()  # update besser?
+
+    def zeige_gui(self):
+        self._zeige_gui = True
+
+    def verstecke_gui(self):
+        self._zeige_gui = False
 
     @staticmethod
     def setze_fenster_titel(titel):
@@ -247,7 +267,6 @@ class Spiel:
         for i in range(1, anzahl):
             Linie((i * groesse, 0), (i * groesse, Spiel.hoehe), HELL_GRAU)
             t = Text("%d" % (i * groesse), i * groesse, 2)
-
 
         # Anzahl an vertikalen Gitterlinien
         anzahl = round(Spiel.hoehe / groesse)

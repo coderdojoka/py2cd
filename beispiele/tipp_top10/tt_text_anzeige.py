@@ -105,7 +105,7 @@ class TextAnzeige:
     zeichen_fehler_farbe = (255, 120, 120, 80)
     hintergrund_farbe = TRANSPARENT
 
-    def __init__(self, text, x_offset=0, y_offset=0, wenn_komplett=lambda: None):
+    def __init__(self, text, x_offset=0, y_offset=0, wenn_komplett=lambda: None,wenn_falsch=lambda:None):
         self.text = text
         self.__x = 0
         self.__y = 0
@@ -113,6 +113,7 @@ class TextAnzeige:
         self.y_offset = y_offset
         self.position = 0
         self.wenn_komplett = wenn_komplett
+        self.wenn_falscher_buchstabe = wenn_falsch
         self.auswahl_text = Text(text[self.position], 0, 0, TextAnzeige.standard_schrift)
         laenge = min(len(text[self.position:]), TextAnzeige.zeichen_laenge)
 
@@ -133,6 +134,7 @@ class TextAnzeige:
     def buchstabe_getippt(self, buchstabe):
         if self.text[self.position] != buchstabe:
             self.auswahl_text.hintergrund = TextAnzeige.zeichen_fehler_farbe
+            self.wenn_falscher_buchstabe()
             return -1
 
         self.position += 1

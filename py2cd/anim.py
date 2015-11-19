@@ -38,6 +38,8 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         :type: list[(ZeichenFlaeche, int)]
         """
 
+        self._bild_gewechselt = lambda index: None
+
         self._gesamt_zeit = 0
         self._aktuelle_flaeche = 0
         self._zustand = GESTOPPT
@@ -106,6 +108,7 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             while self._vergangen > self._flaechen_zeiten[self._aktuelle_flaeche][1]:
                 self._vergangen -= self._flaechen_zeiten[self._aktuelle_flaeche][1]
                 self._aktuelle_flaeche += 1  # nächste fläche
+                self._bild_gewechselt(self._aktuelle_flaeche)
 
                 # alle Flächen gezeichnet?
                 if self._aktuelle_flaeche == self._anzahl_flaechen:
@@ -133,6 +136,9 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             raise ValueError("Index muss größer 0 und kleiner als die Anzahl an Bildern sein")
 
         self._aktuelle_flaeche = index
+
+    def setze_wenn_bild_gewechselt(self, wenn_gewechselt):
+        self._bild_gewechselt = wenn_gewechselt
 
     def setze_wiederhole(self, wiederhole=True):
         self._wiederhole_animation = wiederhole
