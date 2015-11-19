@@ -1,3 +1,5 @@
+import random
+
 __author__ = 'Mark Weinreuter'
 
 from py2cd.anim import BildAnimation, BildAnimationSpeicher

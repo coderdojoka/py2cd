@@ -1,14 +1,19 @@
 # py2cd
-Py2cd ist ein simples 2D-Zeichen/Spiele-Framework, dass auf [pygame](http://pygame.org) basiert.
+Py2cd ist ein einfaches 2D-Zeichen/Spiele-Framework, dass auf [pygame](http://pygame.org) basiert.
 Es ist auf Deutsch geschrieben und dient als Python3-Spiele Framework für das CoderDojo in Karlsruhe
 
+# pygameui
+py2cd unterstüzt GUI-Elemente mithilfe von [pygameui](https://github.com/fictorial/pygameui). Das Copyright dafür liegt bei dem ursprünglichen Autor.
+
+
+
 ## Variante 1: Installations-Skript
-Die einfachst Möglichkeite py2cd und pygame zu installieren, ist das Installationsskript _installation.py_ auszuführen. Dieses installiert pygame und py2cd. Dafür lädt es, falls benögtigt, die pygame-Installationsdatei herunter. Dies funktioniert allerdings nur unter Windows. Für andere Betriebssysteme muss pygame manuell installiert werden.
+Die einfachst Möglichkeit py2cd und pygame zu installieren, ist das Installationsskript _installation.py_ auszuführen. Dieses installiert pygame und py2cd. Dafür lädt es, falls benögtigt, die pygame-Installationsdatei herunter. Dies funktioniert allerdings nur unter Windows. Für andere Betriebssysteme muss pygame manuell installiert werden.
 
 Py2cd kann immer über dieses Skript installiert/aktualisiert werden.      
  
 #### Schritt 1: 
- Zur Installation muss die neuste Version als [Zip-Archiv](https://github.com/coderdojoka/py2cd/archive/master.zip) heruntergeladen und entpackt werden.
+ Zur Installation muss die aktuellste Version als [Zip-Archiv](https://github.com/coderdojoka/py2cd/archive/master.zip) heruntergeladen und entpackt werden.
 
 #### Schritt 2:
 Anschließend wird die Installation gestartet, indem man das Python-Skript _'installation.py'_ ausführt.
@@ -58,10 +63,10 @@ Im heruntergeladenen Ordner folgenden Befehl in der Kommandozeile/Eingabeaufford
 ```python
 python setup.py install
 ```
-__TIpp:__ Hält man im Windows-Explorer die Shift-Taste gedrückt und Rechts-klickt auf den Ordner, so kann man im Menü den Eintrag: 'Eingabeaufforderung/Kommandozeile hier öffnen' auswählen.
+__Tipp:__ Hält man im Windows-Explorer die Shift-Taste gedrückt und Rechts-klickt auf den Ordner, so kann man im Menü den Eintrag: 'Eingabeaufforderung/Kommandozeile hier öffnen' auswählen.
 
 ## Tutorials
 Im [Materialien](https://github.com/coderdojoka/Materialien/tree/master/Python/Roter%20G%C3%BCrtel/Tutorials/py2cd) Repository sind Tutorials zu py2cd zu finden.
 
 ## Beispiele
-Im Ordner [Beispiele](https://github.com/coderdojoka/py2cd/tree/master/beispiele/) sind ein paar (kommentierte) Beispielprogramme zu finden. Sowie im [Materialien-Repository](https://github.com/coderdojoka/Materialien/tree/master/Python/Beispiele/py2cd/)
+Im Ordner [Beispiele](https://github.com/coderdojoka/py2cd/tree/master/beispiele/) sind einige (kommentierte) Beispielprogramme zu finden. Sowie im [Materialien-Repository](https://github.com/coderdojoka/Materialien/tree/master/Python/Beispiele/py2cd/)

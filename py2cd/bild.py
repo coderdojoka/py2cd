@@ -105,7 +105,7 @@ class BildWechsler(ZeichenbaresElement):
 
 
 class BildSpeicher:
-    __alle_bilder = {}
+    __alle_bilder = {} # TODO: besser?: weakref.WeakValueDictionary()
 
     @classmethod
     def ist_bild_vorhanden(cls, schluessel):

@@ -155,7 +155,6 @@ class Zeichenbar:
         self.__y = mitte[1] - (self.hoehe / 2)
         self.position_geaendert()
 
-
     @property
     def oben(self):
         """
@@ -330,6 +329,14 @@ class Zeichenbar:
         Versteckt dieses Objekt.
         """
         self.__sichtbar = False
+
+    def ist_sichtbar(self):
+        """
+        Gibt an, ob das Objekt sichtbar ist
+        :return: True, falls sichtbar
+        :rtype: bool
+        """
+        return self.__sichtbar
 
     def zeige(self):
         """
@@ -524,7 +531,6 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
-
     def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
         """
 
@@ -701,8 +707,8 @@ class SkalierbaresElement:
     def rotiere(self, winkel):
         self.rotiere_und_skaliere(winkel, self._skalierung)
 
-    def aendere_rotation(self, winkel_anderung):
-        self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung)
+    def aendere_rotation(self, winkel_aenderung):
+        self.rotiere_und_skaliere(self._winkel + winkel_aenderung, self._skalierung)
 
     def skaliere(self, skalierung):
         self.rotiere_und_skaliere(self._winkel, skalierung)
@@ -710,8 +716,8 @@ class SkalierbaresElement:
     def aendere_skalierung(self, skalierungs_aenderung):
         self.rotiere_und_skaliere(self._winkel, self._skalierung + skalierungs_aenderung)
 
-    def aendere_rotation_und_skalierung(self, winkel_anderung, skalierungs_aenderung):
-        self.rotiere_und_skaliere(self._winkel + winkel_anderung, self._skalierung + skalierungs_aenderung)
+    def aendere_rotation_und_skalierung(self, winkel_aenderung, skalierungs_aenderung):
+        self.rotiere_und_skaliere(self._winkel + winkel_aenderung, self._skalierung + skalierungs_aenderung)
 
     def rotiere_und_skaliere(self, winkel, skalierung):
         """
@@ -731,7 +737,7 @@ class SkalierbaresElement:
 
         neue_dimension = self._rotation_skalierung_anwenden()
         self.__zeichenbaresElement._aendere_groesse(*neue_dimension)
-        self.__zeichenbaresElement.mitte = alte_mitte
+        self.mitte = alte_mitte
 
     def _rotation_skalierung_anwenden(self):
         """
@@ -743,3 +749,16 @@ class SkalierbaresElement:
         :rtype: (float, float)
         """
         raise NotImplementedError("Muss überschrieben werden!")
+
+
+"""
+    def _mitte_nach_rotation_zurueck_setzen(self, alte_mitte):
+        ""
+        Diese Methode wird aufgerufen, nachdem rotiert wurde und die Postion wiederhergestellt werden muss.
+        In den meisten Fällen ist self.mitte = alte_mitte genug
+
+        :param alte_mitte: die alte Mitte
+        :type alte_mitte: (float, float)
+        ""
+        raise NotImplementedError("Muss überschrieben werden!")
+"""

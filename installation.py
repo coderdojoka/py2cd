@@ -59,6 +59,7 @@ def install_pygame():
     pip_pfad = "pip"
     pip_code = -1
 
+    # Pip ist nicht immer im Pfad vorhanden
     while not fertig:
         try:
             # In neuem Prozess versuchen zu installieren

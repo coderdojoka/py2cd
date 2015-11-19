@@ -50,5 +50,6 @@ from py2cd.bild import *
 
 # Animationen
 from py2cd.anim import *
+#from py2cd.farben import *
 
 version = "0.2.2"

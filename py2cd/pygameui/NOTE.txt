@@ -1,0 +1,5 @@
+This code is taken from https://github.com/fictorial/pygameui and has been modified to work with Python 3 and py2cd.
+See LICENSE.txt for license information on pygameui.
+
+Dieser Code stammt von https://github.com/fictorial/pygameui und wurde angepasst, um unter Python 3 mit py2cd zu funktionieren.
+Siehe LICENSE.txt für Information über die Lizenzierung von pygameui.
