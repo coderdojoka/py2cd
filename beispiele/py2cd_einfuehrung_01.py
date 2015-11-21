@@ -14,6 +14,7 @@ haus = Rechteck(270, 200, 100, 100, GELB)
 
 # ein Polygon mit den Ecken aus der Liste und der Farbe Rot
 dach = Polygon([(270, 200), (320, 160), (370, 200)], ROT)
+dach.zentriere()
 
 # ein neues Rechteck mit Position 320x200 und Größe: 30x50 in grün
 tuer = Rechteck(320, 250, 30, 50, GRUEN)

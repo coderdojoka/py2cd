@@ -1,8 +1,9 @@
 __author__ = 'Mark Weinreuter'
 
+from pygame.constants import *
+
 from py2cd import *
 from py2cd.farben import *
-from pygame.constants import *
 
 links_down = False
 rechts_down = False
@@ -69,6 +70,9 @@ p_box = Rechteck(p.x, p.y, p.breite, p.hoehe, ROT)
 p_box = Rechteck(l.x, l.y, l.breite, l.hoehe, (255, 0, 0, 120))
 
 k = Kreis(260, 260, 50, GRUEN)
+
+o = Oval(30, 40, 150, 50, BLAU)
+b = Bogen(40, 100, 20, 40, 0, 270,dicke=5)
 
 t.zentriere()
 

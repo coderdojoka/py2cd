@@ -5,7 +5,6 @@ import random
 
 import py2cd.pygameui as ui
 from  py2cd import *
-from py2cd import ROT
 
 log_format = '%(asctime)-6s: %(name)s - %(levelname)s - %(message)s'
 console_handler = logging.StreamHandler()
@@ -147,8 +146,6 @@ class KitchenSinkSzene(ui.Szene):
             0, 0))
         self.add_child(self.spinner)
 
-
-
     def layout(self):
         self.checkbox.toggle()
         self.checkbox1.toggle()
@@ -214,6 +211,7 @@ class KitchenSinkSzene(ui.Szene):
                 self.progress_view.progress = 0
                 self.progress_view.hidden = True
 
+
 breite = 640
 hoehe = 480
 
@@ -221,6 +219,6 @@ Spiel.init(breite, hoehe)
 ui.init(breite, hoehe)
 
 ui.szene.push(KitchenSinkSzene())
-Spiel._zeige_gui = True
+Spiel.zeige_gui()
 
 Spiel.starten()

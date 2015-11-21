@@ -152,7 +152,7 @@ class Polygon(ZeichenbaresElement, SkalierbaresElement):
 
     @staticmethod
     def _mache_relativ_zu(x, y, punkte):
-        return [p.addiere(x, y) for p in punkte]
+        return [p + Punkt(x, y) for p in punkte]
 
     def klone(self, x, y):
         p = Polygon(self._punkte.copy(), self.farbe, self.dicke, self._eltern_flaeche)
@@ -224,6 +224,14 @@ class AALinien(Polygon):
         aal = AALinien(self._punkte.copy(), self._geschlossen, self.farbe, self._eltern_flaeche)
         aal.setze_position(x, y)
         return all
+
+
+class Dreieck(Polygon):
+    def __init__(self, x, y, breite, hoehe, farbe=(0, 0, 0)):
+        punkte = [(0, hoehe), (breite / 2, 0), (breite, hoehe)]
+        super().__init__(punkte, farbe)
+
+        self.setze_position(x, y)
 
 
 class Punkt:

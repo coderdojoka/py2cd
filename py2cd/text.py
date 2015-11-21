@@ -10,7 +10,7 @@ class Schrift:
     Eine Schrift, die zum Darstellen von Text verwendet werden kann.
     """
 
-    def __init__(self, schrift_groesse, schrift_art=None):
+    def __init__(self, schrift_groesse, schrift_art="freesansbold"):
         """
 
         :param schrift_groesse: Gröpße der Schrift

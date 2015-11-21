@@ -1,3 +1,5 @@
+from py2cd.ereignis import EreignisBearbeiter
+
 __author__ = 'Mark Weinreuter'
 
 
@@ -6,7 +8,7 @@ class Zeichenbar:
     Überklasse für alle zeichenbaren Objekte. Diese haben ein Position (x,y) und eine (Hintergrund-)Farbe.
     """
 
-    def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche, position_geändert=lambda: None):
+    def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche, position_geaendert=None):
         """
         Ein neues Zeichenbares Objekt mit der gegebenen (Hintergrund-)Farbe und Elternflaeche.
 
@@ -22,8 +24,8 @@ class Zeichenbar:
         :type farbe:tuple[int]|None
         :param eltern_flaeche:
         :type eltern_flaeche: py2cd.flaeche.ZeichenFlaeche
-        :param position_geändert: die Funktion, die aufgerufen wird, wenn sich die Position dieses Objekts geändert hat
-        :type position_geändert: () -> None
+        :param position_geaendert: die Funktion, die aufgerufen wird, wenn sich die Position dieses Objekts geändert hat
+        :type position_geaendert: () -> None
         """
 
         self.farbe = farbe
@@ -75,12 +77,14 @@ class Zeichenbar:
         self.__sichtbar = True
         """ Ob das Objekt gezeichnet werden soll."""
 
-        self.position_geaendert = position_geändert
+        self.position_geaendert = EreignisBearbeiter()
         """
         Funktion die aufgerufen wird, wenn die Position geändert wurde.
 
-        :type: (None)->None
+        :type: py2cd.EreignisBearbeiter
         """
+        if position_geaendert is not None:
+            self.position_geaendert.registriere(position_geaendert)
 
         # füge das Element zum Elternelement hinzu
         if self._eltern_flaeche is not None:
@@ -531,7 +535,7 @@ class Zeichenbar:
 
 
 class ZeichenbaresElement(Zeichenbar):
-    def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=lambda: None):
+    def __init__(self, x, y, breite, hoehe, farbe, eltern_flaeche=None, position_geaendert=None):
         """
 
         :param x: die x-Koordinate
@@ -543,7 +547,7 @@ class ZeichenbaresElement(Zeichenbar):
         :param hoehe: die Höhe des umgebenden Rechtecks
         :type hoehe: float
         :param farbe: die (Hintergrund-) Farbe
-        :type farbe: tuple[int]
+        :type farbe: None|tuple[int]
         :param eltern_flaeche: die Elternfläche (Standard: Spiel.haupt_flaeche)
         :type eltern_flaeche: py2cd.flaeche.Flaeche
         :param position_geaendert: die Funktion, die bei Positonsänderung aufgerufen wird
@@ -704,13 +708,13 @@ class SkalierbaresElement:
         self._skalierung = 1.0
         self.__zeichenbaresElement = zeichenbaresElement
 
-    def rotiere(self, winkel):
+    def setze_rotation(self, winkel):
         self.rotiere_und_skaliere(winkel, self._skalierung)
 
     def aendere_rotation(self, winkel_aenderung):
         self.rotiere_und_skaliere(self._winkel + winkel_aenderung, self._skalierung)
 
-    def skaliere(self, skalierung):
+    def setze_skalierung(self, skalierung):
         self.rotiere_und_skaliere(self._winkel, skalierung)
 
     def aendere_skalierung(self, skalierungs_aenderung):

@@ -19,7 +19,7 @@ def aktualisiere_spiel(delta):
     skalierung += delta * vorzeichen * .01
 
     bild.aendere_rotation(delta)
-    bild.skaliere(skalierung)
+    bild.setze_skalierung(skalierung)
 
     # Skalierung umkehren
     if skalierung >= 3:

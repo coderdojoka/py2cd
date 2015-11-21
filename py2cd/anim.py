@@ -1,17 +1,19 @@
 import pygame
 
 from py2cd.bild import BildSpeicher
+from py2cd.ereignis import EreignisBearbeiter
+from py2cd.objekte import ZeichenbaresElement, SkalierbaresElement
+from py2cd.spiel import Spiel
 
 __author__ = 'Mark Weinreuter'
 
 # Inspired by Al Sweigarts pyganim: http://inventwithpython.com/pyganim/
 
-from py2cd.spiel import Spiel
-from py2cd.objekte import ZeichenbaresElement, SkalierbaresElement
 
 GESTOPPT = 0
 GESTARTET = 1
 PAUSIERT = 2
+ZEIGE_BILD = 3
 
 
 class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
@@ -37,8 +39,11 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         """
         :type: list[(ZeichenFlaeche, int)]
         """
+        self._zeige_letztes_bild = False
 
-        self._bild_gewechselt = lambda index: None
+        self._bild_gewechselt = EreignisBearbeiter()
+        self._animation_gestartet = EreignisBearbeiter()
+        self._animation_geendet = EreignisBearbeiter()
 
         self._gesamt_zeit = 0
         self._aktuelle_flaeche = 0
@@ -88,11 +93,12 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         ZeichenbaresElement.__init__(self, 0, 0, breite, hoehe, None)
 
     def start(self):
-        if self._zustand == GESTOPPT:
+        if self._zustand == GESTOPPT or self._zustand == ZEIGE_BILD:
             self._vergangen = 0
             self._aktuelle_flaeche = 0
 
         self._zustand = GESTARTET
+        self._animation_gestartet()
 
     def render(self, pyg_zeichen_flaeche):
         """
@@ -104,41 +110,70 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         if self._zustand == GESTARTET:
             self._vergangen += Spiel.zeit_unterschied_ms
 
-            # falls die Zeit für das aktuelle Bild abgelaufen ist, gehe zum nächsetn bild
+            naechste_flaeche = self._aktuelle_flaeche
+
+            # solange die Zeit für das aktuelle Bild abgelaufen ist, gehe zum nächsten bild
             while self._vergangen > self._flaechen_zeiten[self._aktuelle_flaeche][1]:
                 self._vergangen -= self._flaechen_zeiten[self._aktuelle_flaeche][1]
-                self._aktuelle_flaeche += 1  # nächste fläche
-                self._bild_gewechselt(self._aktuelle_flaeche)
+
+                naechste_flaeche += 1  # nächste fläche
 
                 # alle Flächen gezeichnet?
-                if self._aktuelle_flaeche == self._anzahl_flaechen:
-
-                    # aktuelle Fläche zurücksetzen
-                    self._aktuelle_flaeche = 0
+                if naechste_flaeche == self._anzahl_flaechen:
 
                     if not self._wiederhole_animation:
-                        # animation anhalten
-                        self._zustand = GESTOPPT
-                        # Nichts zeichnen
-                        return
 
-            # Zeichne das aktuelle bild
-            pyg_zeichen_flaeche.blit(self._flaechen_zeiten[self._aktuelle_flaeche][0],
-                                     (self.x, self.y))
+                        if self._zeige_letztes_bild:
+                            # animation anhalten
+                            self.zeige_letztes_bild()
 
-        elif self._zustand == PAUSIERT:
+                            # damit genau dieses Bild gezeichnet wird
+                            break
+                        else:
+
+                            self._animation_geendet()
+                            self._zustand = GESTOPPT
+
+            # falls die animation läuft, müssen wir die bilder wechseln
+            if self._zustand == GESTARTET and self._aktuelle_flaeche != naechste_flaeche:
+                # sicher gehen, das wir einen korrekten index verwenden
+                self._aktuelle_flaeche = naechste_flaeche % self._anzahl_flaechen
+                self._bild_gewechselt(self._aktuelle_flaeche)
+
+        # in allen zuständen, außer gestoppt zeichnen wir
+        if self._zustand != GESTOPPT:
             # das aktuelle bild wird immer noch gezeichnet
             return pyg_zeichen_flaeche.blit(self._flaechen_zeiten[self._aktuelle_flaeche][0],
                                             (self.x, self.y))
+
+    def zeige_letztes_bild_wenn_geendet(self, wert=True):
+        """
+        Wenn die Animation geendet hat, wird das letzte Bilder der Animation als Standbild angezeigt.
+        Achtung: Dies ist nur möglich, wenn die Animation nicht wiederholt wird.
+
+        :param wert:
+        :type wert: bool
+        """
+        if self._wiederhole_animation:
+            print("Bei wiederholenden Animationen ist dies nicht nicht möglich!")
+
+        self._zeige_letztes_bild = wert
 
     def zeige_bild(self, index):
         if index < 0 or index > len(self._flaechen_zeiten):
             raise ValueError("Index muss größer 0 und kleiner als die Anzahl an Bildern sein")
 
+        self._zustand = ZEIGE_BILD
         self._aktuelle_flaeche = index
 
-    def setze_wenn_bild_gewechselt(self, wenn_gewechselt):
-        self._bild_gewechselt = wenn_gewechselt
+    def registriere_wenn_bild_gewechselt(self, wenn_gewechselt):
+        self._bild_gewechselt.registriere(wenn_gewechselt)
+
+    def registriere_wenn_gestartet(self, wenn_gestartet):
+        self._animation_gestartet.registriere(wenn_gestartet)
+
+    def registriere_wenn_geendet(self, wenn_geendet):
+        self._animation_geendet.registriere(wenn_geendet)
 
     def setze_wiederhole(self, wiederhole=True):
         self._wiederhole_animation = wiederhole
@@ -150,7 +185,6 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         self._zustand = PAUSIERT
 
     def _rotation_skalierung_anwenden(self):
-
         if self.__rotations_flaechen is None:
             # lazy init um Speicher zu sparen, falls nicht benötigt
             self.__rotations_flaechen = self._flaechen_zeiten.copy()
@@ -169,6 +203,9 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         ba = BildAnimation(self.__quelle, self._wiederhole_animation, self.__alpha)
         ba.setze_position(x, y)
         return ba
+
+    def zeige_letztes_bild(self):
+        self.zeige_bild(self._anzahl_flaechen - 1)
 
 
 class BildAnimationSpeicher:

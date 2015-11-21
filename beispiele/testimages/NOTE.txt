@@ -1,0 +1,5 @@
+The images bolt_strike_*.png, flame_a_*.png and smoke_puff_*.png are taken from pyganim: http://inventwithpython.com/pyganim/
+The copyright for these images belongs to the original author.
+
+Die Bilder bolt_strike_*.png, flame_a_*.png und smoke_puff_*.png kommen von pyganim: http://inventwithpython.com/pyganim/
+Das Copyright für diese Bilder liegt beim ursprünglichen Autor.

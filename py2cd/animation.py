@@ -14,7 +14,7 @@ class Animation:
     Eine Animation, die für eine gegebene Zeit abgearbeitet wird.
     """
 
-    def __init__(self, zeit_in_ms, aktualisiere, animation_gestartet=lambda wiederholung: None,
+    def __init__(self, zeit_in_ms, aktualisiere=lambda dt: None, animation_gestartet=lambda wiederholung: None,
                  animation_gestoppt=lambda: None,
                  animation_pausiert=lambda: None, wiederhole=False):
         """

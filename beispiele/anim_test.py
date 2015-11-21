@@ -36,7 +36,7 @@ boltAnim.setze_position(200, 250)
 boltAnim.oben = 20
 boltAnim.rechts = Spiel.breite - boltAnim.breite - 10
 boltAnim.zentriere_horizontal()
-boltAnim.rotiere(90)
+boltAnim.setze_rotation(90)
 
 zeit = 1000 / 6
 fireAnim = BildAnimation([("testimages/flame_a_0001.png", zeit),
@@ -55,7 +55,7 @@ fireAnim.zentriere_vertikal()
 fire2 = fireAnim.klone(200, 100)
 fire2.start()
 
-fire2.skaliere(1.2)
+fire2.setze_skalierung(1.2)
 
 Spiel.registriere_taste_gedrueckt(K_p, lambda a, b: boltAnim.pause())
 Spiel.registriere_taste_gedrueckt(K_s, lambda a, b: boltAnim.start())

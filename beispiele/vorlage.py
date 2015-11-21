@@ -24,7 +24,7 @@ box = Rechteck(100, 100, 50, 50, GRUEN)
 # Hilfsgitter einblenden
 Spiel.zeichne_gitter()
 
-# Funktion die aufgerufen wird, wenn das Spiel aktualisiert wird (fps mal)
+# Funktion die aufgerufen wird, wenn das Spiel aktualisiert wird (ca 30 mal pro Sekunde)
 Spiel.setze_aktualisierung(aktualisiere_spiel)
 
 # Um das Spiel zu starten, muss Spiel.start() aufgerufen werden. Dies sollte immer die letzte Anweisung sein.

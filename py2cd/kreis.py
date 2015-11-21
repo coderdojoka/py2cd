@@ -1,6 +1,9 @@
 __author__ = 'Mark Weinreuter'
 
+import math
+
 import pygame
+
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -40,3 +43,47 @@ class Kreis(ZeichenbaresElement):
     def klone(self, x, y):
         k = Kreis(x, y, self.radius, self.farbe, self.dicke, self._eltern_flaeche)
         return k
+
+
+class Oval(ZeichenbaresElement):
+    def klone(self, x, y):
+        o = Oval(x, y, self.radius_breite, self.radius_hoehe, self.farbe, self.dicke)
+        return o
+
+    def __init__(self, x, y, radius_breite, radius_hoehe, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
+        self.radius_breite = radius_breite
+        self.radius_hoehe = radius_hoehe
+        self.dicke = dicke
+        self._pyg_rect = (x, y, radius_breite * 2, radius_hoehe * 2)
+
+        super().__init__(x, y, radius_breite * 2, radius_hoehe * 2, farbe, position_geaendert=self.geandert, eltern_flaeche=eltern_flaeche)
+
+    def geandert(self):
+        self._pyg_rect = (self.x, self.y, self.radius_breite * 2, self.radius_hoehe * 2)
+
+    def render(self, pyg_zeichen_flaeche):
+        # ellipse(Surface, color, Rect, width=0) -> Rect
+        pygame.draw.ellipse(pyg_zeichen_flaeche, self.farbe, self._pyg_rect, self.dicke)
+
+
+class Bogen(Oval):
+    def __init__(self, x, y, radius_breite, radius_hoehe, start_winkel=0, end_winkel=90, farbe=(0, 0, 0), dicke=1,eltern_flaeche=None):
+        super().__init__(x, y, radius_breite, radius_hoehe, farbe, dicke, eltern_flaeche=eltern_flaeche)
+        self.__end_winkel_rad = 0
+        self.__start_winkel_rad = 0
+        self.setze_winkel(start_winkel, end_winkel)
+
+    def setze_winkel(self, start_winkel=None, end_winkel=None):
+        if start_winkel is not None:
+            self.__start_winkel_rad = math.pi / 180 * start_winkel
+        if end_winkel is not None:
+            self.__end_winkel_rad = math.pi / 180 * end_winkel
+
+    def render(self, pyg_zeichen_flaeche):
+        # arc(Surface, color, Rect, start_angle, stop_angle, width=1) -> Rect
+        pygame.draw.arc(pyg_zeichen_flaeche, self.farbe, self._pyg_rect, self.__start_winkel_rad, self.__end_winkel_rad, self.dicke)
+
+    def klone(self, x, y):
+        b = Bogen(x, y, self.radius_breite, self.radius_hoehe,
+                  self.__start_winkel_rad / math.pi * 180, self.__end_winkel_rad / math.pi * 180, self.farbe, self.dicke)
+        return b

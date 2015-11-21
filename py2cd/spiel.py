@@ -1,15 +1,16 @@
 import logging
-
-import py2cd
-
-__author__ = 'Mark Weinreuter'
-
 import sys
+
 import pygame
 import pygame.freetype
 from pygame.constants import *
-from py2cd.farben import *
+
+import py2cd
 import py2cd.pygameui as ui
+from py2cd.ereignis import *
+from py2cd.farben import *
+
+__author__ = 'Mark Weinreuter'
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,13 @@ class Spiel:
     """
     Die Hauptklasse des Spiels.
     Es muss Spiel.init() und Spiel.starten() aufgerufen werden.
+    """
+
+    _alle_tasten_bearbeiter = EreignisBearbeiter()
+    """
+    Wird aufgerufen, falls eine Tasten gedrückt wird.
+
+    :type: py2cd.EreignisBearbeiter
     """
 
     _zeige_gui = False
@@ -61,7 +69,7 @@ class Spiel:
     """
     Tastendruck-Funktionen werden hier gespeichert.
 
-    :type: dict[int, callable]
+    :type: dict[int, py2cd.EreignisBearbeiter]
     """
 
     _clock = pygame.time.Clock()
@@ -71,11 +79,11 @@ class Spiel:
     :type: pygame.time.Clock
     """
 
-    __aktualisiere = None
+    __aktualisiere = EreignisBearbeiter()
     """
     Die Funktion, die aufgerufen wird, wenn das Spiel aktualisiert wird (fps mal).
 
-    :type: (float) -> None
+    :type: py2cd.EreignisBearbeiter
     """
 
     zeit_unterschied_ms = 0
@@ -85,36 +93,36 @@ class Spiel:
     :type: float
     """
 
-    _mausBewegt = None
+    _mausBewegt = EreignisBearbeiter()
     """
     Die Funtion, die aufgerufen wird wenn die Maus beweget wird.
 
-    :type: callable|None
+    :type: py2cd.EreignisBearbeiter
     """
 
-    _maus_taste_gedrueckt = None
+    _maus_taste_gedrueckt = EreignisBearbeiter()
     """
     Funktion die aufgerufen wird, wenn eine Taste gedrückt wurde.
 
-    :type: (object) -> None
+    :type: py2cd.EreignisBearbeiter
     """
 
-    _spiel_wird_beendet = lambda: None
+    _spiel_wird_beendet = EreignisBearbeiter()
     """
     Funktion die aufgerufen wird, wenn das Spiel beendet wird.
 
-    :type: () -> None
+    :type: py2cd.EreignisBearbeiter
     """
 
-    _maus_taste_losgelassen = None
+    _maus_taste_losgelassen = EreignisBearbeiter()
     """
     Die Funktion die aufgerufen wird, wenn die Maus losgelassen wird.
 
-    :type: callable|None
+    :type: py2cd.EreignisBearbeiter()
     """
 
     @classmethod
-    def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbiblothek", aktualisierungs_funktion=lambda zeit: None):
+    def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbibliothek", aktualisierungs_funktion=lambda zeit: None):
         """
         Initialisiert das Spiel.
 
@@ -135,7 +143,7 @@ class Spiel:
         logger.debug("Pygame: ", pygame.version.ver)
 
         # die spiel schleife
-        Spiel.__aktualisiere = aktualisierungs_funktion
+        Spiel.__aktualisiere.registriere(aktualisierungs_funktion)
 
         # Dimension des Fensters
         Spiel.breite = breite
@@ -199,11 +207,19 @@ class Spiel:
 
                     # Taste losgelassen
                     elif ereignis.type == KEYUP:
+                        # allgemeiner Bearbeiter
+                        Spiel._alle_tasten_bearbeiter(False, ereignis)
+
+                        # spezialisierter Handler
                         if ereignis.key in Spiel._tasten:
                             Spiel._tasten[ereignis.key](False, ereignis)
 
                     # Taste gedrückt
                     elif ereignis.type == KEYDOWN:
+                        # allgemeiner Bearbeiter
+                        Spiel._alle_tasten_bearbeiter(True, ereignis)
+
+                        # spezialisierter Handler
                         if ereignis.key in Spiel._tasten:
                             Spiel._tasten[ereignis.key](True, ereignis)
 
@@ -223,11 +239,13 @@ class Spiel:
                 # muss aufgerufen werden um Änderungen anzuzeigen
             pygame.display.flip()  # update besser?
 
-    def zeige_gui(self):
-        self._zeige_gui = True
+    @classmethod
+    def zeige_gui(cls):
+        cls._zeige_gui = True
 
-    def verstecke_gui(self):
-        self._zeige_gui = False
+    @classmethod
+    def verstecke_gui(cls):
+        cls._zeige_gui = False
 
     @staticmethod
     def setze_fenster_titel(titel):
@@ -261,18 +279,30 @@ class Spiel:
         # Wir importieren diese erst hier, um Kreis-Abhängigkeiten zu verhindern
         from py2cd import Linie, Text
         from py2cd.farben import HELL_GRAU
+        from py2cd.text import Schrift
 
         # Anzahl an horizontalen Gitterlinien
         anzahl = round(Spiel.breite / groesse)
+        schrift = Schrift(24)
         for i in range(1, anzahl):
             Linie((i * groesse, 0), (i * groesse, Spiel.hoehe), HELL_GRAU)
-            t = Text("%d" % (i * groesse), i * groesse, 2)
+            t = Text("%d" % (i * groesse), i * groesse, 2, schrift=schrift)
 
         # Anzahl an vertikalen Gitterlinien
         anzahl = round(Spiel.hoehe / groesse)
         for i in range(1, anzahl):
             Linie((0, i * groesse), (Spiel.breite, i * groesse), HELL_GRAU)
-            t = Text("%d" % (i * groesse), 2, i * groesse)
+            t = Text("%d" % (i * groesse), 2, i * groesse,schrift=schrift)
+
+    @staticmethod
+    def registriere_alle_tasten(funktion):
+        """
+        Die Funktion wird aufgerufen, wenn eine beliebige Taste gedrückt wird
+
+        :param funktion:
+        :type funktion: (bool, Any) -> None
+        """
+        Spiel._alle_tasten_bearbeiter.registriere(funktion)
 
     @staticmethod
     def registriere_taste_gedrueckt(taste, funktion):
@@ -285,8 +315,10 @@ class Spiel:
         Erste gibt an, ob die Taste gedrückt oder losgelassen ist und der Zweite ist das Event Objekt
         :type funktion: (bool, object) -> None
         """
-        Spiel._tasten[taste] = funktion
-        pass
+        if taste not in Spiel._tasten:
+            Spiel._tasten[taste] = EreignisBearbeiter()
+
+        Spiel._tasten[taste].registriere(funktion)
 
     @staticmethod
     def registriere_maus_bewegt(funktion):
@@ -300,7 +332,7 @@ class Spiel:
         :param funktion: Die Funktion die aufgerufen werden soll, wenn eine Taste gedrückt wurde
         :type funktion: (object) -> None
         """
-        Spiel._mausBewegt = funktion
+        Spiel._mausBewegt.registriere(funktion)
 
     @staticmethod
     def registriere_maus_losgelassen(funktion):
@@ -310,7 +342,7 @@ class Spiel:
         :param funktion: Die Funktion
         :type funktion: (object)->None
         """
-        Spiel._maus_taste_losgelassen = funktion
+        Spiel._maus_taste_losgelassen.registriere(funktion)
 
     @staticmethod
     def registriere_spiel_wird_beendet(funktion):
@@ -320,7 +352,7 @@ class Spiel:
         :param funktion: Die Funktion
         :type funktion: (object)->None
         """
-        Spiel._spiel_wird_beendet = funktion
+        Spiel._spiel_wird_beendet.registriere(funktion)
 
     @staticmethod
     def registriere_maus_gedrueckt(funktion):
@@ -330,7 +362,7 @@ class Spiel:
         :param funktion:
         :type funktion: (object)->None
         """
-        Spiel._maus_taste_gedrueckt = funktion
+        Spiel._maus_taste_gedrueckt.registriere(funktion)
 
     @staticmethod
     def gib_zeichen_flaeche():
@@ -351,11 +383,11 @@ class Spiel:
         :param funktion: die Aktualisierungsfunktion
         :type funktion: (float) -> None
         """
-        Spiel.__aktualisiere = funktion
+        Spiel.__aktualisiere.registriere(funktion)
 
     @staticmethod
     def entferne_aktualisierung():
         """
         Entfernt die Aktualisierugsfuntion.
         """
-        Spiel.__aktualisiere = lambda dt: None
+        Spiel.__aktualisiere.entferne_alle()
