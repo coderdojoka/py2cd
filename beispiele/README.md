@@ -12,4 +12,4 @@
 [einf3]: https://raw.githubusercontent.com/coderdojoka/py2cd/master/beispiele/py2cd_einfuehrung_03.py
 [apfelbaum]: https://raw.githubusercontent.com/coderdojoka/py2cd/master/beispiele/apfelbaum.py
 [ninja]: https://raw.githubusercontent.com/coderdojoka/py2cd/master/beispiele/anim_ninja.py
-[tas]: https://raw.githubusercontent.com/coderdojoka/py2cd/master/beispiele/steuerung.py
+[tas]: https://raw.githubusercontent.com/coderdojoka/py2cd/master/beispiele/beispiel_steuerung.py

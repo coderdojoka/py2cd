@@ -51,6 +51,6 @@ Im Ordner [Beispiele][bsp] sind einige (kommentierte) Beispielprogramme zu finde
 
 
 [zip]: https://github.com/coderdojoka/py2cd/archive/master.zip
-[win]: https://github.com/coderdojoka/py2cd/pygame_win.md
-[lin]: https://github.com/coderdojoka/py2cd/pygame_lin.md
-[mac]: https://github.com/coderdojoka/py2cd/pygame_mac.md
+[win]: https://github.com/coderdojoka/py2cd/blob/master/pygame_windows.md
+[lin]: https://github.com/coderdojoka/py2cd/blob/master/pygame_lin.md
+[mac]: https://github.com/coderdojoka/py2cd/blob/master/pygame_mac.md
