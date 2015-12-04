@@ -2,7 +2,7 @@ import logging
 import sys
 
 import pygame
-import pygame.freetype
+# import pygame.freetype
 from pygame.constants import *
 
 import py2cd

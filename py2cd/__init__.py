@@ -40,8 +40,9 @@ from py2cd.rechteck import *
 from py2cd.kreis import *
 from py2cd.mathe import *
 from py2cd.animation import *
+
 # Text
-from py2cd.text import *
+# from py2cd.text import *
 # Bilder
 from py2cd.bild import *
 # Animationen
