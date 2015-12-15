@@ -1,4 +1,6 @@
-__author__ = 'Mark Weinreuter'
+#FFFFFF__author__ = 'Mark Weinreuter'
+
+from pygame.constants import *
 
 from py2cd import *
 from py2cd.farben import *
@@ -25,6 +27,21 @@ def aktualisiere(dt):
     # Ball bewegen
     ball.aendere_position(ball_x * dt, ball_y * dt)
 
+
+    # Welche Tasten sind gedrückt?
+    if links_down:
+        rechteck.aendere_position(-speed * dt, 0)
+
+    if rechts_down:
+        rechteck.aendere_position(speed * dt, 0)
+
+    if oben_down:
+        rechteck.aendere_position(0, -speed * dt)
+
+    if unten_down:
+        rechteck.aendere_position(0, speed * dt)
+
+
     # Kollision der zwei Rechtecke überprüfen
     beruehrt = rechteck.beruehrt_objekt(kollision)
     if beruehrt:
@@ -34,20 +51,24 @@ def aktualisiere(dt):
 
 
 # Diese Funktionen werden aufgerufen, wenn die entsprechende Taste gedrückt wird
-def links(dt):
-    rechteck.aendere_position(-speed * dt, 0)
+def links(gedrueckt, e):
+    global links_down
+    links_down = gedrueckt
 
 
-def rechts(dt):
-    rechteck.aendere_position(speed * dt, 0)
+def rechts(gedrueckt, e):
+    global rechts_down
+    rechts_down = gedrueckt
 
 
-def oben(dt):
-    rechteck.aendere_position(0, -speed * dt)
+def oben(gedrueckt, e):
+    global oben_down
+    oben_down = gedrueckt
 
 
-def unten(dt):
-    rechteck.aendere_position(0, speed * dt)
+def unten(gedrueckt, e):
+    global unten_down
+    unten_down = gedrueckt
 
 
 # Initialisiert das Fenster
@@ -59,7 +80,7 @@ kollision = Rechteck(50, 40, 60, 40, ROT)
 
 # Einen Text anzeigen
 schrift = Schrift(20)
-t = Text("Pfeiltasten zum bewegen", 0, 10, schrift, GRAU)
+t = Text("wasd zum bewegen", 0, 10, schrift, GRAU)
 
 # 5 Pixel vom rechten Rand plazieren
 t.rechts = 5
@@ -71,10 +92,11 @@ ball = BildSpeicher.gib_bild("scratch", 10, 10)
 
 # Tastendrücke-Funktionen registrien. Wird die Taste K_a = 'a' gedrückt, so wird die
 # Funktion mit dem Namen links aufgerufen
-Spiel.registriere_solange_taste_unten(T_LINKS, links)
-Spiel.registriere_solange_taste_unten(T_RECHTS, rechts)
-Spiel.registriere_solange_taste_unten(T_UNTEN, unten)
-Spiel.registriere_solange_taste_unten(T_OBEN, oben)
+Spiel.registriere_taste_gedrueckt(K_a, links)
+Spiel.registriere_taste_gedrueckt(K_w, oben)
+Spiel.registriere_taste_gedrueckt(K_s, unten)
+Spiel.registriere_taste_gedrueckt(K_d, rechts)
+
 
 # Das Spiel starten
 Spiel.starten()

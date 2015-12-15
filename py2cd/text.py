@@ -1,7 +1,7 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
-import pygame.freetype
+import pygame.font
 from py2cd.objekte import ZeichenbaresElement
 
 
