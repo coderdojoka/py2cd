@@ -36,10 +36,10 @@ from py2cd.animation import *
 # Text
 from py2cd.text import *
 # Bilder
-from py2cd.bild import *
+from py2cd.bild import Bild,BildSpeicher,BildWechsler
 # Animationen
-from py2cd.anim import *
-from py2cd.vektor import *
+from py2cd.anim import BildAnimation,BildAnimationSpeicher
+from py2cd.vektor import Vektor2
 
 from py2cd.tasten import *
 

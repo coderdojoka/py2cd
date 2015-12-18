@@ -1,5 +1,5 @@
-from py2cd.vektor import Vektor2
 from py2cd.bbox import BBox
+from py2cd.vektor import Vektor2
 
 __author__ = 'Mark Weinreuter'
 
@@ -143,7 +143,7 @@ class ZeichenbaresElement(Zeichenbar):
         :type: bool
         """
 
-        self.__geschwindigkeit = Vektor2(5, 5)
+        self.__geschwindigkeit = Vektor2(0, 0)
         """
         Die Bewegung in X/Y-Richtung
 
@@ -165,6 +165,7 @@ class ZeichenbaresElement(Zeichenbar):
         """
         self.__abprallen = abprallen
 
+    @property
     def x_geschwindigkeit(self):
         """
         Gibt die x-Geschwindigkeit zurück, d.h. die Strecke in Pixeln,
@@ -175,6 +176,7 @@ class ZeichenbaresElement(Zeichenbar):
         """
         return self.__geschwindigkeit.x
 
+    @property
     def y_geschwindigkeit(self):
         """
         Gibt die y-Geschwindigkeit zurück, d.h. die Strecke in Pixeln,
@@ -185,6 +187,14 @@ class ZeichenbaresElement(Zeichenbar):
         """
 
         return self.__geschwindigkeit.y
+
+    @x_geschwindigkeit.setter
+    def x_geschwindigkeit(self, value):
+        self.__geschwindigkeit.x = value
+
+    @y_geschwindigkeit.setter
+    def y_geschwindigkeit(self, value):
+        self.__geschwindigkeit.y = value
 
     def x_bewegung_umkehren(self):
         """
@@ -241,7 +251,7 @@ class ZeichenbaresElement(Zeichenbar):
         :type dt: float
         """
 
-        self.aendere_position(self.__geschwindigkeit.x * dt, self.__geschwindigkeit.x * dt)
+        self.aendere_position(self.__geschwindigkeit.x * dt, self.__geschwindigkeit.y * dt)
 
     def mache_schritte(self, schritte=1, dt=1):
         """

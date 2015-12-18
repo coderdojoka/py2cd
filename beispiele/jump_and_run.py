@@ -1,102 +1,76 @@
-#FFFFFF__author__ = 'Mark Weinreuter'
+from py2cd import ROT
 
-from pygame.constants import *
+__author__ = 'Mark Weinreuter'
 
 from py2cd import *
-from py2cd.farben import *
 
-links_down = False
-rechts_down = False
-oben_down = False
-unten_down = False
-speed = 3.1
-ball_x = speed - 1
-ball_y = speed
+# Initialisiert das Fenster
+Spiel.init(400, 400, "Jump and Run")
+
+gravitation = .4
+bloecke = []
 
 
 def aktualisiere(dt):
-    global ball_x, ball_y
+    bild.aendere_geschwindigkeit(0, gravitation)
 
-    # Überprüfen ob der Ball die Kanten berührt
-    if ball.beruehrt_linken_oder_rechten_rand():
-        ball_x *= -1
+    bewg_x = bild.x_geschwindigkeit * dt
+    bewg_y = bild.y_geschwindigkeit * dt
 
-    if ball.beruehrt_oberen_oder_unteren_rand():
-        ball_y *= -1
+    for block in bloecke:
 
-    # Ball bewegen
-    ball.aendere_position(ball_x * dt, ball_y * dt)
-
-
-    # Welche Tasten sind gedrückt?
-    if links_down:
-        rechteck.aendere_position(-speed * dt, 0)
-
-    if rechts_down:
-        rechteck.aendere_position(speed * dt, 0)
-
-    if oben_down:
-        rechteck.aendere_position(0, -speed * dt)
-
-    if unten_down:
-        rechteck.aendere_position(0, speed * dt)
+        max = block.box_bewegung(bild, bewg_x, bewg_y)
+        if max is None:
+            bild.bewege(dt)
+        else:
+            if max[2] >= 3:
+                bild.aendere_position(bewg_x, max[1])
+                bild.y_geschwindigkeit = 0
+            else:
+                bild.aendere_position(max[0], bewg_y)
 
 
-    # Kollision der zwei Rechtecke überprüfen
-    beruehrt = rechteck.beruehrt_objekt(kollision)
-    if beruehrt:
-        kollision.farbe = ROT
+def springen(unten, pyg_ereignis):
+    if unten:
+        print("Sprung")
+        bild.aendere_geschwindigkeit(0, -10)
+
+
+bewege = 3
+
+
+def links_unten(unten, pyg_ereignis):
+    print("links unten:", unten)
+    if unten:
+        bild.aendere_geschwindigkeit(-bewege, 0)
     else:
-        kollision.farbe = GELB
+        bild.aendere_geschwindigkeit(bewege, 0)  # bewegung aufheben
 
 
-# Diese Funktionen werden aufgerufen, wenn die entsprechende Taste gedrückt wird
-def links(gedrueckt, e):
-    global links_down
-    links_down = gedrueckt
+def rechts_unten(unten, pyg_ereignis):
+    print("rechts unten:", unten)
+    if unten:
+        bild.aendere_geschwindigkeit(bewege, 0)
+    else:
+        bild.aendere_geschwindigkeit(-bewege, 0)  # bewegung aufheben
 
-
-def rechts(gedrueckt, e):
-    global rechts_down
-    rechts_down = gedrueckt
-
-
-def oben(gedrueckt, e):
-    global oben_down
-    oben_down = gedrueckt
-
-
-def unten(gedrueckt, e):
-    global unten_down
-    unten_down = gedrueckt
-
-
-# Initialisiert das Fenster
-Spiel.init(400, 400, "Steuere das Rechteck!", aktualisiere)
-
-# Zwei Rechtecke erstellen
-rechteck = Rechteck(40, 160, 40, 40, BLAU)
-kollision = Rechteck(50, 40, 60, 40, ROT)
-
-# Einen Text anzeigen
-schrift = Schrift(20)
-t = Text("wasd zum bewegen", 0, 10, schrift, GRAU)
-
-# 5 Pixel vom rechten Rand plazieren
-t.rechts = 5
 
 # Bild laden in den Speicher laden und unter dem Schlüssel "scratch" ablegen
 BildSpeicher.lade_bild("scratch", "testimages/scratch.png")
 # Bild aus dem Speicher über seinen Schlüssel holen
-ball = BildSpeicher.gib_bild("scratch", 10, 10)
+bild = BildSpeicher.gib_bild("scratch", 10, 10)
 
-# Tastendrücke-Funktionen registrien. Wird die Taste K_a = 'a' gedrückt, so wird die
-# Funktion mit dem Namen links aufgerufen
-Spiel.registriere_taste_gedrueckt(K_a, links)
-Spiel.registriere_taste_gedrueckt(K_w, oben)
-Spiel.registriere_taste_gedrueckt(K_s, unten)
-Spiel.registriere_taste_gedrueckt(K_d, rechts)
+boden = Rechteck(0, 0, Spiel.breite, 20, ROT)
+boden.unten = 20
 
+boden2 = Rechteck(300, 300, 40, 20, ROT)
+bloecke = [boden, boden2]
+
+# Tastendruck-Funktionen registrieren.
+Spiel.registriere_taste_gedrueckt(T_LEER, springen)
+Spiel.registriere_taste_gedrueckt(T_LINKS, links_unten)
+Spiel.registriere_taste_gedrueckt(T_RECHTS, rechts_unten)
 
 # Das Spiel starten
+Spiel.setze_aktualisierung(aktualisiere)
 Spiel.starten()

@@ -50,6 +50,7 @@ class Bild(ZeichenbaresElement, SkalierbaresElement):
         return b
 
 
+
 class BildWechsler(ZeichenbaresElement):
     def __init__(self, x, y, bilder_namen_liste, eltern_flaeche=None, position_geaendert=lambda: None):
         self.__name_liste = bilder_namen_liste

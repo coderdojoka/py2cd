@@ -40,47 +40,6 @@ def ist_py2cd_installiert():
         return False
 
 
-def install_pygame():
-    print("Installiere pygame...\n")
-
-    if vMinor not in ["3", "4", "5"]:
-        print("Sorry, für diese Python Version ist dieser Skript nicht ausgelegt.")
-        exit(-1)
-
-    datei_name = "pygame-1.9.2a0-cp3%s-none-win32.whl" % vMinor
-
-    # Falls nicht vorhanden runterladen
-    if not os.path.isfile(datei_name):
-        print("Pygame wheel Datei nicht gefunden. \nLade herunter. Bitte warten...")
-        download("http://weinreuter.org/python/" + datei_name, datei_name)
-        print("Fertig heruntergeladen.")
-
-    fertig = False
-    pip_pfad = "pip"
-    pip_code = -1
-
-    # Pip ist nicht immer im Pfad vorhanden
-    while not fertig:
-        try:
-            # In neuem Prozess versuchen zu installieren
-            process = subprocess.Popen([pip_pfad, "install", "--use-wheel", datei_name])
-            pip_code = process.wait()
-            fertig = True
-
-        except FileNotFoundError as e:
-            print("Fehler beim Installieren mit pip: ", e)
-            pip_pfad = input("Pip konnte nicht gefunden werden. Bitte gib den Pfad zu pip an (z.B.: C:\Python34\Scripts\pip.exe) : ")
-            print()
-
-    if pip_code == 0:
-        print("\n\nDie Installation scheint funktioniert zu haben. Überprüfe die Ausgabe, um sicher zu sein.")
-        ist_pygame_installiert()
-
-    else:
-        print("\n\nDie Installation hat nicht geklappt. Prüfe die Ausgabe und versuche es erneut.")
-        exit(-1)
-
-
 ver = sys.version
 vMajor = ver[0]
 vMinor = ver[2]
@@ -106,11 +65,9 @@ else:
 if not hat_pygame:
     print("Pygame ist nicht installiert.")
 
-    if ist_windows:
-        install_pygame()
-    else:
-        print("Sorry, du musst dir pygame selbst installieren. Einfach mal googlen.")
-        exit(-1)
+    print("Sorry, du musst zuerst pygame installieren.")
+    print("Hier gibts Infos dazu: https://github.com/coderdojoka/py2cd")
+    exit(-1)
 
 # Pygame Installation testen
 print()
@@ -120,7 +77,7 @@ if not hat_py2cd:
 else:
     print("Aktualisiere py2cd...")
 
-process = subprocess.Popen(["python", "setup.py", "install"])
+process = subprocess.Popen(["python3", "setup.py", "install"])
 code = process.wait()
 
 if code == 0:

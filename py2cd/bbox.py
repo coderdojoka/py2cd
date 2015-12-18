@@ -205,6 +205,14 @@ class BBox:
         """
         return self.__position.klone()
 
+    def gehe_nach_rechts(self, wert):
+        self.__position.x += wert
+        self.position_geaendert()
+
+    def gehe_nach_links(self, wert):
+        self.__position.y -= wert
+        self.position_geaendert()
+
     def aendere_position(self, x, y=None):
         """
         Ändert die Position um den gegebenen Wert, d.h: self._x = self._x + x.
@@ -376,6 +384,7 @@ class BBox:
     def box_bewegung(self, box, x_bewegung=0, y_bewegung=0):
         """
         Ermittelt die max. Bewegung, die eine Box machen kann, bis sie mit dieser Box kollidiert.
+        
         :param box:
         :type box: py2cd.bbox.BBox
         :param x_bewegung:
@@ -386,65 +395,45 @@ class BBox:
         :rtype:
         """
 
-        # Kollision mit der näher geliegenen Seite
-        if x_bewegung > 0.0:  # nach rechts
+        x_zeit = float("inf")
+        y_zeit = float("inf")
+
+        kann_x_links = x_bewegung > 0.0 and self.x > (box.x + box.breite)
+        kann_x_rechts = x_bewegung < 0.0 and (self.x + self.breite) < box.x
+        kann_y_oben = y_bewegung > 0.0 and self.y > (box.y )
+        kann_y_unten = y_bewegung < 0.0 and (self.y + self.hoehe) < box.y
+
+        if kann_x_links:
+            x_entfernung = self.x - (box.x + box.breite)
+            x_zeit = x_entfernung / x_bewegung
+            x_richtung = LINKS
+        elif kann_x_rechts:
             x_entfernung = box.x - (self.x + self.breite)
-        else:
-            x_entfernung = (box.x + box.breite) - self.x
+            x_zeit = x_entfernung / x_bewegung
+            x_richtung = RECHTS
 
-        if y_bewegung > 0.0:  # nach unten
+        if kann_y_oben:
+            y_entfernung = self.y - (box.y + box.hoehe)
+            y_zeit = y_entfernung / y_bewegung
+            y_richtung = OBEN
+        elif kann_y_unten:
             y_entfernung = box.y - (self.y + self.hoehe)
-        else:
-            y_entfernung = (box.y + box.hoehe) - self.y
+            y_zeit = y_entfernung / y_bewegung
+            y_richtung = UNTEN
 
-        x_eintritt = None
-        y_eintritt = None
-
-        if x_bewegung != 0.0:
-            x_eintritt = x_entfernung / x_bewegung
-
-        if y_bewegung != 0.0:
-            y_eintritt = y_entfernung / y_bewegung
-
-        # Die erste Kollision finden
-        if x_eintritt is None and y_eintritt is None:
+        # nix geht
+        if not (kann_x_links or kann_x_rechts or kann_y_unten or kann_y_oben):
             return None
-
-        if x_eintritt is not None and y_eintritt is not None:
-            if x_eintritt < y_eintritt:
-                eintritt_faktor = x_eintritt
-                x_zuerst = True
-            else:
-                eintritt_faktor = y_eintritt
-                x_zuerst = False
-
-        elif x_eintritt is None:
-            eintritt_faktor = y_eintritt
-            x_zuerst = True
-
-        elif y_eintritt is None:
-            eintritt_faktor = x_eintritt
-            x_zuerst = False
-
-        if x_zuerst is None or abs(eintritt_faktor) > 1:
-            return None
-
-        # mit welcher Seite kollidieren wir?
-        if x_zuerst:
-
-            if x_entfernung < 0.0:
-                richtung = RECHTS
-            else:
-                richtung = LINKS
-        else:
-
-            if y_entfernung < 0.0:
-                richtung = OBEN
-            else:
-                richtung = UNTEN
 
         # maximale Bewegung und Kollisionsrichtung
-        return eintritt_faktor * x_bewegung, eintritt_faktor * y_bewegung, richtung
+        if x_zeit <= y_zeit:
+            if x_entfernung <= x_bewegung:
+                return x_zeit * x_bewegung, y_zeit * y_bewegung, x_richtung
+        else:
+            if y_entfernung <= y_bewegung:
+                return y_zeit * x_bewegung, y_zeit * y_bewegung, y_richtung
+
+        return None
 
     def beruehrt_objekt(self, zeichenbar):
         """
