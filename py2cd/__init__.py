@@ -35,7 +35,7 @@ from py2cd.mathe import *
 from py2cd.animation import *
 
 # Text
-# from py2cd.text import *
+#from py2cd.text import *
 # Bilder
 from py2cd.bild import *
 # Animationen
@@ -45,8 +45,9 @@ from py2cd.vektor import *
 from py2cd.tasten import *
 
 __all__ = ['EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
-           'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
-           'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie',
+           'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot',
+           #'Text',           'Schrift',
+           'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie',
            'BildSpeicher', 'BildWechsler', 'BildAnimation',
            'BildAnimationSpeicher', 'Vektor2', 'Taste',
 
