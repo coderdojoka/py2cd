@@ -13,7 +13,8 @@ class TTBasis:
     @classmethod
     def neues_wort(cls, zeichenbares_objekt, x_offset, y_offset, wenn_komplett):
         ta = TextUebersicht.neuer_text(x_offset, y_offset, wenn_komplett)
-        zeichenbares_objekt.position_geaendert = lambda: ta.setze_position(*zeichenbares_objekt.position())
+
+        zeichenbares_objekt.position_geaendert = lambda: ta.setze_position(zeichenbares_objekt.position())
         return ta
 
     def aufbauen(self):

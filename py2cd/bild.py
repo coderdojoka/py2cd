@@ -145,6 +145,18 @@ class BildSpeicher:
 
     @classmethod
     def gib_bild(cls, schluessel, x=0, y=0):
+        """
+        Lädt das Bild aus dem Bildspeicher und gibt ein neues Bild Objekt zurück.
+
+        :param schluessel:
+        :type schluessel: str
+        :param x:
+        :type x: int
+        :param y:
+        :type y: int
+        :return:
+        :rtype: py2cd.Bild
+        """
         if schluessel not in cls.__alle_bilder:
             raise ValueError("Bild %s nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel)
 

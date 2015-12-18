@@ -1,3 +1,4 @@
+import collections
 import pygame
 
 from py2cd.bild import BildSpeicher
@@ -14,6 +15,7 @@ GESTOPPT = 0
 GESTARTET = 1
 PAUSIERT = 2
 ZEIGE_BILD = 3
+STANDART_ZEIT = 100
 
 
 class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
@@ -22,7 +24,7 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
     durch gewechselt werden.
     """
 
-    def __init__(self, pygame_flaechen_und_zeiten, wiederhole=False, alpha=True):
+    def __init__(self, pygame_flaechen_und_zeiten, wiederhole=False, alpha=True, anzeige_dauer=STANDART_ZEIT):
         """
         Ein neues Animationsobjekt.
 
@@ -61,7 +63,11 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
 
         for zf in pygame_flaechen_und_zeiten:
 
-            animations_bild = zf[0]
+            # Entweder Tupel/Liste mit (Bild,Zeit) oder nur Zeit
+            if isinstance(zf, list) or isinstance(zf, tuple):
+                animations_bild = zf[0]
+            else:
+                animations_bild = zf
 
             # Die Fläche kann entweder aus einer Datei/ dem Bildspeicher geladen werden
             if isinstance(animations_bild, str):
@@ -82,9 +88,14 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             if animations_bild.get_height() > hoehe:
                 hoehe = animations_bild.get_height()
 
+            # Falls keine Zeit angeben wurde, nehmen wir die Standartzeit
+            dauer = anzeige_dauer
+            if len(zf) > 1:
+                dauer = zf[1]
+
             # Zur List hinzufügen und Zeit addieren
-            self._flaechen_zeiten.append((animations_bild, zf[1]))
-            self._gesamt_zeit += zf[1]
+            self._flaechen_zeiten.append((animations_bild, dauer))
+            self._gesamt_zeit += dauer
 
         self.__rotations_flaechen = None
         self._anzahl_flaechen = len(self._flaechen_zeiten)

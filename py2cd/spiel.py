@@ -9,6 +9,7 @@ import py2cd
 import py2cd.pygameui as ui
 from py2cd.ereignis import *
 from py2cd.farben import *
+from py2cd.tasten import Taste
 
 __author__ = 'Mark Weinreuter'
 
@@ -19,6 +20,13 @@ class Spiel:
     """
     Die Hauptklasse des Spiels.
     Es muss Spiel.init() und Spiel.starten() aufgerufen werden.
+    """
+
+    _unten_tasten = []
+    """
+    Liste der Tasten, die einen Unten-Aktualisierungshandler haben.
+
+    :type: list[py2cd.Taste]
     """
 
     _alle_tasten_bearbeiter = EreignisBearbeiter()
@@ -69,7 +77,7 @@ class Spiel:
     """
     Tastendruck-Funktionen werden hier gespeichert.
 
-    :type: dict[int, py2cd.EreignisBearbeiter]
+    :type: dict[int, py2cd.Taste]
     """
 
     _clock = pygame.time.Clock()
@@ -137,6 +145,9 @@ class Spiel:
         :param aktualisierungs_funktion: die Aktualisierungsfunktion, die bei jedem Neuzeichnen aufgerufen wird (fps mal pro sekunde)
         :type aktualisierungs_funktion: (float) -> None
         """
+
+        # Initialisiert pygame
+        pygame.init()
 
         # Versions Info
         logger.debug("Python: ", sys.version)
@@ -212,7 +223,12 @@ class Spiel:
 
                         # spezialisierter Handler
                         if ereignis.key in Spiel._tasten:
-                            Spiel._tasten[ereignis.key](False, ereignis)
+                            taste = Spiel._tasten[ereignis.key]
+
+                            taste.oben(ereignis)
+
+                            # liste der tasten, die dauerhaft unten events feuern
+                            Spiel._unten_tasten.remove(taste)
 
                     # Taste gedrückt
                     elif ereignis.type == KEYDOWN:
@@ -221,12 +237,23 @@ class Spiel:
 
                         # spezialisierter Handler
                         if ereignis.key in Spiel._tasten:
-                            Spiel._tasten[ereignis.key](True, ereignis)
+                            taste = Spiel._tasten[ereignis.key]
+                            taste.unten(ereignis)
+
+                            # für die faule unten variante
+                            if taste not in Spiel._unten_tasten:
+                                Spiel._unten_tasten.append(taste)
 
             # lässt das Spiel mit ca. dieser fps laufen und fragt vergangene Zeit ab
             Spiel.zeit_unterschied_ms = Spiel._clock.tick(Spiel.fps)
 
-            Spiel.__aktualisiere(Spiel.zeit_unterschied_ms / Spiel.fps)
+            # relativer Zeitunterschied
+            delta = Spiel.zeit_unterschied_ms / Spiel.fps
+
+            for taste in Spiel._unten_tasten:
+                taste.wenn_unten_bearbeiter(delta)
+
+            Spiel.__aktualisiere(delta)
 
             # zeichne alles!!!
             Spiel.__haupt_flaeche.zeichne_alles()
@@ -292,7 +319,7 @@ class Spiel:
         anzahl = round(Spiel.hoehe / groesse)
         for i in range(1, anzahl):
             Linie((0, i * groesse), (Spiel.breite, i * groesse), HELL_GRAU)
-            t = Text("%d" % (i * groesse), 2, i * groesse,schrift=schrift)
+            t = Text("%d" % (i * groesse), 2, i * groesse, schrift=schrift)
 
     @staticmethod
     def registriere_alle_tasten(funktion):
@@ -309,16 +336,31 @@ class Spiel:
         """
         Registriert eine Funktion, die ausgeführt wird, wenn die angegebene Taste gedrückt wird.
 
-        :param taste: die Taste z.B. die a-Taste ist 97. Alle Tasten sind vordefiniert, so entspricht K_a der 'a'-Taste
+        :param taste: die Taste z.B. die a-Taste ist 97. Die wichtigsten Tasten sind vordefiniert, so entspricht T_a der 'a'-Taste
         :type taste: int
         :param funktion: Die Funktion die aufgerufen wird. Sie muss 2 Parameter akzeptieren, der
         Erste gibt an, ob die Taste gedrückt oder losgelassen ist und der Zweite ist das Event Objekt
-        :type funktion: (bool, object) -> None
+        :type funktion: (bool, py2cd.Taste) -> None
         """
         if taste not in Spiel._tasten:
-            Spiel._tasten[taste] = EreignisBearbeiter()
+            Spiel._tasten[taste] = Taste(taste)
 
-        Spiel._tasten[taste].registriere(funktion)
+        Spiel._tasten[taste].gedrueckt_bearbeiter.registriere(funktion)
+
+    @classmethod
+    def registriere_solange_taste_unten(cls, taste_code, funktion):
+        """
+        Registriert eine Funktion, die periodisch ausgeführt wird, solange die Taste gedrückt ist.
+
+        :param taste_code: die Taste z.B. die a-Taste ist 97. Die wichtigsten Tasten sind vordefiniert, so entspricht T_a der 'a'-Taste
+        :type taste_code: int
+        :param funktion: Die Funktion die aufgerufen wird.
+        :type funktion: () -> None
+        """
+        if taste_code not in Spiel._tasten:
+            Spiel._tasten[taste_code] = Taste(taste_code)
+
+        Spiel._tasten[taste_code].wenn_unten_bearbeiter.registriere(funktion)
 
     @staticmethod
     def registriere_maus_bewegt(funktion):

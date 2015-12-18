@@ -126,7 +126,7 @@ class TextAnzeige:
         # self.hintergrund.entferne()
         self.text_feld.nach_vorne()
         self.auswahl_text.nach_vorne()
-        self.setze_position(self.__x, self.__y)
+        self.setze_position((self.__x, self.__y))
 
     def normale_auswahl_farbe(self):
         self.auswahl_text.hintergrund = TextAnzeige.zeichen_auswahl_farbe
@@ -150,9 +150,9 @@ class TextAnzeige:
         self.text_feld.setze_position(self.__x + self.auswahl_text.breite, self.__y)
         return 1
 
-    def setze_position(self, x, y):
-        self.__x = x + self.x_offset
-        self.__y = y + self.y_offset
+    def setze_position(self, wert):
+        self.__x = wert[0] + self.x_offset
+        self.__y = wert[1] + self.y_offset
         #  self.hintergrund.setze_position(self.__x, self.__y)
         self.auswahl_text.setze_position(self.__x, self.__y)
         self.text_feld.setze_position(self.__x + self.auswahl_text.breite, self.__y)

@@ -1,8 +1,9 @@
-__author__ = 'Mark Weinreuter'
-
 import pygame
-import pygame.freetype
+import pygame.font
+
 from py2cd.objekte import ZeichenbaresElement
+
+__author__ = 'Mark Weinreuter'
 
 
 class Schrift:
@@ -59,7 +60,7 @@ class Text(ZeichenbaresElement):
         return pyg_zeichen_flaeche.blit(self.schrift.render(self.__text, True, self.farbe, self.hintergrund),
                                         (self.x, self.y))
 
-    def __init__(self, text, x, y, schrift=Schrift(20), farbe=(0, 0, 0), hintergrund=None, eltern_flaeche=None):
+    def __init__(self, text, x=0, y=0, schrift=Schrift(20), farbe=(0, 0, 0), hintergrund=None, eltern_flaeche=None):
         """
         Ein neuer Text an der angebenen Position
         :param text:
