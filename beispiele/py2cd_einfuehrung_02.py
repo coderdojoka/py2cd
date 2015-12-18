@@ -37,7 +37,7 @@ def aktualisiere_spiel(delta):
     global bewegung_x,bewegung_y
 
     # 1. Variante: Die Box bewegen, prallt automatisch von der Wand ab
-    box_gruen.bewege()
+    box_gruen.mache_schritte()
 
     # 2. Variante, wir müssen selbst auf Kollision mit der Wand testen
 

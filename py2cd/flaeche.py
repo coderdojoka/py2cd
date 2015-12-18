@@ -69,8 +69,8 @@ class ZeichenFlaeche(Zeichenbar):
         :type:pygame.Surface
         """
 
-        super().__init__(x, y, self.pyg_flaeche.get_width(),
-                         self.pyg_flaeche.get_height(), farbe, eltern_flaeche=eltern_flaeche)
+        super().__init__(x, y, self.pyg_flaeche.get_width(), self.pyg_flaeche.get_height(),
+                         farbe, eltern_flaeche=eltern_flaeche)
 
     def fuege_hinzu(self, objekt):
         """
@@ -83,7 +83,7 @@ class ZeichenFlaeche(Zeichenbar):
         if not issubclass(objekt.__class__, Zeichenbar):
             raise AttributeError("Objekt muss von ZeichenbaresObjekt erben!")
 
-        # falls das Objekt bereits registeriert ist, entferne es
+        # falls das Objekt bereits registriert ist, entferne es
         if objekt._eltern_flaeche is not None:
             objekt._eltern_flaeche.entferne(objekt)
 

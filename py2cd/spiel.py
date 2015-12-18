@@ -146,6 +146,9 @@ class Spiel:
         :type aktualisierungs_funktion: (float) -> None
         """
 
+        # Initialisiert pygame
+        pygame.init()
+
         # Versions Info
         logger.debug("Python: ", sys.version)
         logger.debug("Pygame: ", pygame.version.ver)
