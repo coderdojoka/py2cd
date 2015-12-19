@@ -77,7 +77,7 @@ if not hat_py2cd:
 else:
     print("Aktualisiere py2cd...")
 
-process = subprocess.Popen(["python3", "setup.py", "install"])
+process = subprocess.Popen(["python", "setup.py", "install"])
 code = process.wait()
 
 if code == 0:

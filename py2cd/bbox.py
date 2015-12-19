@@ -381,6 +381,48 @@ class BBox:
         # Die überlagernde Region
         return [links, oben, rechts_oben - links, links_unten - oben]
 
+    def kollision_links_rechts(self, box, bx):
+
+        if (self.y + self.hoehe) <= box.y or self.y >= (box.y + box.hoehe):
+            # keine kollision
+            return None
+
+        if bx > 0:  # bewegung nach rechts
+
+            self_rechts = self.x + self.breite
+            # kollision nur wenn die untere kante innerhalb des blocks
+            if box.x < self_rechts + bx < box.x + box.breite:
+                return box.x - self_rechts
+
+        elif bx < 0:
+
+            box_rechts = box.x + box.breite
+            # kollision nur wenn die obere kante innerhalb des blocks
+            if box.x <= self.x + bx <= box.x + box.breite:
+                return box_rechts - self.x
+
+        return None
+
+    def kollision_oben_unten(self, box, by):
+
+        if (self.x + self.breite) <= box.x or self.x >= (box.x + box.breite):
+            # keine kollision
+            return None
+
+        if by > 0:  # bewegung nach unten
+
+            self_unten = self.y + self.hoehe
+            if box.y < self_unten + by < box.y + box.hoehe:  # kollision nur wenn die untere kante innerhalb des blocks
+                return box.y - self_unten
+
+        elif by < 0:
+
+            box_unten = box.y + box.hoehe
+            if box.y < self.y + by < box.y + box.hoehe:  # kollision nur wenn die obere kante innerhalb des blocks
+                return self.y - box_unten
+
+        return None
+
     def box_bewegung(self, box, x_bewegung=0, y_bewegung=0):
         """
         Ermittelt die max. Bewegung, die eine Box machen kann, bis sie mit dieser Box kollidiert.
@@ -400,7 +442,7 @@ class BBox:
 
         kann_x_links = x_bewegung > 0.0 and self.x > (box.x + box.breite)
         kann_x_rechts = x_bewegung < 0.0 and (self.x + self.breite) < box.x
-        kann_y_oben = y_bewegung > 0.0 and self.y > (box.y )
+        kann_y_oben = y_bewegung > 0.0 and self.y > (box.y)
         kann_y_unten = y_bewegung < 0.0 and (self.y + self.hoehe) < box.y
 
         if kann_x_links:

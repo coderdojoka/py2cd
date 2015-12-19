@@ -110,3 +110,6 @@ class Vektor2:
 
     def klone(self):
         return Vektor2(self.__x, self.__y)
+
+    def __str__(self):
+        return "%d,%d" % (self.__x, self.__y)

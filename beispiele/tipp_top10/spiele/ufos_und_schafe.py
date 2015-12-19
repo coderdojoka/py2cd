@@ -272,7 +272,8 @@ class Ufo(Bild):
 
         # Falls das Ufo zerstört wird, während es ein schaf entführt
         if self.entfuertes_schaf is not None:
-            self.entfuertes_schaf.fallschirm_rettung(self.position())
+            pos = self.position()
+            self.entfuertes_schaf.fallschirm_rettung(pos.x,pos.y)
 
         rauch_animation = BildAnimationSpeicher.gib_animation("rauch")
         rauch_animation.aendere_position(self.position())
