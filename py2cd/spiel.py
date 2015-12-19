@@ -347,6 +347,19 @@ class Spiel:
 
         Spiel._tasten[taste].gedrueckt_bearbeiter.registriere(funktion)
 
+    @staticmethod
+    def entferne_taste_gedrueckt(taste, funktion):
+        """
+        Entfernt eine Funktion, die ausgeführt wird, wenn die angegebene Taste gedrückt wird.
+
+        :param taste: die Taste
+        :type taste: int
+        :param funktion: Die Funktion die aufgerufen wird.
+        :type funktion: (bool, py2cd.Taste) -> None
+        """
+        if taste in Spiel._tasten:
+            Spiel._tasten[taste].gedrueckt_bearbeiter.entferne(funktion)
+
     @classmethod
     def registriere_solange_taste_unten(cls, taste_code, funktion):
         """

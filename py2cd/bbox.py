@@ -2,13 +2,15 @@ import py2cd.vektor
 from py2cd import EreignisBearbeiter
 
 __author__ = 'Mark Weinreuter'
-LINKS = 1
-RECHTS = 2
-OBEN = 3
-UNTEN = 4
+
 
 
 class BBox:
+    LINKS = 1
+    RECHTS = 2
+    OBEN = 3
+    UNTEN = 4
+
     def __init__(self, x, y, breite, hoehe, eltern_box, position_geaendert=None):
         """
         Ein neue Box, die positioniert werden kann.
@@ -387,19 +389,19 @@ class BBox:
             # keine kollision
             return None
 
-        if bx > 0:  # bewegung nach rechts
+        if bx > 0 and (self.x + self.breite) <= box.x:  # bewegung nach rechts
 
             self_rechts = self.x + self.breite
             # kollision nur wenn die untere kante innerhalb des blocks
             if box.x < self_rechts + bx < box.x + box.breite:
-                return box.x - self_rechts
+                return box.x - self_rechts, BBox.RECHTS
 
-        elif bx < 0:
+        elif bx < 0 and self.x >= (box.x + box.breite):
 
             box_rechts = box.x + box.breite
             # kollision nur wenn die obere kante innerhalb des blocks
             if box.x <= self.x + bx <= box.x + box.breite:
-                return box_rechts - self.x
+                return box_rechts - self.x, BBox.LINKS
 
         return None
 
@@ -413,69 +415,18 @@ class BBox:
 
             self_unten = self.y + self.hoehe
             if box.y < self_unten + by < box.y + box.hoehe:  # kollision nur wenn die untere kante innerhalb des blocks
-                return box.y - self_unten
+                return box.y - self_unten, BBox.UNTEN
 
         elif by < 0:
 
             box_unten = box.y + box.hoehe
             if box.y < self.y + by < box.y + box.hoehe:  # kollision nur wenn die obere kante innerhalb des blocks
-                return self.y - box_unten
+                return self.y - box_unten, BBox.OBEN
 
         return None
 
-    def box_bewegung(self, box, x_bewegung=0, y_bewegung=0):
-        """
-        Ermittelt die max. Bewegung, die eine Box machen kann, bis sie mit dieser Box kollidiert.
-        
-        :param box:
-        :type box: py2cd.bbox.BBox
-        :param x_bewegung:
-        :type x_bewegung: float
-        :param y_bewegung:
-        :type y_bewegung: float
-        :return:
-        :rtype:
-        """
-
-        x_zeit = float("inf")
-        y_zeit = float("inf")
-
-        kann_x_links = x_bewegung > 0.0 and self.x > (box.x + box.breite)
-        kann_x_rechts = x_bewegung < 0.0 and (self.x + self.breite) < box.x
-        kann_y_oben = y_bewegung > 0.0 and self.y > (box.y)
-        kann_y_unten = y_bewegung < 0.0 and (self.y + self.hoehe) < box.y
-
-        if kann_x_links:
-            x_entfernung = self.x - (box.x + box.breite)
-            x_zeit = x_entfernung / x_bewegung
-            x_richtung = LINKS
-        elif kann_x_rechts:
-            x_entfernung = box.x - (self.x + self.breite)
-            x_zeit = x_entfernung / x_bewegung
-            x_richtung = RECHTS
-
-        if kann_y_oben:
-            y_entfernung = self.y - (box.y + box.hoehe)
-            y_zeit = y_entfernung / y_bewegung
-            y_richtung = OBEN
-        elif kann_y_unten:
-            y_entfernung = box.y - (self.y + self.hoehe)
-            y_zeit = y_entfernung / y_bewegung
-            y_richtung = UNTEN
-
-        # nix geht
-        if not (kann_x_links or kann_x_rechts or kann_y_unten or kann_y_oben):
-            return None
-
-        # maximale Bewegung und Kollisionsrichtung
-        if x_zeit <= y_zeit:
-            if x_entfernung <= x_bewegung:
-                return x_zeit * x_bewegung, y_zeit * y_bewegung, x_richtung
-        else:
-            if y_entfernung <= y_bewegung:
-                return y_zeit * x_bewegung, y_zeit * y_bewegung, y_richtung
-
-        return None
+    def sichtbar_in_elternbox(self):
+        return self.eltern_box or self.beruehrt_objekt(self.eltern_box)
 
     def beruehrt_objekt(self, zeichenbar):
         """
