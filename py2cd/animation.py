@@ -1,6 +1,7 @@
 import math
-from py2cd import Spiel
+
 from py2cd import Linie
+from py2cd import Spiel, Aktualisierbar
 
 __author__ = 'Mark Weinreuter'
 
@@ -9,14 +10,14 @@ GESTARTET = 1
 PAUSIERT = 2
 
 
-class Animation:
+class Animation(Aktualisierbar):
     """
     Eine Animation, die für eine gegebene Zeit abgearbeitet wird.
     """
 
     def __init__(self, zeit_in_ms, aktualisiere=lambda dt: None, animation_gestartet=lambda wiederholung: None,
-                 animation_gestoppt=lambda: None,
-                 animation_pausiert=lambda: None, wiederhole=False):
+                 animation_geendet=lambda: None,
+                 animation_gestoppt=lambda: None, animation_pausiert=lambda: None, wiederhole=False):
         """
         Ein neues Animationsobjekt.
 
@@ -34,12 +35,14 @@ class Animation:
         :param wiederhole:
         :type wiederhole:
         """
+        super().__init__()
         self._wiederhole_animation = wiederhole
         """
         Gibt an ob die Animation wiederholt wird oder nicht
         """
         self._aktualisiere_animation = aktualisiere
         self._animation_gestartet = animation_gestartet
+        self._animation_geendet = animation_geendet
         self._animation_gestoppt = animation_gestoppt
         self._animation_pausiert = animation_pausiert
 
@@ -50,13 +53,16 @@ class Animation:
     def setze_animation_gestoppt(self, animation_gestoppt):
         self._animation_gestoppt = animation_gestoppt
 
+    def setze_animation_geendet(self, animation_geendet):
+        self._animation_geendet = animation_geendet
+
     def setze_animation_gestartet(self, animation_gestartet):
         self._animation_gestartet = animation_gestartet
 
     def setze_wiederhole(self, wiederhole=True):
         self._wiederhole_animation = wiederhole
 
-    def aktualisiere(self):
+    def aktualisiere(self, dt, zeit_unterschied_ms):
         """
         Aktualisiert die Animation und überprüft, ob die Zeit abgelaufen ist.
 
@@ -68,18 +74,17 @@ class Animation:
         if self._zustand != GESTARTET:
             return
 
-        self._vergangene_zeit_ms += Spiel.zeit_unterschied_ms
+        self._vergangene_zeit_ms += zeit_unterschied_ms
         # Ist die Zeit um?
         if self._vergangene_zeit_ms >= self._gesamt_zeit_ms:
 
             # Wir haben die Animation komplett durchlaufen
             self._aktualisiere_animation(1)
+            self._animation_geendet()
 
             if self._wiederhole_animation:
                 self._vergangene_zeit_ms = 0
                 self._start(True)
-            else:
-                self.stop()
 
             return True
         else:
@@ -109,6 +114,14 @@ class Animation:
 
         # Wir sind ganz am Anfang der Animation
         self._aktualisiere_animation(0)
+
+
+class Warte(Animation):
+    def __init__(self, warte_ms, wenn_zeit_um, wiederhole=False, sofort_starten=True):
+        super().__init__(warte_ms, animation_geendet=wenn_zeit_um, wiederhole=wiederhole)
+
+        if sofort_starten:
+            self.start()
 
 
 class AnimationenKette(Animation):
@@ -146,7 +159,7 @@ class AnimationenKette(Animation):
 
         # Ein bisschen Spielraum für ungenaues Timing
         gesamt_zeit += self.anzahl_animationen * 2000 / Spiel.fps
-        super().__init__(gesamt_zeit, self._aktualisiere, animation_gestartet=self._gestartet)
+        super().__init__(gesamt_zeit, aktualisiere=self._aktualisiere, animation_gestartet=self._gestartet)
 
     def _gestartet(self, wdh=False):
         self._aktuelle_animation.start()
@@ -163,7 +176,7 @@ class AnimationenKette(Animation):
             self._aktuelle_animation.start()
 
     def _aktualisiere(self, delta):
-        if self._aktuelle_animation.aktualisiere():
+        if self._aktuelle_animation.aktualisiere(delta, Spiel.zeit_unterschied_ms):
             self._eine_animation_gestoppt()
 
 
@@ -186,7 +199,7 @@ class AnimierteLinie(Animation):
 
             zeit_in_ms = l / geschwindigkeit
 
-        super().__init__(zeit_in_ms, self._aktualisiere, self._gestartet)
+        super().__init__(zeit_in_ms, aktualisiere=self._aktualisiere, animation_gestartet=self._gestartet)
 
     def _gestartet(self, wdh=False):
         self.linie.zeige()

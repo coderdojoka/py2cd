@@ -9,6 +9,7 @@ import py2cd
 import py2cd.pygameui as ui
 from py2cd.ereignis import *
 from py2cd.farben import *
+from py2cd.objekte import Aktualisierbar
 from py2cd.tasten import Taste
 
 __author__ = 'Mark Weinreuter'
@@ -247,6 +248,8 @@ class Spiel:
             # lässt das Spiel mit ca. dieser fps laufen und fragt vergangene Zeit ab
             Spiel.zeit_unterschied_ms = Spiel._clock.tick(Spiel.fps)
 
+            print(Spiel.zeit_unterschied_ms, Spiel._clock.get_time(), Spiel._clock.get_rawtime())
+
             # relativer Zeitunterschied
             delta = Spiel.zeit_unterschied_ms / Spiel.fps
 
@@ -254,6 +257,8 @@ class Spiel:
                 taste.wenn_unten_bearbeiter(delta)
 
             Spiel.__aktualisiere(delta)
+            Aktualisierbar.aktualisiere_alle(delta, Spiel.zeit_unterschied_ms)
+
 
             # zeichne alles!!!
             Spiel.__haupt_flaeche.zeichne_alles()

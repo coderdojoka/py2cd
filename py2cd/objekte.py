@@ -4,6 +4,29 @@ from py2cd.vektor import Vektor2
 __author__ = 'Mark Weinreuter'
 
 
+class Aktualisierbar(object):
+    _aktualisierebare = []
+    """
+    Liste aller aktualisierbaren Objekte.
+    :type: list[py2cd.objekte.Aktualisierbar
+    """
+
+    def entferne_aktualisierung(self):
+        if self in Aktualisierbar._aktualisierebare:
+            Aktualisierbar._aktualisierebare.remove(self)
+
+    def __init__(self):
+        Aktualisierbar._aktualisierebare.append(self)
+
+    @classmethod
+    def aktualisiere_alle(cls, dt, zeit_unterschied_ms):
+        for aktualisierbar in Aktualisierbar._aktualisierebare:
+            aktualisierbar.aktualisiere(dt, zeit_unterschied_ms)
+
+    def aktualisiere(self, relative_dt, zeit_unterschied_ms):
+        raise NotImplementedError("Methode muss überschrieben werden.")
+
+
 class Zeichenbar(BBox):
     """
     Überklasse für alle zeichenbaren Objekte. Diese haben ein Position (x,y) und eine (Hintergrund-)Farbe.
@@ -74,7 +97,7 @@ class Zeichenbar(BBox):
         Zeichnet das aktuelle Objekt, genauer ruft render() auf, falls das Objekt sichtbar ist.
 
         """
-        if self.__sichtbar:
+        if self.__sichtbar and self.beruehrt_objekt(self.eltern_box):  # sichtbar und in elternbox sichtbar
             self.render(self._eltern_flaeche.pyg_flaeche)
 
     def verstecke(self):

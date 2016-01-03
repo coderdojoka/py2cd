@@ -23,10 +23,7 @@ def hintergrund(delta):
 
 
 def aktualisiere_spiel(delta):
-    ak1.aktualisiere()
-    ak2.aktualisiere()
-    ak3.aktualisiere()
-    anim.aktualisiere()
+   pass
 
 
 def beenden():

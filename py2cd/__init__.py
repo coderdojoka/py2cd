@@ -17,7 +17,8 @@ Außerdem wird das Anzeigen von Bilder und Animationen, als schnelle Abfolge von
 """
 import pygame
 from pygame.constants import *
-pygame.init() # wir initialisieren hier schon pygame
+
+pygame.init()  # wir initialisieren hier schon pygame
 
 from py2cd.farben import *
 
@@ -32,18 +33,18 @@ from py2cd.poly import *
 from py2cd.rechteck import *
 from py2cd.kreis import *
 from py2cd.mathe import *
-from py2cd.animation import *
+from py2cd.animation import Animation, AnimationenKette, AnimierteLinie
 # Text
 from py2cd.text import *
 # Bilder
-from py2cd.bild import Bild,BildSpeicher,BildWechsler
+from py2cd.bild import Bild, BildSpeicher, BildWechsler
 # Animationen
-from py2cd.anim import BildAnimation,BildAnimationSpeicher
+from py2cd.anim import BildAnimation, BildAnimationSpeicher
 from py2cd.vektor import Vektor2
 
 from py2cd.tasten import *
 
-__all__ = ['EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
+__all__ = ['Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
            'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
            'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie',
            'BildSpeicher', 'BildWechsler', 'BildAnimation',
