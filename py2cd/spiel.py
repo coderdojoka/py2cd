@@ -248,8 +248,6 @@ class Spiel:
             # lässt das Spiel mit ca. dieser fps laufen und fragt vergangene Zeit ab
             Spiel.zeit_unterschied_ms = Spiel._clock.tick(Spiel.fps)
 
-            print(Spiel.zeit_unterschied_ms, Spiel._clock.get_time(), Spiel._clock.get_rawtime())
-
             # relativer Zeitunterschied
             delta = Spiel.zeit_unterschied_ms / Spiel.fps
 
@@ -258,7 +256,6 @@ class Spiel:
 
             Spiel.__aktualisiere(delta)
             Aktualisierbar.aktualisiere_alle(delta, Spiel.zeit_unterschied_ms)
-
 
             # zeichne alles!!!
             Spiel.__haupt_flaeche.zeichne_alles()

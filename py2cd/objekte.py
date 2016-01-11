@@ -19,11 +19,11 @@ class Aktualisierbar(object):
         Aktualisierbar._aktualisierebare.append(self)
 
     @classmethod
-    def aktualisiere_alle(cls, dt, zeit_unterschied_ms):
+    def aktualisiere_alle(cls, relativer_zeit_unterschied, zeit_unterschied_ms):
         for aktualisierbar in Aktualisierbar._aktualisierebare:
-            aktualisierbar.aktualisiere(dt, zeit_unterschied_ms)
+            aktualisierbar.aktualisiere(relativer_zeit_unterschied, zeit_unterschied_ms)
 
-    def aktualisiere(self, relative_dt, zeit_unterschied_ms):
+    def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):
         raise NotImplementedError("Methode muss überschrieben werden.")
 
 
@@ -293,7 +293,7 @@ class ZeichenbaresElement(Zeichenbar):
                 if self.beruehrt_linken_oder_rechten_rand():
                     self.x_bewegung_umkehren()
 
-            self.aendere_position(self.__geschwindigkeit.x * dt, self.__geschwindigkeit.x * dt)
+            self.aendere_position(self.__geschwindigkeit.x * dt, self.__geschwindigkeit.y * dt)
 
             schritte -= 1
 

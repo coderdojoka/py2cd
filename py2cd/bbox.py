@@ -1,5 +1,5 @@
 import py2cd.vektor
-from py2cd import EreignisBearbeiter
+import py2cd.ereignis
 
 __author__ = 'Mark Weinreuter'
 
@@ -57,7 +57,7 @@ class BBox:
         :type: float
         """
 
-        self.position_geaendert = EreignisBearbeiter()
+        self.position_geaendert = py2cd.ereignis.EreignisBearbeiter()
         """
         Funktion die aufgerufen wird, wenn die Position geändert wurde.
 

@@ -22,6 +22,8 @@ pygame.init()  # wir initialisieren hier schon pygame
 
 from py2cd.farben import *
 
+from py2cd.bbox import BBox
+
 # Ereignisse
 from py2cd.ereignis import *
 # Das Haupt-Spiel
@@ -43,10 +45,11 @@ from py2cd.anim import BildAnimation, BildAnimationSpeicher
 from py2cd.vektor import Vektor2
 
 from py2cd.tasten import *
+from py2cd.zeit import Warte, warte
 
-__all__ = ['Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
+__all__ = ['BBox', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
            'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
-           'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie',
+           'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie', 'Warte', 'warte',
            'BildSpeicher', 'BildWechsler', 'BildAnimation',
            'BildAnimationSpeicher', 'Vektor2', 'Taste',
 
