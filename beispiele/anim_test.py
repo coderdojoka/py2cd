@@ -18,16 +18,8 @@ Spiel.setze_hintergrund_farbe(hintergrund_farbe)
 zeit = 1000 / 11
 Spiel.fps = 30
 
-boltAnim = BildAnimation([('testimages/bolt_strike_0001.png', zeit),
-                          ('testimages/bolt_strike_0002.png', zeit),
-                          ('testimages/bolt_strike_0003.png', zeit),
-                          ('testimages/bolt_strike_0004.png', zeit),
-                          ('testimages/bolt_strike_0005.png', zeit),
-                          ('testimages/bolt_strike_0006.png', zeit),
-                          ('testimages/bolt_strike_0007.png', zeit),
-                          ('testimages/bolt_strike_0008.png', zeit),
-                          ('testimages/bolt_strike_0009.png', zeit),
-                          ('testimages/bolt_strike_0010.png', zeit)])
+bilder_namen = generiere_namen_liste('testimages/bolt_strike_000%d.png', 1, 10)
+boltAnim = BildAnimation(bilder_namen, anzeige_dauer=zeit)
 
 boltAnim.start()
 boltAnim.setze_wiederhole(True)
@@ -39,12 +31,9 @@ boltAnim.zentriere_horizontal()
 boltAnim.setze_rotation(90)
 
 zeit = 1000 / 6
-fireAnim = BildAnimation([("testimages/flame_a_0001.png", zeit),
-                          ("testimages/flame_a_0002.png", zeit),
-                          ("testimages/flame_a_0003.png", zeit),
-                          ("testimages/flame_a_0004.png", zeit),
-                          ("testimages/flame_a_0005.png", zeit),
-                          ("testimages/flame_a_0006.png", zeit)], False)
+bilder_namen = generiere_namen_liste("testimages/flame_a_000%d.png", 1, 6)
+fireAnim = BildAnimation(bilder_namen, False, anzeige_dauer=zeit)
+
 fireAnim.start()
 fireAnim.setze_wiederhole(True)
 fireAnim.setze_position(200, 200)

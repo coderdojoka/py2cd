@@ -1,8 +1,7 @@
-import py2cd.vektor
 import py2cd.ereignis
+import py2cd.vektor
 
 __author__ = 'Mark Weinreuter'
-
 
 
 class BBox:

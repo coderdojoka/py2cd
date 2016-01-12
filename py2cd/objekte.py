@@ -97,7 +97,7 @@ class Zeichenbar(BBox):
         Zeichnet das aktuelle Objekt, genauer ruft render() auf, falls das Objekt sichtbar ist.
 
         """
-        if self.__sichtbar and self.beruehrt_objekt(self.eltern_box):  # sichtbar und in elternbox sichtbar
+        if self.__sichtbar and (self.eltern_box is not None and self.beruehrt_objekt(self.eltern_box)):  # sichtbar und in elternbox sichtbar
             self.render(self._eltern_flaeche.pyg_flaeche)
 
     def verstecke(self):

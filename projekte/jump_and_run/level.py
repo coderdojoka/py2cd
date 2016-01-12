@@ -7,6 +7,7 @@ class Gegenstand(object):
     def __init__(self, zeichenbar, wenn_beruehrt):
         self.objekt = zeichenbar
         """
+
         :type: py2cd.objekte.Zeichenbar
         """
         self.wenn_beruehrt = wenn_beruehrt
@@ -39,7 +40,7 @@ class Level(Aktualisierbar):
 
             for gegenstand in self.gegenstaende:
                 if figur.beruehrt_objekt(gegenstand.objekt):
-                    gegenstand.wenn_beruehrt()
+                    gegenstand.wenn_beruehrt(gegenstand, figur)
 
     def neue_figur(self, figur):
         self.figuren.append(figur)
@@ -52,7 +53,11 @@ class Level(Aktualisierbar):
         self.gegenstaende.append(gegenstand)
 
     def entferne_gegenstand(self, gegenstand):
-        self.gegenstaende.remove(gegenstand)
+        if gegenstand in self.gegenstaende:
+            self.gegenstaende.remove(gegenstand)
+            gegenstand.objekt.selbst_entfernen()
+        else:
+            print("Gegenstand nicht vorhanden.")
 
     def scrollen(self, dt):
 

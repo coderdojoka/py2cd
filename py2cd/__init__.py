@@ -41,7 +41,7 @@ from py2cd.text import *
 # Bilder
 from py2cd.bild import Bild, BildSpeicher, BildWechsler
 # Animationen
-from py2cd.anim import BildAnimation, BildAnimationSpeicher
+from py2cd.anim import BildAnimation, BildAnimationSpeicher, generiere_namen_liste
 from py2cd.vektor import Vektor2
 
 from py2cd.tasten import *
@@ -50,7 +50,7 @@ from py2cd.zeit import Warte, warte
 __all__ = ['BBox', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
            'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
            'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie', 'Warte', 'warte',
-           'BildSpeicher', 'BildWechsler', 'BildAnimation',
+           'BildSpeicher', 'BildWechsler', 'BildAnimation', 'generiere_namen_liste',
            'BildAnimationSpeicher', 'Vektor2', 'Taste',
 
            "T_0",

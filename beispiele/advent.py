@@ -100,7 +100,6 @@ skalierung = 1
 # Diese Funktion wird aufgerufen, wenn das Spiel aktualisiert wird
 def aktualisiere(delta):
     global faktor, skalierung
-    textAnim.aktualisiere()
 
     if skalierung >= 1.15:  # maximal 1.15 mal so groß
         faktor *= -1  # wieder kleiner werden

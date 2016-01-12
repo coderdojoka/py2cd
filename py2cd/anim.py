@@ -1,4 +1,3 @@
-import collections
 import pygame
 
 from py2cd.bild import BildSpeicher
@@ -18,6 +17,26 @@ ZEIGE_BILD = 3
 STANDART_ZEIT = 100
 
 
+def generiere_namen_liste(namen_muster, von, bis):
+    """
+    Erstellt eine Liste von Namen. Der Name muss ein %d enthalten, dass durch die Zahlen 'von' - 'bis'
+     ersetzt wird.
+    :param namen_muster: das Namen Muster, z.B. bild_%d.png -> wird zu bild_[von...bis].png
+    :type namen_muster: str
+    :param von: Startwert
+    :type von: int
+    :param bis: Endwert
+    :type bis: int
+    :return: eine Liste mit den generierten Namen
+    :rtype: list[str]
+    """
+    liste = []
+    for i in range(von, bis):
+        liste.append(namen_muster % i)
+
+    return liste
+
+
 class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
     """
     Zeigt einen Animation an, indem eine Liste von Bildern(ZeichenFlaechen) in angegeben Zeitabschnitten
@@ -29,10 +48,17 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         Ein neues Animationsobjekt.
 
         :param pygame_flaechen_und_zeiten:
+        :type pygame_flaechen_und_zeiten: list[]
         :param wiederhole:
+        :type wiederhole: bool
         :param alpha:
-        :raise AttributeError:
+        :type alpha: bool
+        :param anzeige_dauer:
+        :type anzeige_dauer: float
+        :return:
+        :rtype:
         """
+
         self._wiederhole_animation = wiederhole
         """
         Gibt an ob die Animation wiederholt wird oder nicht
@@ -63,11 +89,13 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
 
         for zf in pygame_flaechen_und_zeiten:
 
-            # Entweder Tupel/Liste mit (Bild,Zeit) oder nur Zeit
+            # Entweder Tupel/Liste mit (Bild,Zeit) oder nur Bild
             if isinstance(zf, list) or isinstance(zf, tuple):
                 animations_bild = zf[0]
+                dauer = zf[1]
             else:
                 animations_bild = zf
+                dauer = anzeige_dauer
 
             # Die Fläche kann entweder aus einer Datei/ dem Bildspeicher geladen werden
             if isinstance(animations_bild, str):
@@ -88,10 +116,7 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             if animations_bild.get_height() > hoehe:
                 hoehe = animations_bild.get_height()
 
-            # Falls keine Zeit angeben wurde, nehmen wir die Standartzeit
-            dauer = anzeige_dauer
-            if len(zf) > 1:
-                dauer = zf[1]
+
 
             # Zur List hinzufügen und Zeit addieren
             self._flaechen_zeiten.append((animations_bild, dauer))
