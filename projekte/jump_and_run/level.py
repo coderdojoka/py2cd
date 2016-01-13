@@ -4,7 +4,7 @@ __author__ = 'Mark Weinreuter'
 
 
 class Gegenstand(object):
-    def __init__(self, zeichenbar, wenn_beruehrt):
+    def __init__(self, zeichenbar, wenn_beruehrt=lambda: None):
         self.objekt = zeichenbar
         """
 
