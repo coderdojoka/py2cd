@@ -1,149 +1,70 @@
-from py2cd import *
-from py2cd.farben import *
+import time
 
-from spielfeld import SpielFeld
+from arena import Arena
 
-__author__ = "Mark Weinreuter"
+__author__ = 'Mark Weinreuter'
 
-# Der erste Schritt, um ein Spiel zu starten ist immer init() aufzurufen
-Spiel.init(640, 480, "dotWars")
+print("Willkommen zum Kampf der Programme\n")
+print("Der heutige Kampf wird ausgetragen zwischen:")
+algo1 = input("In der linken Ecke (z.B. zufall.Zufall1): ").strip()
+algo2 = input("In der rechten Ecke (z.B. zufall.Zufall1): ").strip()
 
+if len(algo1) < 2:
+    algo1 = "zufall.Zufall1"
+if len(algo2) < 2:
+    algo2 = "zufall.Zufall1"
 
-def hintergrund(delta):
-    delta = int(delta * 1000) % 200
+algo1_mod, algo1_name = algo1.split(".")
+algo2_mod, algo2_name = algo2.split(".")
 
-    if delta < 100:
-        Spiel.setze_hintergrund_farbe(MATT_GRUEN)
-        text.farbe = WEISS
-        text2.farbe = SCHWARZ
+GRENZE = 10
+algo1_stats = {"name": algo1_name, "siege": 0, "punkte": [], "zuege": []}
+algo2_stats = {"name": algo2_name, "siege": 0, "punkte": [], "zuege": []}
+
+for runde in range(0, GRENZE):
+
+    # Immer abwechselnd Spieler1 und Spieler2 laufen lassen
+    if runde % 2 == 0:
+        arena = Arena(algo1_mod, algo1_name, algo2_mod, algo2_name)
+        a1 = algo1_stats
+        a2 = algo2_stats
     else:
-        Spiel.setze_hintergrund_farbe(MATT_LILA)
-        text.farbe = SCHWARZ
-        text2.farbe = WEISS
+        arena = Arena(algo2_mod, algo2_name, algo1_mod, algo1_name)
+        a1 = algo2_stats
+        a2 = algo1_stats
 
+    arena.start()
 
-def aktualisiere_spiel(delta):
-   pass
+    punkte1 = []
+    punkte2 = []
 
+    print()
+    print("Runde: ", runde)
+    print()
 
-def beenden():
-    Spiel.setze_aktualisierung(lambda dt: None)
-    text.schrift = Schrift(90)
-    text.hintergrund = HELL_GRAU
+    while arena.laueft_noch():
+        p1, p2 = arena.aktualisiere()
+        punkte1.extend(p1)
+        punkte2.extend(p2)
+        print("Punkte: %s = %d, %s = %d" % (a1["name"], len(punkte1), a2["name"], len(punkte2)))
+        time.sleep(.01)
 
-    if SpielFeld.punkte[0] > SpielFeld.punkte[1]:
-        text.setze_text("Algo 1 gewinnt!")
+    print()
+    print("Züge gesamt: %d, augeteilt: %d|%d" % tuple(arena.zuege_uebersicht))
+    print("Punkte: %d|%d" % tuple(arena.punkte))
+
+    if arena.punkte[0] > arena.punkte[1]:
+        print("Algorithmus 1 gewinnt!")
+        a1["siege"] += 1
     else:
-        text.setze_text("Algo 2 gewinnt!")
+        print("Algorithmus 2 gewinnt!")
+        a2["siege"] += 1
 
-    text.zeige()
-    text.zentriere()
+    a1["zuege"].append(arena.zuege_uebersicht[1])
+    a2["zuege"].append(arena.zuege_uebersicht[2])
 
-    text.nach_vorne()
+    a1["punkte"].append(arena.punkte[0])
+    a2["punkte"].append(arena.punkte[1])
 
-
-def spiel_aktualisiere(delta):
-    SpielFeld.aktualisiere()
-
-    # Texte aktualisieren
-    txt_zuege.setze_text("Runde: " + str(SpielFeld.zuege))
-    txt_spieler1.setze_text("Algo 1: " + str(SpielFeld.punkte[0]))
-    txt_spieler2.setze_text("Algo 2: " + str(SpielFeld.punkte[1]))
-
-    if not SpielFeld.laueft_noch():
-        beenden()
-
-
-# Funktion die aufgerufen wird, wenn das Spiel aktualisiert wird (fps mal)
-Spiel.setze_aktualisierung(aktualisiere_spiel)
-
-schrift = Schrift(50)
-text = Text("Willkommen zur epischen", 0, 150, schrift)
-text2 = Text("Schlacht zwischen rot und blau!", 0, 200, schrift)
-text.zentriere_horizontal()
-text2.zentriere_horizontal()
-
-txt_zuege = Text("Runde: 0", 30, 50, farbe=WEISS)
-txt_spieler1 = Text("Algo 1: 0", 30, 70, farbe=WEISS)
-txt_spieler2 = Text("Algo 2: 0", 30, 90, farbe=WEISS)
-
-
-def init_animation():
-    farbe1 = BLAU
-    dicke1 = 6
-    abstand = 10
-    spiel_haelfte = Spiel.breite / 2
-    end_breite = Spiel.breite - abstand
-    end_hoehe = Spiel.hoehe - abstand
-
-    ges_laenge = (end_breite - abstand) * 2 + (end_hoehe - abstand) * 2
-    dauer_ms = 2000  # => 5 sec
-    ges = ges_laenge / dauer_ms
-
-    a1 = AnimierteLinie((spiel_haelfte, abstand), (abstand, abstand), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
-    a2 = AnimierteLinie((abstand, abstand), (abstand, end_hoehe), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
-    a3 = AnimierteLinie((abstand, end_hoehe), (end_breite, end_hoehe), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
-    a4 = AnimierteLinie((end_breite, end_hoehe), (end_breite, abstand), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
-    a5 = AnimierteLinie((end_breite, abstand), (spiel_haelfte, abstand), geschwindigkeit=ges, farbe=farbe1, dicke=dicke1)
-
-    ak1 = AnimationenKette([a1, a2, a3, a4, a5])
-
-    farbe2 = ROT
-    dicke2 = 2
-    a12 = AnimierteLinie((spiel_haelfte, abstand), (abstand, abstand), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
-    a22 = AnimierteLinie((abstand, abstand), (abstand, end_hoehe), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
-    a32 = AnimierteLinie((abstand, end_hoehe), (end_breite, end_hoehe), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
-    a42 = AnimierteLinie((end_breite, end_hoehe), (end_breite, abstand), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
-    a52 = AnimierteLinie((end_breite, abstand), (spiel_haelfte, abstand), geschwindigkeit=ges, farbe=farbe2, dicke=dicke2)
-
-    ak2 = AnimationenKette([a12, a22, a32, a42, a52])
-
-    farbe3 = GRAU
-    dicke3 = 2
-    abstand = 20
-    spiel_haelfte = Spiel.breite / 2
-    end_breite = Spiel.breite - abstand
-    end_hoehe = Spiel.hoehe - abstand
-
-    ges_laenge = (end_breite - abstand) * 2 + (end_hoehe - abstand) * 2
-    ges = ges_laenge / dauer_ms  # => 2 sec dauer
-
-    a13 = AnimierteLinie((abstand, abstand), (spiel_haelfte, abstand), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
-    a23 = AnimierteLinie((abstand, end_hoehe), (abstand, abstand), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
-    a33 = AnimierteLinie((end_breite, end_hoehe), (abstand, end_hoehe), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
-    a43 = AnimierteLinie((end_breite, abstand), (end_breite, end_hoehe), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
-    a53 = AnimierteLinie((spiel_haelfte, abstand), (end_breite, abstand), geschwindigkeit=ges, farbe=farbe3, dicke=dicke3)
-
-    ak3 = AnimationenKette([a53, a43, a33, a23, a13])
-
-    anim = Animation(dauer_ms, hintergrund)
-
-    ak1.start()
-    ak2.start()
-    ak3.start()
-    anim.start()
-
-    return ak1, ak2, ak3, anim
-
-
-ak1, ak2, ak3, anim = init_animation()
-
-
-def intro_ende():
-    text.verstecke()
-    text2.verstecke()
-
-    SpielFeld.flaeche.zeige()
-    Spiel.setze_aktualisierung(spiel_aktualisiere)
-
-    SpielFeld.start()
-
-
-ak3.setze_animation_gestoppt(intro_ende)
-
-SpielFeld.init("zufall1", "Zufall1", "zufall1", "Zufall1")
-
-Spiel.registriere_spiel_wird_beendet(SpielFeld.beenden)
-
-# Um das Spiel zu starten, muss Spiel.start() aufgerufen werden. Dies sollte immer die letzte Anweisung sein.
-Spiel.starten()
+print("Algorithmus 1: ", algo1_stats)
+print("Algorithmus 2: ", algo2_stats)

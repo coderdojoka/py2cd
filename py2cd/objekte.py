@@ -273,6 +273,12 @@ class ZeichenbaresElement(Zeichenbar):
         :param dt: relative Zeitdelta
         :type dt: float
         """
+        if self.__abprallen:
+            if self.beruehrt_oberen_oder_unteren_rand():
+                self.y_bewegung_umkehren()
+
+            if self.beruehrt_linken_oder_rechten_rand():
+                self.x_bewegung_umkehren()
 
         self.aendere_position(self.__geschwindigkeit.x * dt, self.__geschwindigkeit.y * dt)
 

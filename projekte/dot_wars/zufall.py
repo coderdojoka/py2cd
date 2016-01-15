@@ -1,16 +1,16 @@
-from spieler import *
-from spielfeld import *
+from algorithmus import *
+from arena import *
 
 __author__ = 'Mark Weinreuter'
 
 GRENZE = 50
 
 
-class Zufall1(Spieler):
-    def gib_richtung(self):
+class Zufall1(Algorithmus):
+    def gib_richtung(self, letzter_zustand):
 
         # Überprüfen, ob wir nicht mehr weiter können
-        if (self.counter == self.offset) or self._letzter_zustand == RAND or self._letzter_zustand == BELEGT:
+        if (self.counter == self.offset) or letzter_zustand == RAND or letzter_zustand == BELEGT:
 
             self.counter = 0
             self.offset = random.randint(10, GRENZE)
