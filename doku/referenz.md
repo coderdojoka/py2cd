@@ -29,10 +29,21 @@ Spiel.starten()
 ```
 **Hinweis:** Alle folgenden Beispiele benötigen dieses Grundgerüst.
 Oftmals steht es allerdings nicht dabei damit die Beispiele kürzer werden!
+
+# Farben
+Eine Farbe wird  aus 3 Komponenten aufgebaut: Rot, Grün, Blau.
+Die R-, G-, B-Werte dürfen dabei Werte zwischen 0 und 255 annehmen.
+Schwarz ist `(0, 0, 0)`, Weiß ist `(255, 255, 255)`.
+
+``` python
+meineFarbe = (255, 0, 0) # Rot voll, Grün und Blau nichts => Rot
+r = Rechteck(10, 10, 50, 50, meineFarbe)
+```
+ 
  
 # Vorhandene Objekte
 Es stehen verschiedene vordefinierte Objekte zur Verfügung.
-Die Position dieser Objekte bezieht sich immer auf deren **linke obere Ecke**!
+Diese können auf dem Spielfeld platziert werden, wobei sich die Position dieser Objekte immer auf deren **linke obere Ecke** bezieht!
 
 ## Rechtecke
 Benötigte Werte: x, y (linke obere Ecke), Breite,  Höhe und Farbe.
@@ -148,4 +159,43 @@ Gibt zurück: Ein Tupel (x-, y-Wert)
 ``` python
 k1 = Kreis(450, 150, 10, ROT)
 mitte = k11.mitte # = (455, 155)
+```
+
+## Abstand zum Rand setzen
+Man kann auch direkt den Abstand zum Rand setzen. Dies gibt für oben, unten, rechts und links.
+Benötigte Werte: Abstand
+``` python
+k1 = Kreis(450, 150, 10, ROT)
+
+# Abstand zum linken Rand: 20
+k1.links = 20
+
+# Abstand zum rechten Rand: 30
+k1.rechts = 30
+
+# Abstand zum oberen Rand: 40
+k1.oben = 40
+
+# Abstand zum unteren Rand: 50
+k1.unten = 50
+```
+
+## Abstand zum Rand abfragen
+Genau so kann man auch den Abstand zum Rand abfragen.
+Benötigte Werte: Keine
+Gibt zurück: Abstand
+``` python
+k1 = Kreis(450, 150, 10, ROT)
+
+# Abstand zum linken Rand
+links = k1.links
+
+# Abstand zum rechten Rand
+rechts = k1.rechts
+
+# Abstand zum oberen Rand
+oben k1.oben
+
+# Abstand zum unteren Rand
+unten = k1.unten
 ```
