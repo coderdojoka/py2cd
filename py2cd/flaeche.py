@@ -1,10 +1,8 @@
-from py2cd.vektor import Vektor2
-
-__author__ = 'Mark Weinreuter'
-
 import pygame
 
 from py2cd.objekte import Zeichenbar
+
+__author__ = 'Mark Weinreuter'
 
 
 def neue_pygame_flaeche(breite, hoehe, alpha=False):
@@ -118,9 +116,9 @@ class ZeichenFlaeche(Zeichenbar):
         for zb in self._zeichenbare_objekte:
             zb.zeichne()
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         self.zeichne_alles()
-        return pyg_zeichen_flaeche.blit(self.pyg_flaeche, (self.x, self.y))
+        return pyg_zeichen_flaeche.blit(self.pyg_flaeche, (self.x + x_offset, self.y + y_offset))
 
     def setze_farbmaske(self, farbe):
         self.pyg_flaeche.set_colorkey(farbe)
@@ -134,15 +132,12 @@ class ZeichenFlaeche(Zeichenbar):
 
 
 class HauptZeichenFlaeche(ZeichenFlaeche):
-    def __init__(self, x, y, pygame_flaeche_breite,farbe=(255, 255, 255)):
-        super().__init__(x, y, pygame_flaeche_breite,farbe=farbe)
+    def __init__(self, x, y, pygame_flaeche_breite, farbe=(255, 255, 255)):
+        super().__init__(x, y, pygame_flaeche_breite, farbe=farbe)
 
     def zeichne_alles(self):
-
         self.pyg_flaeche.fill(self.farbe)
 
         # zeichne alle
         for zb in self._zeichenbare_objekte:
             zb.zeichne()
-
-
