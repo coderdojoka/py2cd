@@ -28,7 +28,7 @@ from py2cd.bbox import BBox
 from py2cd.ereignis import *
 # Das Haupt-Spiel
 from py2cd.spiel import Spiel
-from py2cd.flaeche import *
+from py2cd.flaeche import HauptZeichenFlaeche, ZeichenFlaeche
 # Formen und so
 from py2cd.linie import *
 from py2cd.poly import *
@@ -47,7 +47,8 @@ from py2cd.vektor import Vektor2
 from py2cd.tasten import *
 from py2cd.zeit import Warte, warte
 
-__all__ = ['BBox', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'Linie', 'Linien', 'AALinien',
+__all__ = ['BBox', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'HauptZeichenFlaeche',
+           'Linie', 'Linien', 'AALinien',
            'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
            'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie', 'Warte', 'warte',
            'BildSpeicher', 'BildWechsler', 'BildAnimation', 'generiere_namen_liste',

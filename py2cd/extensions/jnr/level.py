@@ -1,3 +1,4 @@
+from py2cd.extensions.jnr.figur import Figur
 from py2cd.objekte import Aktualisierbar
 
 __author__ = 'Mark Weinreuter'
@@ -14,7 +15,7 @@ class Gegenstand(object):
 
 
 class Level(Aktualisierbar):
-    def __init__(self):
+    def __init__(self, bild):
         super().__init__()
         self.gegenstaende = []
         """
@@ -27,13 +28,16 @@ class Level(Aktualisierbar):
         :type: list[py2cd.objekte.Zeichenbar]
         """
         self.figuren = []
+
+        self.haupt_figur = Figur(0, 0, bild)
+        self.neue_figur(self.haupt_figur)
         self.auto_scrollen = False
-        self.scroll_geschwindigkeit = -1.2
-        self.scroll_uebertrag = 0
+        self.scroll_geschwindigkeit = 1.2
 
     def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):
+
         if self.auto_scrollen:
-            self.scrollen(relativer_zeitunterschied)
+            self.haupt_figur.x_geschwindigkeit += self.scroll_geschwindigkeit * relativer_zeitunterschied
 
         for figur in self.figuren:
             figur.figur_aktualisiere(relativer_zeitunterschied)

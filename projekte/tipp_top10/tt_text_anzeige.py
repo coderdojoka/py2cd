@@ -1,12 +1,13 @@
 __author__ = 'Mark Weinreuter'
 
-from collections import defaultdict
-import random
 import json
+import random
+from collections import defaultdict
 
+from level import schwierigkeit
 from py2cd.farben import TRANSPARENT, ROT
 from py2cd.text import Text, Schrift
-from level import schwierigkeit
+
 
 class TextUebersicht:
     __alle_texte = []

@@ -1,9 +1,9 @@
-from py2cd import HauptZeichenFlaeche, Vektor2
+from py2cd import Vektor2, HauptZeichenFlaeche
 
 __author__ = 'Mark Weinreuter'
 
 
-class JNRHauptZeichenFlaeche(HauptZeichenFlaeche):
+class ZetrumHauptZeichenFlaeche(HauptZeichenFlaeche):
     def __init__(self, x, y, pygame_flaeche_breite):
         super().__init__(x, y, pygame_flaeche_breite)
 

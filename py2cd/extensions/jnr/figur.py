@@ -5,7 +5,10 @@ __author__ = 'Mark Weinreuter'
 
 class Figur(Bild):
     def __init__(self, x, y, bild, taste_links=T_LINKS, taste_rechts=T_RECHTS, taste_sprung=T_OBEN):
-        Bild.__init__(self, x, y, bild)
+        if BildSpeicher.ist_bild_vorhanden(bild):
+            Bild.__init__(self, x, y, bild)
+        else:
+            Bild.__init__(self, x, y, BildSpeicher.lade_bild_aus_datei(bild))
         self.max_y_geschwindigkeit = 15
         self.lauf_kraft = 3
         self.sprung_kraft = 12
