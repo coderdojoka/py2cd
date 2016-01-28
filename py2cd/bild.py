@@ -94,11 +94,11 @@ class BildWechsler(ZeichenbaresElement):
         else:
             self.aktuelles_bild -= 1
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
         pyg_zeichen_flaeche.blit(bild, (
-            self.x + (self.breite - bild.get_width()) / 2, self.y + (self.hoehe - bild.get_height()) / 2))
+            self.x + x_offset+ (self.breite - bild.get_width()) / 2, self.y + y_offset+ (self.hoehe - bild.get_height()) / 2))
 
     def klone(self, x, y):
         BildWechsler(x, y, self.__name_liste, self._eltern_flaeche)

@@ -1,6 +1,7 @@
 __author__ = 'Mark Weinreuter'
 
 import pygame
+
 from py2cd.objekte import ZeichenbaresElement
 
 
@@ -9,10 +10,9 @@ class Rechteck(ZeichenbaresElement):
     Ein Rechteck, das angezeigt werden kann.
     """
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         pygame.draw.rect(pyg_zeichen_flaeche, self.farbe,
-                         (self.x, self.y, self.breite, self.hoehe),
-                         self.dicke)
+                         (self.x + x_offset, self.y + y_offset, self.breite, self.hoehe), self.dicke)
 
     def __init__(self, x, y, breite, hoehe, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
         """

@@ -17,7 +17,7 @@ BildSpeicher.lade_bild("ufo", "bilder/ufo.png")
 
 figur1 = Figur(10, 10, "wobbel")
 
-haupt_flaeche.setze_zentrale_figur(figur1)
+haupt_flaeche.setze_zentrum(figur1)
 
 level.neue_figur(figur1)
 

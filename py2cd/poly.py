@@ -56,7 +56,7 @@ class Polygon(ZeichenbaresElement, SkalierbaresElement):
         SkalierbaresElement.__init__(self, self)
         ZeichenbaresElement.__init__(self, x, y, breite, hoehe, farbe, eltern_flaeche, self._aktualisiere_punkte)
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         return pygame.draw.polygon(pyg_zeichen_flaeche, self.farbe, self._verschobene_punkte, self.dicke)
 
     def _aktualisiere_punkte(self):
@@ -165,7 +165,7 @@ class Linien(Polygon):
     Mehrere Linie zwischen den angegebenen Punkten. Alle Punkte werden der Reihe nach verbunden. 1 -> 2 -> 3...
     """
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         return pygame.draw.lines(pyg_zeichen_flaeche, self.farbe, self._geschlossen, self._verschobene_punkte,
                                  self.dicke)
 
@@ -199,7 +199,7 @@ class AALinien(Polygon):
     Mehrere Linie zwischen den angegebenen Punkten. Alle Punkte werden der Reihe nach verbunden. 1 -> 2 -> 3...
     """
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         return pygame.draw.aalines(pyg_zeichen_flaeche, self.farbe, self._geschlossen, self._verschobene_punkte,
                                    True)
 

@@ -56,9 +56,9 @@ class Text(ZeichenbaresElement):
         dim = self.schrift.berechne_groesse(self.__text)
         self._aendere_groesse(*dim)
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         return pyg_zeichen_flaeche.blit(self.schrift.render(self.__text, True, self.farbe, self.hintergrund),
-                                        (self.x, self.y))
+                                        (self.x + x_offset, self.y + y_offset))
 
     def __init__(self, text, x=0, y=0, schrift=Schrift(20), farbe=(0, 0, 0), hintergrund=None, eltern_flaeche=None):
         """

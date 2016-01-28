@@ -136,7 +136,7 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         self._zustand = GESTARTET
         self._animation_gestartet()
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         """
         Zeichnet das aktuelle Bild dieser Animation.
 
@@ -180,7 +180,7 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
         if self._zustand != GESTOPPT:
             # das aktuelle bild wird immer noch gezeichnet
             return pyg_zeichen_flaeche.blit(self._flaechen_zeiten[self._aktuelle_flaeche][0],
-                                            (self.x, self.y))
+                                            (self.x + x_offset, self.y + y_offset))
 
     def zeige_letztes_bild_wenn_geendet(self, wert=True):
         """

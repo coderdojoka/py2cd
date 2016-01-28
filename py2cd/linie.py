@@ -12,7 +12,7 @@ class Linie(ZeichenbaresElement):
     Eine Linie die angezeigt werden kann.
     """
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         pygame.draw.line(pyg_zeichen_flaeche, self.farbe,
                          (self.x, self.y), self.__verschobenes_ende, self.dicke)
 

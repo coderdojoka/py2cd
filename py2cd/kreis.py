@@ -12,10 +12,10 @@ class Kreis(ZeichenbaresElement):
     Ein Rechteck, das angezeigt werden kann.
     """
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         # Mitte verschieben, damit x,y immer der linke Rand ist
         pygame.draw.circle(pyg_zeichen_flaeche, self.farbe,
-                           (int(self.x + self.radius), int(self.y + self.radius)), self.radius, self.dicke)
+                           (int(self.x + x_offset + self.radius), int(self.y + y_offset + self.radius)), self.radius, self.dicke)
 
     def __init__(self, x, y, radius, farbe=(0, 0, 0), dicke=0, eltern_flaeche=None):
         """
@@ -61,13 +61,13 @@ class Oval(ZeichenbaresElement):
     def geandert(self):
         self._pyg_rect = (self.x, self.y, self.radius_breite * 2, self.radius_hoehe * 2)
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         # ellipse(Surface, color, Rect, width=0) -> Rect
         pygame.draw.ellipse(pyg_zeichen_flaeche, self.farbe, self._pyg_rect, self.dicke)
 
 
 class Bogen(Oval):
-    def __init__(self, x, y, radius_breite, radius_hoehe, start_winkel=0, end_winkel=90, farbe=(0, 0, 0), dicke=1,eltern_flaeche=None):
+    def __init__(self, x, y, radius_breite, radius_hoehe, start_winkel=0, end_winkel=90, farbe=(0, 0, 0), dicke=1, eltern_flaeche=None):
         super().__init__(x, y, radius_breite, radius_hoehe, farbe, dicke, eltern_flaeche=eltern_flaeche)
         self.__end_winkel_rad = 0
         self.__start_winkel_rad = 0
@@ -79,7 +79,7 @@ class Bogen(Oval):
         if end_winkel is not None:
             self.__end_winkel_rad = math.pi / 180 * end_winkel
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         # arc(Surface, color, Rect, start_angle, stop_angle, width=1) -> Rect
         pygame.draw.arc(pyg_zeichen_flaeche, self.farbe, self._pyg_rect, self.__start_winkel_rad, self.__end_winkel_rad, self.dicke)
 

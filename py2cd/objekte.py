@@ -81,7 +81,7 @@ class Zeichenbar(BBox):
         # die Position wurde aktualisiert
         self.position_geaendert()
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         """
         Zeichnet dieses Objekt.
 
@@ -92,13 +92,21 @@ class Zeichenbar(BBox):
         """
         raise NotImplementedError("render() Methode muss überschrieben werden!")
 
-    def zeichne(self):
+    def zeichne(self, x_offset=0, y_offset=0):
         """
         Zeichnet das aktuelle Objekt, genauer ruft render() auf, falls das Objekt sichtbar ist.
+        :param y_offset:
+        :type y_offset:
+        :param x_offset: optional offset
+        :type x_offset: int
 
         """
-        if self.__sichtbar and (self.eltern_box is not None and self.beruehrt_objekt(self.eltern_box)):  # sichtbar und in elternbox sichtbar
-            self.render(self._eltern_flaeche.pyg_flaeche)
+        in_rechteck = (
+            self.eltern_box is not None and self.beruehrt_rechteck(self.eltern_box.x - x_offset, self.eltern_box.y - y_offset,
+                                                                   self.eltern_box.breite, self.eltern_box.hoehe))
+
+        if self.__sichtbar and in_rechteck:  # sichtbar und in elternbox sichtbar
+            self.render(self._eltern_flaeche.pyg_flaeche, x_offset, y_offset)
 
     def verstecke(self):
         """
