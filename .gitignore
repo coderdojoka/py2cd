@@ -1,6 +1,8 @@
 # Pycharm settins
 /.idea/
-/projekte/tipp_top10/.idea/
+*/*/.idea
+*/*/*/.idea
+
 
 # Compiled python modules.
 *.pyc
@@ -15,7 +17,8 @@ doc/.*
 Makefile
 conf.py
 
-beispiele/dot_wars/.idea
+# Doku
+*/tmp_latex/
 
 # Python egg metadata, regenerated from source files by setuptools.
 /*.egg-info
