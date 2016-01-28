@@ -12,7 +12,7 @@ class TestLevel1(Level):
         boden = Rechteck(0, 0, 5000, 20, ROT)
         boden.unten = 20
 
-        boden2 = Rechteck(300, 300, 40, 20, ROT)
+        boden2 = Rechteck(100, 300, 40, 20, ROT)
         boden3 = Rechteck(350, 100, 40, 20, ROT)
         boden4 = Rechteck(270, 200, 40, 20, ROT)
 
@@ -24,7 +24,7 @@ class TestLevel1(Level):
         # Wartet die angegebne Zahl an Millisekunden, bis die Funktion ausgeführt wird
         warte(3500, self.wenn_zeit_um, True)
 
-        self.auto_scrollen = True
+        #self.auto_scrollen = True
 
     def wenn_zeit_um(self):
         print("zeit um")

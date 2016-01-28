@@ -62,20 +62,29 @@ class Vektor2:
     def subtrahiere_selbst(self, other):
         self.__x -= other.__x
         self.__y -= other.__y
+        return self
 
     def addiere_selbst(self, other):
         self.__x += other.__x
         self.__y += other.__y
+        return self
 
     def multipliziere_selbst(self, faktor):
         self.__x *= faktor
         self.__y *= faktor
+        return self
 
     def __add__(self, other):
         if not isinstance(other, Vektor2):
             raise AttributeError("%s muss ein Vektor2 sein" % str(other))
 
         return Vektor2(self.__x + other.__x, self.__y + other.__y)
+
+    def __sub__(self, other):
+        if not isinstance(other, Vektor2):
+            raise AttributeError("%s muss ein Vektor2 sein" % str(other))
+
+        return Vektor2(self.__x - other.__x, self.__y - other.__y)
 
     def __mul__(self, other):
         if not isinstance(other, Number):
@@ -112,4 +121,4 @@ class Vektor2:
         return Vektor2(self.__x, self.__y)
 
     def __str__(self):
-        return "%d,%d" % (self.__x, self.__y)
+        return "(%.2f,%.2f)" % (self.__x, self.__y)

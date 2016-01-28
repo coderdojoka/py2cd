@@ -101,7 +101,6 @@ class BBox:
         """
         return self.__hoehe
 
-    # x, y sind nicht direkt setzbar, da position_geandert sonst immer 2mal aufgerufen würde
     @property
     def x(self):
         """
@@ -112,6 +111,17 @@ class BBox:
         """
         return self.__position.x
 
+    @x.setter
+    def x(self, x):
+        """
+        Der x-Wert gemessen am linken Rand des Elternelementes.
+
+        :param x:x-Wert
+        :type x: float
+        """
+        self.__position.x = x
+        self.position_geaendert()
+
     @property
     def y(self):
         """
@@ -121,6 +131,17 @@ class BBox:
         :rtype: float
         """
         return self.__position.y
+
+    @y.setter
+    def y(self, y):
+        """
+        Der y-Wert gemessen am oberen Rand des Elternelementes.
+
+        :param y: y-Wert
+        :type y: float
+        """
+        self.__position.y = y
+        self.position_geaendert()
 
     @property
     def mitte(self):
@@ -329,8 +350,8 @@ class BBox:
         :return: Wahr, falls berührt
         :rtype: bool
         """
-        r1_rechts = self.x + self.breite
-        r1_unten = self.y + self.hoehe
+        self_rechts = self.x + self.breite
+        self_unten = self.y + self.hoehe
 
         r2_rechts = r2_links + breite
         r2_unten = r2_oben + hoehe
@@ -338,7 +359,7 @@ class BBox:
         # print("Ich: ", self.x, self.y, self.breite, self.hoehe)
         # print("Du: ", r2_links, r2_oben, r2_rechts, r2_unten)
 
-        return not (r2_links > r1_rechts or r2_rechts < self.x or r2_oben > r1_unten or r2_unten < self.y)
+        return not (r2_links >= self_rechts or r2_rechts <= self.x or r2_oben >= self_unten or r2_unten <= self.y)
 
     def ueberschneidung_rechteck(self, r2_links, r2_oben, breite, hoehe):
         """

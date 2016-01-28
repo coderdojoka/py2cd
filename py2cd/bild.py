@@ -7,8 +7,8 @@ from py2cd.objekte import ZeichenbaresElement
 
 
 class Bild(ZeichenbaresElement, SkalierbaresElement):
-    def render(self, pyg_zeichen_flaeche):
-        pyg_zeichen_flaeche.blit(self.__pygame_bild, (self.x, self.y))
+    def render(self, pyg_zeichen_flaeche, x_off=0, y_off=0):
+        pyg_zeichen_flaeche.blit(self.__pygame_bild, (self.x + x_off, self.y + y_off))
 
     def __init__(self, x, y, bild, eltern_flaeche=None, position_geaendert=lambda: None):
         """
@@ -48,7 +48,6 @@ class Bild(ZeichenbaresElement, SkalierbaresElement):
     def klone(self, x, y):
         b = Bild(x, y, self.__quelle, self._eltern_flaeche)
         return b
-
 
 
 class BildWechsler(ZeichenbaresElement):
@@ -106,7 +105,7 @@ class BildWechsler(ZeichenbaresElement):
 
 
 class BildSpeicher:
-    __alle_bilder = {} # TODO: besser?: weakref.WeakValueDictionary()
+    __alle_bilder = {}  # TODO: besser?: weakref.WeakValueDictionary()
 
     @classmethod
     def ist_bild_vorhanden(cls, schluessel):

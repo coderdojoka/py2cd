@@ -12,46 +12,63 @@ class Figur(Bild):
         self.gravitation = .75
         self.kann_kollidieren = []
         self.spruenge = 0
+        self.auf_boden = False
 
         if taste_links is not None:
-            Spiel.registriere_solange_taste_unten(taste_links, lambda dt: self.bewege_links_rechts(self.lauf_kraft * -dt))
+            Spiel.registriere_solange_taste_unten(taste_links, self.solange_links)
 
         if taste_rechts is not None:
-            Spiel.registriere_solange_taste_unten(taste_rechts, lambda dt: self.bewege_links_rechts(self.lauf_kraft * dt))
+            Spiel.registriere_solange_taste_unten(taste_rechts, self.solange_rechts)
 
         if taste_sprung is not None:
             Spiel.registriere_taste_gedrueckt(taste_sprung, lambda unten, pyg_ereignis: self.springen(unten))
 
-    def figur_aktualisiere(self, rdt):
-        self.y_geschwindigkeit += self.gravitation
+    def solange_links(self, dt):
+        self.x_geschwindigkeit = -self.lauf_kraft
 
-        bewegung_y = self.y_geschwindigkeit * rdt
+    def solange_rechts(self, dt):
+        self.x_geschwindigkeit = self.lauf_kraft
+
+    def figur_aktualisiere(self, rdt):
+
+        self.y_geschwindigkeit += self.gravitation
+        # in dubio contra reo
+        self.auf_boden = False
+
+        pos_x = self.x + self.x_geschwindigkeit * rdt
+        pos_y = self.y + self.y_geschwindigkeit * rdt
 
         for block in self.kann_kollidieren:
-            max_y = self.kollision_oben_unten(block, bewegung_y)
-            if max_y is not None:
-                self.y_geschwindigkeit = 0
-                # Wir haben eine Kollision gefunden => maximale Bewegung
-                bewegung_y = max_y[0]
-                if max_y[1] == BBox.UNTEN:
+            hat_kollision_x = block.beruehrt_rechteck(pos_x, self.y, self.breite, self.hoehe)
+
+            if hat_kollision_x:
+                if self.x_geschwindigkeit > 0:
+                    pos_x = block.x - self.breite
+                elif self.x_geschwindigkeit < 0:
+                    pos_x = block.x + block.breite
+
+            hat_kollision_y = block.beruehrt_rechteck(self.x, pos_y, self.breite, self.hoehe)
+            if hat_kollision_y:
+                if self.y_geschwindigkeit > 0:
+                    pos_y = block.y - self.hoehe
+
+                    # Können wiederspringen und sind auf dem Boden
                     self.spruenge = 0
+                    self.auf_boden = True
 
-                break
+                elif self.y_geschwindigkeit < 0:
+                    pos_y = block.y + block.hoehe
 
-        self.aendere_position(0, bewegung_y)
+                # Sprung/Fall abbrechen
+                self.y_geschwindigkeit = 0
+
+        # Zurücksetzen
+        self.x_geschwindigkeit = 0
+
+        self.setze_position(pos_x, pos_y)
 
     def springen(self, unten):
         if unten and self.spruenge < 2:
             self.spruenge += 1
             self.y_geschwindigkeit -= self.sprung_kraft
             self.y_geschwindigkeit = min(self.max_y_geschwindigkeit, max(self.y_geschwindigkeit, -self.max_y_geschwindigkeit))
-
-    def bewege_links_rechts(self, bewegung_x):
-        for block in self.kann_kollidieren:
-            max_x = self.kollision_links_rechts(block, bewegung_x)
-            if max_x is not None:
-                # Wir haben eine Kollision gefunden => maximale Bewegung
-                bewegung_x = max_x[0]
-                break
-
-        self.aendere_position(bewegung_x, 0)
