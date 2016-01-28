@@ -38,6 +38,12 @@ class Spiel:
     """
 
     _zeige_gui = False
+    """
+    Wenn dieses Flag gesetzt ist, wird die pygameui GUI gezeichnet.
+
+    :type: bool
+
+    """
 
     _ist_aktiv = True
     """
@@ -66,7 +72,7 @@ class Spiel:
     __haupt_flaeche = None
     """
     Die ZeichenFlaeche des Spiels (Fensters)
-    :type: py2cd.zeichen_flaeche.ZeichenFlaeche """
+    :type: py2cd.flaeche.ZeichenFlaeche """
 
     standard_flaeche = None
     """
@@ -131,7 +137,8 @@ class Spiel:
     """
 
     @classmethod
-    def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbibliothek", aktualisierungs_funktion=lambda zeit: None):
+    def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbibliothek", aktualisierungs_funktion=lambda zeit: None,
+             haupt_flaeche=None):
         """
         Initialisiert das Spiel.
 
@@ -161,14 +168,27 @@ class Spiel:
         Spiel.breite = breite
         Spiel.hoehe = hoehe
 
-        # wird hier erst importiert, da sonst ein Fehler auftritt (wegen cyclischen Imports?)
-        from py2cd.flaeche import ZeichenFlaeche
+        if haupt_flaeche is None:
+            # wird hier erst importiert, da sonst ein Fehler auftritt (wegen zyklischen Imports?)
+            from py2cd.flaeche import ZeichenFlaeche
+            haupt_flaeche = ZeichenFlaeche(0, 0, pygame.display.set_mode((breite, hoehe)), WEISS)
+        else:
+            from py2cd.flaeche import HauptZeichenFlaeche
+            if not isinstance(haupt_flaeche, HauptZeichenFlaeche):
+                raise AttributeError("Hauptfläche muss vom Typ HauptFlaeche sein.")
 
         # die Hauptzeichenfläche des Spiels!
-        Spiel.__haupt_flaeche = ZeichenFlaeche(0, 0, pygame.display.set_mode((breite, hoehe)),
-                                               WEISS)
+        Spiel.__haupt_flaeche = haupt_flaeche
+        """
+        :type: py2cd.flaeche.ZeichenFlaeche
+        """
 
         Spiel.standard_flaeche = Spiel.__haupt_flaeche
+        """
+        Kann geändert werden, falls viele neue Objekte auf eine eigene Zeichenfläche erstellt werden sollen.
+
+        :type: py2cd.flaeche.ZeichenFlaeche
+        """
 
         # Fenstertitel
         Spiel.setze_fenster_titel(titel)

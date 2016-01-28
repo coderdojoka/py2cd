@@ -1,3 +1,5 @@
+from py2cd.vektor import Vektor2
+
 __author__ = 'Mark Weinreuter'
 
 import pygame
@@ -51,7 +53,7 @@ class ZeichenFlaeche(Zeichenbar):
         :rtype:
         """
 
-        self._zeichenbareObjekte = []
+        self._zeichenbare_objekte = []
         """
         Liste aller ZeichenbarenObjekte, die auf dieser Fläche gezeichnet werden
         :type: list[ZeichenbaresObjekt]
@@ -90,7 +92,7 @@ class ZeichenFlaeche(Zeichenbar):
         # setzt die neue Elternfläche
         objekt._eltern_flaeche = self
         # Zur Liste von Objekten hinzufügen
-        self._zeichenbareObjekte.append(objekt)
+        self._zeichenbare_objekte.append(objekt)
 
     def entferne(self, objekt):
         """
@@ -100,8 +102,8 @@ class ZeichenFlaeche(Zeichenbar):
         :return:
         :rtype:
         """
-        if objekt in self._zeichenbareObjekte:
-            self._zeichenbareObjekte.remove(objekt)
+        if objekt in self._zeichenbare_objekte:
+            self._zeichenbare_objekte.remove(objekt)
             objekt._eltern_flaeche = None
 
     def zeichne_rechteck_direkt(self, x=0, y=0, breite=1, hoehe=1, farbe=(0, 0, 0), dicke=0):
@@ -113,7 +115,7 @@ class ZeichenFlaeche(Zeichenbar):
             self.pyg_flaeche.fill(self.farbe)
 
         # zeichne alle
-        for zb in self._zeichenbareObjekte:
+        for zb in self._zeichenbare_objekte:
             zb.zeichne()
 
     def render(self, pyg_zeichen_flaeche):
@@ -128,4 +130,19 @@ class ZeichenFlaeche(Zeichenbar):
 
     @property
     def zeichenbareObjekte(self):
-        return self._zeichenbareObjekte
+        return self._zeichenbare_objekte
+
+
+class HauptZeichenFlaeche(ZeichenFlaeche):
+    def __init__(self, x, y, pygame_flaeche_breite,farbe=(255, 255, 255)):
+        super().__init__(x, y, pygame_flaeche_breite,farbe=farbe)
+
+    def zeichne_alles(self):
+
+        self.pyg_flaeche.fill(self.farbe)
+
+        # zeichne alle
+        for zb in self._zeichenbare_objekte:
+            zb.zeichne()
+
+
