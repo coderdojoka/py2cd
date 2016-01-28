@@ -1,11 +1,13 @@
+import pygame
+
 from figur import Figur
-from level import Gegenstand
+from jnr_haupt_flaeche import JNRHauptZeichenFlaeche
 from py2cd import *
 from test_level1 import TestLevel1
 
 __author__ = 'Mark Weinreuter'
-
-Spiel.init(400, 400, "Jump and Run")
+haupt_flaeche = JNRHauptZeichenFlaeche(0, 0, pygame.display.set_mode((400, 400)))
+Spiel.init(400, 400, "Jump and Run", haupt_flaeche=haupt_flaeche)
 
 level = TestLevel1()
 
@@ -14,6 +16,9 @@ BildSpeicher.lade_bild("wobbel", "bilder/schaf.png")
 BildSpeicher.lade_bild("ufo", "bilder/ufo.png")
 
 figur1 = Figur(10, 10, "wobbel")
+
+haupt_flaeche.setze_zentrale_figur(figur1)
+
 level.neue_figur(figur1)
 
 # Das Spiel starten

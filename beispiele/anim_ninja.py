@@ -40,6 +40,7 @@ ninjaAnim.registriere_wenn_geendet(animation_zuende)
 ninjaAnim.rechts = 20
 ninjaAnim.unten = 20
 ninjaAnim._zeige_letztes_bild = True
+ninjaAnim.setze_wiederhole(False)
 
 BildSpeicher.lade_bild("logo", "testimages/python_logo.png")
 logo = BildSpeicher.gib_bild("logo")
