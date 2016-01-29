@@ -285,7 +285,7 @@ Spiel.setze_hintergrund_farbe(BLAU)
 ```
 
 ## Hilfsgitter einblenden
-Zeichnet Gitterlinien und ein Koordinatensystem ein, um die Positionierung von Objekten zu vereinfachen.
+Zeichnet Gitterlinien und ein Koordinatensystem ein, um die Positionierung von Objekten zu vereinfachen.  
 Benötigte Werte: Keine
 ```python
 Spiel.zeichne_gitter()
@@ -293,12 +293,42 @@ Spiel.zeichne_gitter()
 **Hinweis:** das Gitter ist auch nur ein Objekt und kann deshalb von anderen Objekten verdeckt werden.
 
 
+## Aktualisierungsfunktion
+Das Fenster wird kontinuierlich neu gezeichnet (ca. 30mal pro Sekunde). Will man Animationen darstellen oder Figuren bewegen,
+kann man die Aktualisierungsfunktion verwenden, die aufgerufen wird, jedes Mal, wenn die Oberfläche neugezeichnet wird.
+ 
+### Neuzeichenrate (Fps) setzen und abfragen  
+```python
+# Zeichenrate abfragen
+fps = Spiel.fps 
+
+# Zeichenrate setzen
+Spiel.fps = 60
+```
+  
+### Aktualisierungsfunktion setzen
+``` python
+
+# Diese Funtion wird wiederholt aufgerufen
+def aktualisiere(dt):
+    print("aktualisiere")
+
+# Aktualisierungsfunktion bekannt machen
+Spiel.setze_aktualisierung(aktualisere)
+
+``` 
+
+### Aktualisierungsfunktion entfernen
+``` python
+Spiel.entferne_aktualisierung()
+``` 
+
 ## Tastatureingaben
 Es gibt zwei verschiedene Arten auf Tastatur eingaben zu reagieren. Beide Arten binden eine Rückruf-Funktion (Callback) an eine bestimmte Taste.
 Diese Rückruf-Funktion wird aufgerufen, wenn diese Taste gedrückt wird.
 
 ### Solange eine Taste gedrückt wird
-Die Funktion `Spiel.registriere_solange_taste_unten(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Ruckruf-Funktion.
+Die Funktion `Spiel.registriere_solange_taste_unten(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Rückruf-Funktion.
 Diese Funktion wird **wiederholt** aufgerufen, solange die Taste gedrückt ist.
 ```python
 # Rückruf-Funktion 
@@ -312,7 +342,7 @@ Spiel.registriere_solange_taste_unten(T_LINKS, solange_links)
     
 
 ### Wenn eine Taste gedrückt wird
-Die Funktion `Spiel.registriere_taste_gedrueckt(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Ruckruf-Funktion.
+Die Funktion `Spiel.registriere_taste_gedrueckt(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Rückruf-Funktion.
 Diese Funktion wird **genau zweimal** aufgerufen. Einmal beim Drücken der Taste (`unten = True`) und einmal beim Loslassen (`unten = False`).
 ```python
 def leer_gedrueckt(unten, pyg_ereignis):
@@ -325,3 +355,10 @@ def leer_gedrueckt(unten, pyg_ereignis):
 Spiel.registriere_taste_gedrueckt(T_LEER, leer_gedrueckt)
 ```
 **Hinweis:** Die Rückruffunktion benötigt genau **zwei** Übergabeparameter.
+
+
+## Mausklicks und Bewegung abfragen
+
+### Mauls geklickt TODO
+
+### Maus bewegt TODO

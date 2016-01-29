@@ -33,7 +33,7 @@ reckt = Rechteck(300, 200, 100, 100, GELB)
 reckt.zentriere()
 
 # Bild in Speicher laden
-BildSpeicher.lade_bild("scratch", "testimages/scratch.png")
+BildSpeicher.lade_bild_aus_paket("scratch", "Player/p1_front.png")
 bild = BildSpeicher.gib_bild("scratch")
 
 # Mittig zentrieren

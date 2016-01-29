@@ -98,7 +98,7 @@ class BildWechsler(ZeichenbaresElement):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
         pyg_zeichen_flaeche.blit(bild, (
-            self.x + x_offset+ (self.breite - bild.get_width()) / 2, self.y + y_offset+ (self.hoehe - bild.get_height()) / 2))
+            self.x + x_offset + (self.breite - bild.get_width()) / 2, self.y + y_offset + (self.hoehe - bild.get_height()) / 2))
 
     def klone(self, x, y):
         BildWechsler(x, y, self.__name_liste, self._eltern_flaeche)
@@ -110,6 +110,14 @@ class BildSpeicher:
     @classmethod
     def ist_bild_vorhanden(cls, schluessel):
         return schluessel in cls.__alle_bilder
+
+    @classmethod
+    def lade_bild_aus_paket(cls, schluessel, pfad, alpha=True):
+        import os
+        here = os.path.dirname(__file__)
+        pfad = os.path.join(here, 'resourcen/bilder', pfad)
+        print(pfad)
+        return cls.lade_bild(schluessel, pfad, alpha)
 
     @staticmethod
     def lade_bild_aus_datei(pfad, alpha=True):
@@ -158,7 +166,7 @@ class BildSpeicher:
         :rtype: py2cd.Bild
         """
         if schluessel not in cls.__alle_bilder:
-            raise ValueError("Bild %s nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel)
+            raise ValueError(("Bild %s nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel))
 
         return Bild(x, y, cls.__alle_bilder[schluessel])
 
