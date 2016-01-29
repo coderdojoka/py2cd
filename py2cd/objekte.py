@@ -138,8 +138,8 @@ class Zeichenbar(BBox):
         """
         Sorgt dafür, dass dieses Objekt als Letztes und damit ganz oben gezeichnet wird.
         """
-        self._eltern_flaeche.zeichenbareObjekte.remove(self)
-        self._eltern_flaeche.zeichenbareObjekte.append(self)
+        self._eltern_flaeche.zeichenbare_objekte.remove(self)
+        self._eltern_flaeche.zeichenbare_objekte.append(self)
 
 
 class ZeichenbaresElement(Zeichenbar):

@@ -23,7 +23,7 @@ class ZetrumHauptZeichenFlaeche(HauptZeichenFlaeche):
     def setze_zentrum(self, figur):
         # Figur muss existieren und ein direktes Kind der Hauptfläche sein
         assert figur is not None
-        assert figur in self.zeichenbareObjekte
+        assert figur in self.zeichenbare_objekte
 
         self.zentrum = figur
 

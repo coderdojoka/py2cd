@@ -1,9 +1,11 @@
 ---
 autor: Mark Weinreuter  
+datum: 29.01.16
 version: 0.1  
 kapitel: 1  
 minted_ausgabe: tmp_latex  
-inhaltsverzeichnis: ja  
+inhaltsverzeichnis: ja
+keine_sektions_nummern: ja
 titel: py2cd - Übersicht
 ---
 
@@ -29,21 +31,24 @@ Spiel.starten()
 ```
 **Hinweis:** Alle folgenden Beispiele benötigen dieses Grundgerüst.
 Oftmals steht es allerdings nicht dabei damit die Beispiele kürzer werden!
+ 
+# Vorhandene Objekte
+Es stehen verschiedene vordefinierte Objekte zur Verfügung.
+Diese können auf dem Spielfeld platziert werden, wobei sich die Position dieser Objekte immer auf deren **linke obere Ecke** bezieht!  
+Zusätzlich, ist jedes Objekt von einem unsichtbaren Rechteckt, dem *umgebenden Rechteck* begrenzt. Falls weiter unten sich auf die Breite
+oder Höhe von Obejekten bezogen wird, ist dies immer gleichbedeutend mit der Breite/Höhe des umgebenden Rechtecks.
 
-# Farben
+## Farben
 Eine Farbe wird  aus 3 Komponenten aufgebaut: Rot, Grün, Blau.
 Die R-, G-, B-Werte dürfen dabei Werte zwischen 0 und 255 annehmen.
 Schwarz ist `(0, 0, 0)`, Weiß ist `(255, 255, 255)`.
 
 ``` python
-meineFarbe = (255, 0, 0) # Rot voll, Grün und Blau nichts => Rot
+# Rot voll, Grün und Blau nichts => Rot
+meineFarbe = (255, 0, 0) 
 r = Rechteck(10, 10, 50, 50, meineFarbe)
 ```
- 
- 
-# Vorhandene Objekte
-Es stehen verschiedene vordefinierte Objekte zur Verfügung.
-Diese können auf dem Spielfeld platziert werden, wobei sich die Position dieser Objekte immer auf deren **linke obere Ecke** bezieht!
+**Hinweis**: Einige wichtige Farben sind bereits vordefiniert. 
 
 ## Rechtecke
 Benötigte Werte: x, y (linke obere Ecke), Breite,  Höhe und Farbe.
@@ -120,20 +125,20 @@ ODER der Dateipfad/Dateiname des Bildes sein.
 # Objekte bewegen
 Sämtliche oben aufgeführten Objekte besitzen die hier genannten Funktionen. Man ruft diese Funktionen über den Namen der Variablen in der das Objekt gespeichert ist auf. Z.B.: `r1.aendere_position(20, 20)`. 
 
-## Position ändern
-**Ändert** die Position eines Objektes **um** einen bestimmten Wert.
-Benötigte Werte: x-, y-Wert
-``` python
-r1 = Rechteck(20, 20, 100, 100, GELB)
-r1.aendere_position(100, 100)
-```
-
 ## Position setzen
 **Setzt** die Position eines Objektes **auf** einen bestimmten Wert.  
 Benötigte Werte: x-, y-Wert.
 ``` python
 r1 = Rechteck(20, 20, 100, 100, GELB)
 r1.setze_position(100, 100)
+```
+
+## Position ändern
+**Ändert** die Position eines Objektes **um** einen bestimmten Wert.
+Benötigte Werte: x-, y-Wert
+``` python
+r1 = Rechteck(20, 20, 100, 100, GELB)
+r1.aendere_position(100, 100)
 ```
 
 ## Position abfragen
@@ -143,6 +148,30 @@ Gibt zurück: Ein Tupel (x-, y-Wert)
 r1 = Rechteck(20, 20, 100, 100, GELB)
 pos = r1.position() # = (20, 20)
 ```
+
+
+## x- und y-Koordinaten direkt setzen
+Man kann die x- und y-Koordinaten eines Objektes auch direkt festlegen.
+
+```python
+box = Rechteck(10, 10, 50, 50, ROT)
+
+# x- und y-Koordinate festlegen
+box.x = 100
+box.y = 200
+```
+
+## x- und y-Koordinaten abfragen
+Man kann die x- und y-Koordinaten eines Objektes ganz einfach abfragen
+
+```python
+box = Rechteck(10, 10, 50, 50, ROT)
+
+# x- und y-Koordinate abfragen und ausgeben
+print(box.x, box.y)
+```
+
+
 
 ## Mitte eines Objektes setzen
 Setzt die Mitte eines Objektes, **NICHT** seine linke obere Ecke. Nützlich bei z.B. Kreisen.  
@@ -162,7 +191,7 @@ mitte = k11.mitte # = (455, 155)
 ```
 
 ## Abstand zum Rand setzen
-Man kann auch direkt den Abstand zum Rand setzen. Dies gibt für oben, unten, rechts und links.
+Man kann auch direkt den Abstand zum jeweiligen Rand setzen. Dies geht für oben, unten, rechts und links.  
 Benötigte Werte: Abstand
 ``` python
 k1 = Kreis(450, 150, 10, ROT)
@@ -179,9 +208,11 @@ k1.oben = 40
 # Abstand zum unteren Rand: 50
 k1.unten = 50
 ```
+**Achtung:** Der Abstand zum Rand geht immer von der dem Rand am nächsten gelegenen Seite aus!
+Setzt man zwei konfligierende Anweisungen: `k1.rechts` und `k1.links`, so zählt natürlich nur die zuletzt ausgeführte Anweisung. 
 
 ## Abstand zum Rand abfragen
-Genau so kann man auch den Abstand zum Rand abfragen.
+Wie man den Abstand zum Rand setzen kann, kann man ihn auch abfragen.  
 Benötigte Werte: Keine
 Gibt zurück: Abstand
 ``` python
@@ -199,3 +230,98 @@ oben k1.oben
 # Abstand zum unteren Rand
 unten = k1.unten
 ```
+
+
+## Objekte zentrieren
+Man kann Objekte auch mittig auf dem Spielfeld darstellen. Entweder nur horizontal, vertikal oder in beide Richtungen zentriert.  
+Benötigte Werte: Keine
+```python
+# Ganz mittig zentrieren
+bild.zentriere()
+
+# Nur horizontal zentrieren
+bild.zentriere_horizontal()
+
+# Nur horizontal zentrieren
+bild.zentriere_vertikal()
+```
+
+
+
+
+# Spiel - Die zentrale Steuerung
+
+## Das Spiel initialisieren
+Das Spiel muss **IMMER** zuerst initialisiert werden, bevor irgendetwas getan werden kann.  
+Benötigte Werte: Breite, Höhe, Titel
+``` python
+Spiel.init(640, 480, "Mein Spiel") 
+```
+
+## Das Spiel starten
+Startet das Spiel und zeigt das Fenster an. Anweisungen danach werden **NICHT** ausgeführt:  
+Benötigte Werte: Keine
+``` python
+Spiel.starten()
+```
+
+## Das Spiel beenden
+Beendet das Spiel und schließt das Fenster.  
+Benötigte Werte: Keine
+``` python
+Spiel.beenden()
+```
+
+## Den Fenstertitel setzen
+Benötigte Werte: Titel
+```python
+Spiel.setze_fenster_titel("Mein Fenster")
+```
+
+## Die Fensterhintergrundfarbe ändern
+Benötigte Werte: Die Farbe
+```python
+Spiel.setze_hintergrund_farbe(BLAU)
+```
+
+## Hilfsgitter einblenden
+Zeichnet Gitterlinien und ein Koordinatensystem ein, um die Positionierung von Objekten zu vereinfachen.
+Benötigte Werte: Keine
+```python
+Spiel.zeichne_gitter()
+```
+**Hinweis:** das Gitter ist auch nur ein Objekt und kann deshalb von anderen Objekten verdeckt werden.
+
+
+## Tastatureingaben
+Es gibt zwei verschiedene Arten auf Tastatur eingaben zu reagieren. Beide Arten binden eine Rückruf-Funktion (Callback) an eine bestimmte Taste.
+Diese Rückruf-Funktion wird aufgerufen, wenn diese Taste gedrückt wird.
+
+### Solange eine Taste gedrückt wird
+Die Funktion `Spiel.registriere_solange_taste_unten(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Ruckruf-Funktion.
+Diese Funktion wird **wiederholt** aufgerufen, solange die Taste gedrückt ist.
+```python
+# Rückruf-Funktion 
+def solange_links(dt):
+    print("Taste gedrückt")
+    
+# Linke Pfeiltaste 'T_LINKS', an die Rückruffunktion binden    
+Spiel.registriere_solange_taste_unten(T_LINKS, solange_links)
+```
+**Hinweis:** Die Rückruffunktion benötigt genau **einen** Übergabeparameter.
+    
+
+### Wenn eine Taste gedrückt wird
+Die Funktion `Spiel.registriere_taste_gedrueckt(taste, rueckruf_funktion)` bindet die gewünschte Taste an die gewünschte Ruckruf-Funktion.
+Diese Funktion wird **genau zweimal** aufgerufen. Einmal beim Drücken der Taste (`unten = True`) und einmal beim Loslassen (`unten = False`).
+```python
+def leer_gedrueckt(unten, pyg_ereignis):
+    if unten:
+        print("Leertaste gedrückt.")
+    else:
+        print("Leertaste losgelassen.")
+    
+# Leertaste 'T_LEER', an die Rückruffunktion binden    
+Spiel.registriere_taste_gedrueckt(T_LEER, leer_gedrueckt)
+```
+**Hinweis:** Die Rückruffunktion benötigt genau **zwei** Übergabeparameter.

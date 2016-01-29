@@ -1,5 +1,4 @@
 from py2cd import *
-from py2cd.extensions.jnr import Figur
 from py2cd.extensions.jnr.level import Level, Gegenstand
 from py2cd.farben import *
 
@@ -14,7 +13,7 @@ class TestLevel1(Level):
         boden.unten = 20
 
         boden2 = Rechteck(100, 300, 40, 20, ROT)
-        boden3 = Rechteck(350, 100, 40, 20, ROT)
+        boden3 = Rechteck(350, 100, 40, 20, BLAU)
         boden4 = Rechteck(270, 200, 40, 20, ROT)
 
         self.neues_level_element(boden)
@@ -28,9 +27,13 @@ class TestLevel1(Level):
         # Bild laden in den Speicher laden und unter dem Schlüssel "scratch" ablegen
         BildSpeicher.lade_bild("ufo", "bilder/ufo.png")
 
-
         self.haupt_figur.x = 200
-        self.auto_scrollen = True
+        #self.auto_scrollen = True
+
+    def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):
+        super().aktualisiere(relativer_zeitunterschied, zeit_unterschied_ms)
+
+        # Code kommt hier her
 
     def wenn_zeit_um(self):
         print("zeit um")

@@ -69,8 +69,25 @@ class ZeichenFlaeche(Zeichenbar):
         :type:pygame.Surface
         """
 
+        self.__zeichne_nur_bei_aenderung = False
+        """
+        Bestimmt, ob die Zeichenfläche jedes Mal neu bemalt wird, oder ob nur bei Änderungen erneut alle Kinder gezeichnet werden
+
+        :type: bool
+        """
+        self.__hat_aenderungen = True
+        """
+        Flag, dass zusammen mit ____zeichne_nur_bei_aenderung bestimmt, ob neugezeichnet wird.
+
+        :type: bool
+        """
+
         super().__init__(x, y, self.pyg_flaeche.get_width(), self.pyg_flaeche.get_height(),
                          farbe, eltern_flaeche=eltern_flaeche)
+
+    def zeichne_nur_bei_aenderung(self, wert=True):
+        self.__zeichne_nur_bei_aenderung = wert
+        self.__hat_aenderungen = True
 
     def fuege_hinzu(self, objekt):
         """
@@ -92,6 +109,9 @@ class ZeichenFlaeche(Zeichenbar):
         # Zur Liste von Objekten hinzufügen
         self._zeichenbare_objekte.append(objekt)
 
+        # Die Zeichenfläche wurde geändert
+        self.__hat_aenderungen = True
+
     def entferne(self, objekt):
         """
         Löscht das übergebene Objekt von dieser Zeichenfläche, falls es vorhanden ist
@@ -101,6 +121,9 @@ class ZeichenFlaeche(Zeichenbar):
         :rtype:
         """
         if objekt in self._zeichenbare_objekte:
+            # Die Zeichenfläche wurde geändert
+            self.__hat_aenderungen = True
+
             self._zeichenbare_objekte.remove(objekt)
             objekt._eltern_flaeche = None
 
@@ -108,6 +131,12 @@ class ZeichenFlaeche(Zeichenbar):
         pygame.draw.rect(self.pyg_flaeche, farbe, (x, y, breite, hoehe), dicke)
 
     def zeichne_alles(self):
+
+        if self.__zeichne_nur_bei_aenderung:
+            if not self.__hat_aenderungen:
+                return
+            # Zurücksetzen, da jetzt neu gezeichnet wird
+            self.__hat_aenderungen = False
 
         if self.farbe is not None:
             self.pyg_flaeche.fill(self.farbe)
@@ -127,7 +156,7 @@ class ZeichenFlaeche(Zeichenbar):
         return self.pyg_flaeche.get_colorkey()
 
     @property
-    def zeichenbareObjekte(self):
+    def zeichenbare_objekte(self):
         return self._zeichenbare_objekte
 
 

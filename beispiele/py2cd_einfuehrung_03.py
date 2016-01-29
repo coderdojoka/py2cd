@@ -38,6 +38,8 @@ bild = BildSpeicher.gib_bild("scratch")
 
 # Mittig zentrieren
 bild.zentriere()
+bild.zentriere_horizontal()
+bild.zentriere_vertikal()
 
 # Hilfsgitter einblenden
 Spiel.zeichne_gitter()

@@ -316,8 +316,8 @@ class Spiel:
         """
         cls.__haupt_flaeche.farbe = farbe
 
-    @staticmethod
-    def zeichne_gitter(groesse=50):
+    @classmethod
+    def zeichne_gitter(cls, groesse=50):
         """
         Zeichnet ein Hilfsgitter mit der gegebenen Gittergröße.
 
@@ -326,32 +326,35 @@ class Spiel:
         """
 
         # Wir importieren diese erst hier, um Kreis-Abhängigkeiten zu verhindern
-        from py2cd import Linie, Text
+        from py2cd import Linie, Text, ZeichenFlaeche
         from py2cd.farben import HELL_GRAU
         from py2cd.text import Schrift
 
+        zf = ZeichenFlaeche(0, 0, (cls.breite, cls.hoehe, True),  eltern_flaeche=cls.__haupt_flaeche)
+        zf.zeichne_nur_bei_aenderung(True)
+
         # Anzahl an horizontalen Gitterlinien
-        anzahl = round(Spiel.breite / groesse)
+        anzahl = round(cls.breite / groesse)
         schrift = Schrift(24)
         for i in range(1, anzahl):
-            Linie((i * groesse, 0), (i * groesse, Spiel.hoehe), HELL_GRAU)
-            t = Text("%d" % (i * groesse), i * groesse, 2, schrift=schrift)
+            Linie((i * groesse, 0), (i * groesse, cls.hoehe), HELL_GRAU, eltern_flaeche=zf)
+            t = Text("%d" % (i * groesse), i * groesse, 2, schrift=schrift, eltern_flaeche=zf)
 
         # Anzahl an vertikalen Gitterlinien
-        anzahl = round(Spiel.hoehe / groesse)
+        anzahl = round(cls.hoehe / groesse)
         for i in range(1, anzahl):
-            Linie((0, i * groesse), (Spiel.breite, i * groesse), HELL_GRAU)
-            t = Text("%d" % (i * groesse), 2, i * groesse, schrift=schrift)
+            Linie((0, i * groesse), (cls.breite, i * groesse), HELL_GRAU, eltern_flaeche=zf)
+            t = Text("%d" % (i * groesse), 2, i * groesse, schrift=schrift, eltern_flaeche=zf)
 
-    @staticmethod
-    def registriere_alle_tasten(funktion):
+    @classmethod
+    def registriere_alle_tasten(cls, funktion):
         """
         Die Funktion wird aufgerufen, wenn eine beliebige Taste gedrückt wird
 
         :param funktion:
         :type funktion: (bool, Any) -> None
         """
-        Spiel._alle_tasten_bearbeiter.registriere(funktion)
+        cls._alle_tasten_bearbeiter.registriere(funktion)
 
     @staticmethod
     def registriere_taste_gedrueckt(taste, funktion):
