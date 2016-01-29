@@ -1,5 +1,5 @@
 from py2cd import *
-from py2cd.extensions.jnr.level import Level, Gegenstand
+from py2cd.erweiterungen.jnr.level import Level, Gegenstand
 from py2cd.farben import *
 
 __author__ = 'Mark Weinreuter'

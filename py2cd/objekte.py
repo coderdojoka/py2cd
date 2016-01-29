@@ -102,7 +102,7 @@ class Zeichenbar(BBox):
 
         """
         in_rechteck = (
-            self.eltern_box is not None and self.beruehrt_rechteck(self.eltern_box.x - x_offset, self.eltern_box.y - y_offset,
+            self.eltern_box is not None and self.beruehrt_rechteck(0 - x_offset, 0 - y_offset,
                                                                    self.eltern_box.breite, self.eltern_box.hoehe))
 
         if self.__sichtbar and in_rechteck:  # sichtbar und in elternbox sichtbar
@@ -118,7 +118,10 @@ class Zeichenbar(BBox):
         """
         Entfernt dieses Objekt von seiner Elternfläche und wird damit nicht mehr gezeichnet.
         """
-        self._eltern_flaeche.entferne(self)
+        if self._eltern_flaeche is None:
+            print("Das Objekt ist nicht an eine Elternfläche gebunden! Wurde es bereits entfernt?")
+        else:
+            self._eltern_flaeche.entferne(self)
 
     def ist_sichtbar(self):
         """

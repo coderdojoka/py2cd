@@ -33,8 +33,15 @@ text.setze_position((Spiel.breite - text.breite) / 2, Spiel.hoehe - text.hoehe -
 text.zentriere_horizontal()
 text.unten = 10
 
+zf = ZeichenFlaeche(20,20,(200, 200),SCHWARZ,eltern_flaeche=Spiel.gib_zeichen_flaeche())
+k = Kreis(100, 100, 30, BLAU, eltern_flaeche=zf)
+
+warte(100,lambda : zf.aendere_position(10, 0), True)
+
 # Hilfsgitter anzeigen
 Spiel.zeichne_gitter()
+
+Spiel.gib_zeichen_flaeche().speichere_flaeche("test.png")
 
 Spiel.starten()
 """

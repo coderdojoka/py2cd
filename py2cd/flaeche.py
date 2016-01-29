@@ -155,6 +155,25 @@ class ZeichenFlaeche(Zeichenbar):
     def lese_farbmaske(self):
         return self.pyg_flaeche.get_colorkey()
 
+    def speichere_flaeche(self, bild_pfad, neu_zeichnen=True):
+        """
+        Speichert den Inhalt dieser Fläche als Bild.
+        :param neu_zeichnen: Falls die Fläche vor dem Speichern neu gezeichnet werden soll
+        :type neu_zeichnen: bool
+        :param bild_pfad: der Name des Bildes. Das Bild muss die Endung .png haben.
+        :type bild_pfad: str
+        :return:
+        :rtype:
+        """
+
+        # Wir speicher nur pngs
+        assert bild_pfad[-4:] == ".png"
+
+        if neu_zeichnen:
+            self.zeichne_alles()
+
+        pygame.image.save(self.pyg_flaeche, bild_pfad)
+
     @property
     def zeichenbare_objekte(self):
         return self._zeichenbare_objekte
