@@ -54,6 +54,12 @@ class Zeichenbar(BBox):
 
         super().__init__(x, y, breite, hoehe, eltern_flaeche, position_geaendert)
 
+        self.ignoriere_kamera = False
+        """
+        Falls dieses Flag gesetzt ist, wird die Kamera bei zeichnen ignoriert.
+
+        :type: bool
+        """
         self.farbe = farbe
         """
         Die Farbe dieses Objekts.
@@ -143,6 +149,13 @@ class Zeichenbar(BBox):
         """
         self._eltern_flaeche.zeichenbare_objekte.remove(self)
         self._eltern_flaeche.zeichenbare_objekte.append(self)
+
+    def nach_hinten(self):
+        """
+        Sorgt dafür, dass dieses Objekt als erstes und damit ganz unten gezeichnet wird.
+        """
+        self._eltern_flaeche.zeichenbare_objekte.remove(self)
+        self._eltern_flaeche.zeichenbare_objekte.insert(0, self)
 
 
 class ZeichenbaresElement(Zeichenbar):
@@ -314,7 +327,7 @@ class ZeichenbaresElement(Zeichenbar):
 
             schritte -= 1
 
-    def render(self, pyg_zeichen_flaeche):
+    def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):
         """
         Diese Methode muss überschrieben werden.
 

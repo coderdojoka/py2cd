@@ -1,5 +1,6 @@
 import pygame
 
+from py2cd.kamera import Kamera
 from py2cd.objekte import Zeichenbar
 
 __author__ = 'Mark Weinreuter'
@@ -54,7 +55,7 @@ class ZeichenFlaeche(Zeichenbar):
         self._zeichenbare_objekte = []
         """
         Liste aller ZeichenbarenObjekte, die auf dieser Fläche gezeichnet werden
-        :type: list[ZeichenbaresObjekt]
+        :type: list[py2cd.objekte.Zeichenbar]
         """
 
         if isinstance(pygame_flaeche_breite, tuple):
@@ -188,4 +189,8 @@ class HauptZeichenFlaeche(ZeichenFlaeche):
 
         # zeichne alle
         for zb in self._zeichenbare_objekte:
-            zb.zeichne()
+
+            if zb.ignoriere_kamera:
+                zb.zeichne()
+            else:
+                zb.zeichne(Kamera.verschiebung[0], Kamera.verschiebung[1])

@@ -449,8 +449,6 @@ class BBox:
         return self.eltern_box or self.beruehrt_objekt(self.eltern_box)
 
 
-
-
     def beruehrt_objekt(self, zeichenbar):
         """
         Überprüft, ob dieses Objekt das übergebene Objekt berührt. Genauer, ob das umgebende Rechteck dieses Objektes, das umgebende Rechteckt

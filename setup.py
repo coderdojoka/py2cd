@@ -12,10 +12,24 @@ setup(name='py2cd',
                   ' This project is developed for the use in the CoderDojo Karlsruhe.',
       url='http://github.com/coderdojoka/py2cd',
       author='Mark Weinreuter (CoderDojo Karlsruhe), pygameui (https://github.com/fictorial/pygameui)',
-      packages=['py2cd', 'py2cd.pygameui', 'py2cd.erweiterungen', 'py2cd.erweiterungen.jnr'],
+      packages=['py2cd', 'py2cd.pygameui',  'py2cd.erweiterungen.jnr'],
       package_data={'py2cd': ['pygameui/resources/*/*','resourcen/bilder/*.png', 'resourcen/bilder/*/*.png', 'resourcen/bilder/*/*/*.png', 'resourcen/animationen/*']},
       install_requires=[
           'pygame'
       ],
+      keywords='pygame drawing games framework german',
+
+      classifiers=[
+          'Development Status :: 4 - Beta',
+
+          'Intended Audience :: (CoderDojo) Developers',
+          'Topic :: Software Development :: Drawing and Gaming Framework',
+
+
+          'Programming Language :: Python :: 3.3',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5'
+      ],
+
       test_suite="tests",
       zip_safe=False)

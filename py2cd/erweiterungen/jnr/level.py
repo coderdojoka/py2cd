@@ -4,6 +4,15 @@ from py2cd.objekte import Aktualisierbar
 __author__ = 'Mark Weinreuter'
 
 
+class LevelElement(object):
+    def __init__(self, zeichenbar, wenn_beruehrt):
+        self.objekt = zeichenbar
+        """
+
+        :type: py2cd.objekte.Zeichenbar
+        """
+
+
 class Gegenstand(object):
     def __init__(self, zeichenbar, wenn_beruehrt=lambda: None):
         self.objekt = zeichenbar
@@ -15,7 +24,7 @@ class Gegenstand(object):
 
 
 class Level(Aktualisierbar):
-    def __init__(self, bild):
+    def __init__(self, haupt_figur):
         super().__init__()
         self.gegenstaende = []
         """
@@ -29,7 +38,7 @@ class Level(Aktualisierbar):
         """
         self.figuren = []
 
-        self.haupt_figur = Figur(0, 0, bild)
+        self.haupt_figur = haupt_figur
         self.neue_figur(self.haupt_figur)
         self.auto_scrollen = False
         self.scroll_geschwindigkeit = 1.2
@@ -62,19 +71,3 @@ class Level(Aktualisierbar):
             gegenstand.objekt.selbst_entfernen()
         else:
             print("Gegenstand nicht vorhanden.")
-
-    def scrollen(self, dt):
-
-        self.scroll_uebertrag -= 1 * dt
-        # Wir können uns nur pixelweise bewegen
-        tmp = int(self.scroll_uebertrag)
-        self.scroll_uebertrag -= tmp
-
-        if self.scroll_uebertrag == 0:
-            return
-
-        for gegenstand in self.gegenstaende:
-            gegenstand.objekt.links += tmp
-
-        for gegenstand in self.level_elemente:
-            gegenstand.links += tmp

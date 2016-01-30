@@ -52,6 +52,10 @@ class Bild(ZeichenbaresElement, SkalierbaresElement):
 
 class BildWechsler(ZeichenbaresElement):
     def __init__(self, x, y, bilder_namen_liste, eltern_flaeche=None, position_geaendert=lambda: None):
+        # Candy für Faule
+        if isinstance(bilder_namen_liste, str):
+            bilder_namen_liste = [bilder_namen_liste]
+
         self.__name_liste = bilder_namen_liste
         self.__pygame_bilder = []
         self.aktuelles_bild = 0
@@ -98,7 +102,8 @@ class BildWechsler(ZeichenbaresElement):
         bild = self.__pygame_bilder[self.aktuelles_bild]
         # Bild zentriert zeichnen
         pyg_zeichen_flaeche.blit(bild, (
-            self.x + x_offset + (self.breite - bild.get_width()) / 2, self.y + y_offset + (self.hoehe - bild.get_height()) / 2))
+            self.x + x_offset + (self.breite - bild.get_width()) / 2,
+            self.y + y_offset + (self.hoehe - bild.get_height()) / 2))
 
     def klone(self, x, y):
         BildWechsler(x, y, self.__name_liste, self._eltern_flaeche)
@@ -118,6 +123,42 @@ class BildSpeicher:
         pfad = os.path.join(here, 'resourcen/bilder', pfad)
         print(pfad)
         return cls.lade_bild(schluessel, pfad, alpha)
+
+    @classmethod
+    def lade_bilder_aus_paket(cls, pfade_liste, alpha=True):
+        """
+
+        :param pfade_liste:
+        :type pfade_liste: list[str]
+        :param alpha:
+        :type alpha:
+        :return:
+        :rtype:
+        """
+        import os
+        here = os.path.dirname(__file__)
+        for pfad in pfade_liste:
+            schluessel = pfad.rsplit("/")[-1].split(".")[0]
+            pfad = os.path.join(here, 'resourcen/bilder', pfad)
+            print(schluessel, pfad)
+            cls.lade_bild(schluessel, pfad, alpha)
+
+    @classmethod
+    def lade_bilder(cls, pfade_liste, alpha=True):
+        """
+
+        :param pfade_liste:
+        :type pfade_liste: list[str]
+        :param alpha:
+        :type alpha:
+        :return:
+        :rtype:
+        """
+
+        for pfad in pfade_liste:
+            schluessel = pfad.rsplit("/")[-1].split(".")[0]
+            print(schluessel, pfad)
+            cls.lade_bild(schluessel, pfad, alpha)
 
     @staticmethod
     def lade_bild_aus_datei(pfad, alpha=True):

@@ -9,6 +9,7 @@ import py2cd
 import py2cd.pygameui as ui
 from py2cd.ereignis import *
 from py2cd.farben import *
+from py2cd.kamera import Kamera
 from py2cd.objekte import Aktualisierbar
 from py2cd.tasten import Taste
 
@@ -136,9 +137,10 @@ class Spiel:
     :type: py2cd.EreignisBearbeiter()
     """
 
+
     @classmethod
     def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbibliothek", aktualisierungs_funktion=lambda zeit: None,
-             haupt_flaeche=None):
+             haupt_flaeche="py2cd.flaeche.HauptZeichenFlaeche"):
         """
         Initialisiert das Spiel.
 
@@ -167,18 +169,19 @@ class Spiel:
         # Dimension des Fensters
         Spiel.breite = breite
         Spiel.hoehe = hoehe
+        Kamera.init(0,0, breite, hoehe)
 
-        if haupt_flaeche is None:
-            # wird hier erst importiert, da sonst ein Fehler auftritt (wegen zyklischen Imports?)
-            from py2cd.flaeche import ZeichenFlaeche
-            haupt_flaeche = ZeichenFlaeche(0, 0, pygame.display.set_mode((breite, hoehe)), WEISS)
-        else:
-            from py2cd.flaeche import HauptZeichenFlaeche
-            if not isinstance(haupt_flaeche, HauptZeichenFlaeche):
-                raise AttributeError("Hauptfläche muss vom Typ HauptFlaeche sein.")
+        # Die Hauptzeichenfläche erstellen
+        import importlib
+        module_name, class_name = haupt_flaeche.rsplit(".", 1)
+        class_ = getattr(importlib.import_module(module_name), class_name)
+        instance = class_(0, 0, pygame.display.set_mode((breite, hoehe)), WEISS)
+
+        if not isinstance(instance, py2cd.flaeche.HauptZeichenFlaeche):
+            raise AttributeError("Hauptfläche muss vom Typ HauptFlaeche sein.")
 
         # die Hauptzeichenfläche des Spiels!
-        Spiel.__haupt_flaeche = haupt_flaeche
+        Spiel.__haupt_flaeche = instance
         """
         :type: py2cd.flaeche.ZeichenFlaeche
         """
@@ -330,9 +333,9 @@ class Spiel:
         from py2cd.farben import HELL_GRAU
         from py2cd.text import Schrift
 
-        zf = ZeichenFlaeche(0, 0, (cls.breite, cls.hoehe, True),  eltern_flaeche=cls.__haupt_flaeche)
+        zf = ZeichenFlaeche(0, 0, (cls.breite, cls.hoehe, True), eltern_flaeche=cls.__haupt_flaeche)
         zf.zeichne_nur_bei_aenderung(True)
-
+        zf.ignoriere_kamera = True
         # Anzahl an horizontalen Gitterlinien
         anzahl = round(cls.breite / groesse)
         schrift = Schrift(24)

@@ -46,8 +46,9 @@ from py2cd.vektor import Vektor2
 
 from py2cd.tasten import *
 from py2cd.zeit import Warte, warte
+from py2cd.kamera import Kamera
 
-__all__ = ['BBox', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'HauptZeichenFlaeche',
+__all__ = ['BBox', 'Kamera', 'Zeichenbar', 'Aktualisierbar', 'EreignisBearbeiter', 'Spiel', 'ZeichenFlaeche', 'HauptZeichenFlaeche',
            'Linie', 'Linien', 'AALinien',
            'Polygon', 'Dreieck', 'Rechteck', 'Kreis', 'Oval', 'Bogen', 'Plot', 'Text',
            'Schrift', 'Bild', 'Animation', 'AnimationenKette', 'AnimierteLinie', 'Warte', 'warte',
