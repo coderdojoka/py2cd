@@ -1,16 +1,39 @@
-from py2cd.erweiterungen.jnr.figur import Figur
+import py2cd
 from py2cd.objekte import Aktualisierbar
 
 __author__ = 'Mark Weinreuter'
 
 
 class LevelElement(object):
-    def __init__(self, zeichenbar, wenn_beruehrt):
+    def __init__(self, zeichenbar):
+        self.figuren_drauf = []
+
         self.objekt = zeichenbar
         """
 
         :type: py2cd.objekte.Zeichenbar
         """
+
+    def figur_steht_drauf(self, figur):
+        if figur not in self.figuren_drauf:
+            self.figuren_drauf.append(figur)
+
+    def figur_steht_nicht_drauf(self, figur):
+        self.figuren_drauf.remove(figur)
+
+
+class BewegtesLevelElement(LevelElement):
+    def __init__(self, zeichenbar):
+        super().__init__(zeichenbar)
+        self.x_geschwindigkeit = 0
+        self.y_geschwindigkeit = 0
+
+    def setze_geschwindigkeit(self, x=0, y=0):
+        self.x_geschwindigkeit = x
+        self.y_geschwindigkeit = y
+
+    def aktualisiere(self, rdt):
+        self.objekt.aendere_position(self.x_geschwindigkeit * rdt, self.y_geschwindigkeit * rdt)
 
 
 class Gegenstand(object):
@@ -26,30 +49,51 @@ class Gegenstand(object):
 class Level(Aktualisierbar):
     def __init__(self, haupt_figur):
         super().__init__()
+        self.bewegte_level_elemente = []
+        """
+
+        :type: list[py2cd.erweiterungen.jnr.level.BewegtesLevelElement]
+        """
+
         self.gegenstaende = []
         """
         Liste aller Gegenstände.
+
         :type: list[level.Gegenstand]
         """
-        self.level_elemente = []
+        self.alle_level_elemente = []
         """
-        Liste aller statischen Levelelement (Mauer, etc...)
-        :type: list[py2cd.objekte.Zeichenbar]
+        Liste aller statischen! Levelelement (Mauer, etc...)
+
+        :type: list[py2cd.erweiterungen.jnr.level.LevelElement]
         """
         self.figuren = []
 
+        self.anzahl_level_elemente = 0
+        self.anzahl_bewegte_level_elemente = 0
+
         self.haupt_figur = haupt_figur
         self.neue_figur(self.haupt_figur)
-        self.auto_scrollen = False
-        self.scroll_geschwindigkeit = 1.2
 
     def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):
 
-        if self.auto_scrollen:
-            self.haupt_figur.x_geschwindigkeit += self.scroll_geschwindigkeit * relativer_zeitunterschied
+        for bele in self.bewegte_level_elemente:
+            bele.aktualisiere(relativer_zeitunterschied)
+            for figur in self.figuren:
+                if figur.beruehrt_objekt(bele.objekt):
+
+                    if bele.x_geschwindigkeit > 0:
+                        figur.x = bele.objekt.x + bele.objekt.breite
+                    elif bele.x_geschwindigkeit < 0:
+                        figur.x = bele.objekt.x - figur.breite
+
+                    if bele.y_geschwindigkeit > 0:
+                        figur.y = bele.objekt.y + bele.objekt.hoehe
+                    elif bele.y_geschwindigkeit < 0:
+                        figur.y = bele.objekt.y - figur.hoehe
 
         for figur in self.figuren:
-            figur.figur_aktualisiere(relativer_zeitunterschied)
+            figur.figur_aktualisiere(self.alle_level_elemente, relativer_zeitunterschied)
 
             for gegenstand in self.gegenstaende:
                 if figur.beruehrt_objekt(gegenstand.objekt):
@@ -57,10 +101,20 @@ class Level(Aktualisierbar):
 
     def neue_figur(self, figur):
         self.figuren.append(figur)
-        figur.kann_kollidieren = self.level_elemente
+        figur.kann_kollidieren = self.alle_level_elemente
 
     def neues_level_element(self, element):
-        self.level_elemente.append(element)
+        if isinstance(element, py2cd.bbox.BBox):
+            element = LevelElement(element)
+
+        assert isinstance(element, LevelElement)
+        self.alle_level_elemente.insert(self.anzahl_level_elemente, element)
+        self.anzahl_level_elemente += 1
+
+    def neues_bewegtes_level_element(self, element):
+        self.alle_level_elemente.append(element)
+        self.bewegte_level_elemente.append(element)
+        self.anzahl_bewegte_level_elemente += 1
 
     def neuer_gegenstand(self, gegenstand):
         self.gegenstaende.append(gegenstand)
