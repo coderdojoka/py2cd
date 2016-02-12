@@ -17,6 +17,6 @@ level = Level1(figur)
 Kamera.setze_zentrum(figur)
 
 
-Spiel.zeichne_gitter()
+#Spiel.zeichne_gitter()
 # Das Spiel starten
 Spiel.starten()

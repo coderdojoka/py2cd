@@ -277,7 +277,9 @@ class Spiel:
             for taste in Spiel._unten_tasten:
                 taste.wenn_unten_bearbeiter(delta)
 
+            # Alle registrierten Aktualisierungsfunktionen
             Spiel.__aktualisiere(delta)
+            # Alle Instanzen, die von Aktualisierbar erben
             Aktualisierbar.aktualisiere_alle(delta, Spiel.zeit_unterschied_ms)
 
             # zeichne alles!!!

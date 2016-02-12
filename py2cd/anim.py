@@ -101,10 +101,10 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             if isinstance(animations_bild, str):
                 # Falls im Speicher, nehmen wir dieses Bild
                 if BildSpeicher.ist_bild_vorhanden(animations_bild):
-                    animations_bild = BildSpeicher.gib_pygame_flaeche(animations_bild)
+                    animations_bild = BildSpeicher.gib_pygame_bild(animations_bild)
                 else:
                     # Ansonsten laden wir es
-                    animations_bild = BildSpeicher.lade_bild_aus_datei(animations_bild, alpha)
+                    animations_bild = BildSpeicher._lade_pygbild_aus_datei(animations_bild, alpha)
 
             # oder schon eine pygame surface sein
             elif not isinstance(animations_bild, pygame.Surface):

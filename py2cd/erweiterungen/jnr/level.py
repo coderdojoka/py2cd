@@ -48,6 +48,13 @@ class Gegenstand(object):
 
 class Level(Aktualisierbar):
     def __init__(self, haupt_figur):
+        """
+
+        :param haupt_figur:
+        :type haupt_figur: py2cd.erweiterungen.jnr.figur.Figur
+        :return:
+        :rtype:
+        """
         super().__init__()
         self.bewegte_level_elemente = []
         """
@@ -68,11 +75,20 @@ class Level(Aktualisierbar):
         :type: list[py2cd.erweiterungen.jnr.level.LevelElement]
         """
         self.figuren = []
+        """
+        Liste aller Figuren.
+
+        :type: list[py2cd.erweiterungen.jnr.figur.Figur]
+        """
 
         self.anzahl_level_elemente = 0
         self.anzahl_bewegte_level_elemente = 0
 
         self.haupt_figur = haupt_figur
+        """
+        :type: py2cd.erweiterungen.jnr.figur.Figur
+        """
+
         self.neue_figur(self.haupt_figur)
 
     def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):

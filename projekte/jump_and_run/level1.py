@@ -29,6 +29,7 @@ class Level1(Level):
         self.neues_level_element(boden)
         self.neues_level_element(boden4)
 
+        warte(300, self.haupt_figur.naechstes_bild, True)
         self.haupt_figur.x = 200
 
     def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):

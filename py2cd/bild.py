@@ -7,6 +7,7 @@ from py2cd.objekte import ZeichenbaresElement
 
 
 class Bild(ZeichenbaresElement, SkalierbaresElement):
+    
     def render(self, pyg_zeichen_flaeche, x_off=0, y_off=0):
         pyg_zeichen_flaeche.blit(self.__pygame_bild, (self.x + x_off, self.y + y_off))
 
@@ -24,7 +25,7 @@ class Bild(ZeichenbaresElement, SkalierbaresElement):
         :type alpha: bool
         """
         if isinstance(bild, str):
-            self.__pygame_bild = BildSpeicher.gib_pygame_flaeche(bild)
+            self.__pygame_bild = BildSpeicher.gib_pygame_bild(bild)
         elif isinstance(bild, pygame.Surface):
             self.__pygame_bild = bild
         else:
@@ -68,7 +69,7 @@ class BildWechsler(ZeichenbaresElement):
         groesse = (0, 0)
         # alle Bilder laden und Größe ermittlen
         for name in bilder_namen_liste:
-            pg_bild = BildSpeicher.gib_pygame_flaeche(name)
+            pg_bild = BildSpeicher.gib_pygame_bild(name)
             groesse = max(groesse[0], pg_bild.get_width()), max(groesse[1], pg_bild.get_height())
 
             self.__pygame_bilder.append(pg_bild)
@@ -110,11 +111,11 @@ class BildWechsler(ZeichenbaresElement):
 
 
 class BildSpeicher:
-    __alle_bilder = {}  # TODO: besser?: weakref.WeakValueDictionary()
+    __alle_pyg_bilder = {}  # TODO: besser?: weakref.WeakValueDictionary()
 
     @classmethod
     def ist_bild_vorhanden(cls, schluessel):
-        return schluessel in cls.__alle_bilder
+        return schluessel in cls.__alle_pyg_bilder
 
     @classmethod
     def lade_bild_aus_paket(cls, schluessel, pfad, alpha=True):
@@ -161,7 +162,7 @@ class BildSpeicher:
             cls.lade_bild(schluessel, pfad, alpha)
 
     @staticmethod
-    def lade_bild_aus_datei(pfad, alpha=True):
+    def _lade_pygbild_aus_datei(pfad, alpha=True):
         """
         Lädt das Bild aus der beschrieben Datei.
         ACHTUNG: Kann das Bild nicht geladen werden, wird ein Fehler geworfen!
@@ -174,22 +175,22 @@ class BildSpeicher:
         :rtype: pygame.Surface
         """
         try:
-            bild = pygame.image.load(pfad)
+            pyg_bild = pygame.image.load(pfad)
         except pygame.error:
             raise AttributeError("Das Bild: %s konnte nicht geladen werden!" % pfad)
 
         # laut Doku soll convert() aufgerufen werden?!
         if alpha:
-            bild = bild.convert_alpha()
+            pyg_bild = pyg_bild.convert_alpha()
         else:
-            bild = bild.convert()
+            pyg_bild = pyg_bild.convert()
 
-        return bild
+        return pyg_bild
 
     @classmethod
     def lade_bild(cls, schluessel, pfad, alpha=True):
-        bild = cls.lade_bild_aus_datei(pfad, alpha)
-        cls.__alle_bilder[schluessel] = bild
+        bild = cls._lade_pygbild_aus_datei(pfad, alpha)
+        cls.__alle_pyg_bilder[schluessel] = bild
         return bild
 
     @classmethod
@@ -206,14 +207,14 @@ class BildSpeicher:
         :return:
         :rtype: py2cd.Bild
         """
-        if schluessel not in cls.__alle_bilder:
+        if schluessel not in cls.__alle_pyg_bilder:
             raise ValueError(("Bild %s nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel))
 
-        return Bild(x, y, cls.__alle_bilder[schluessel])
+        return Bild(x, y, cls.__alle_pyg_bilder[schluessel])
 
     @classmethod
-    def gib_pygame_flaeche(cls, schluessel):
-        if schluessel not in cls.__alle_bilder:
+    def gib_pygame_bild(cls, schluessel):
+        if schluessel not in cls.__alle_pyg_bilder:
             raise ValueError("%s ist nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel)
 
-        return cls.__alle_bilder[schluessel]
+        return cls.__alle_pyg_bilder[schluessel]

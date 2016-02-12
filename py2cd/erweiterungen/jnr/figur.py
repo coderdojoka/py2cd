@@ -6,7 +6,7 @@ __author__ = 'Mark Weinreuter'
 
 class Figur(BildWechsler):
     def __init__(self, x, y, bilder_namen_liste, taste_links=T_LINKS, taste_rechts=T_RECHTS, taste_sprung=T_OBEN):
-        super().__init__(x, y, bilder_namen_liste)
+        BildWechsler.__init__(self, x, y, bilder_namen_liste)
 
         self.max_y_geschwindigkeit = 15
         self.lauf_kraft = 3

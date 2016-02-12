@@ -107,7 +107,7 @@ class Schaf(BildAnimation):
 
         # Animation initialsieren
         super().__init__(
-            [(BildSpeicher.gib_pygame_flaeche("schaf_1"), 500), (BildSpeicher.gib_pygame_flaeche("schaf_2"), 500)])
+            [(BildSpeicher.gib_pygame_bild("schaf_1"), 500), (BildSpeicher.gib_pygame_bild("schaf_2"), 500)])
 
         self.setze_position(random.randint(0, Spiel.breite), Schaf.schaf_hoehe)
         self.start()
@@ -179,7 +179,7 @@ class Ufo(Bild):
 
     def __init__(self):
 
-        pygame_ufo = BildSpeicher.gib_pygame_flaeche("ufo")
+        pygame_ufo = BildSpeicher.gib_pygame_bild("ufo")
         x = random.randint(0, Spiel.breite - pygame_ufo.get_width())
 
         super().__init__(x, 0, pygame_ufo)

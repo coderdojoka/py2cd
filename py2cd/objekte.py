@@ -18,6 +18,11 @@ class Aktualisierbar(object):
     def __init__(self):
         Aktualisierbar._aktualisierebare.append(self)
 
+    def __del__(self):
+        # Falls wir immer noch in der Liste sind
+        if self in Aktualisierbar._aktualisierebare:
+            Aktualisierbar._aktualisierebare.remove(self)
+
     @classmethod
     def aktualisiere_alle(cls, relativer_zeit_unterschied, zeit_unterschied_ms):
         for aktualisierbar in Aktualisierbar._aktualisierebare:
