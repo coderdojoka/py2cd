@@ -9,27 +9,39 @@ class Level1(Level):
     def __init__(self, figur):
         super().__init__(figur)
 
+        # Bild einmal laden
+        BildSpeicher.lade_bild_aus_paket("block", "tiles/sand.png")
+
+        # Hässlicher roter Boden
         boden = Rechteck(0, 400, 500, 20, ROT)
 
-        BildSpeicher.lade_bild_aus_paket("block", "tiles/sand.png")
+        # Drei Blöcke erstellen
         block = BildSpeicher.gib_bild("block", 100, 200)
         block2 = BildSpeicher.gib_bild("block", 350, 100)
-        boden4 = BildSpeicher.gib_bild("block", 270, 200)
+        block3 = BildSpeicher.gib_bild("block", 270, 200)
 
-        self.b = BewegtesLevelElement(block)
-        self.b.setze_geschwindigkeit(1, 0)
-        self.b2 = BewegtesLevelElement(block2)
-        self.b2.setze_geschwindigkeit(0, 1)
+        # Blöcke zu Bewegten Blöcken machen
+        self.bewegt = BewegtesLevelElement(block)
+        self.bewegt.setze_geschwindigkeit(1, 0)
+        self.bewegt1 = BewegtesLevelElement(block2)
+        self.bewegt1.setze_geschwindigkeit(0, 1)
 
+        # Bewegete Blöcke zum Level hinzufügen
+        self.neues_bewegtes_level_element(self.bewegt)
+        self.neues_bewegtes_level_element(self.bewegt1)
+
+        # Feste Blöcke hinzufügen
+        self.neues_level_element(boden)
+        self.neues_level_element(block3)
+
+        # Wartet 300 MilliSekunden und führt dann die Funktion aus.
+        # Das ganze wird alle 300 ms wiederholt
+        warte(300, self.haupt_figur.naechstes_bild, True)
+
+        # Zähler für bewegungänderung
         self.counter = 0
 
-        self.neues_bewegtes_level_element(self.b)
-        self.neues_bewegtes_level_element(self.b2)
-
-        self.neues_level_element(boden)
-        self.neues_level_element(boden4)
-
-        warte(300, self.haupt_figur.naechstes_bild, True)
+        # Hauptfigur position
         self.haupt_figur.x = 200
 
     def aktualisiere(self, relativer_zeitunterschied, zeit_unterschied_ms):
@@ -38,6 +50,6 @@ class Level1(Level):
         self.counter += 1
         if self.counter % 100 == 0:
             self.counter = 0
-            self.b.x_geschwindigkeit *= -1
-            self.b2.y_geschwindigkeit *= -1
+            self.bewegt.x_geschwindigkeit *= -1
+            self.bewegt1.y_geschwindigkeit *= -1
             # Code kommt hier her
