@@ -11,7 +11,7 @@ class Level1(Level):
 
         boden = Rechteck(0, 400, 500, 20, ROT)
 
-        BildSpeicher.lade_bild_aus_paket("block", "tiles/sand.png", False)
+        BildSpeicher.lade_bild_aus_paket("block", "tiles/sand.png")
         block = BildSpeicher.gib_bild("block", 100, 200)
         block2 = BildSpeicher.gib_bild("block", 350, 100)
         boden4 = BildSpeicher.gib_bild("block", 270, 200)
