@@ -1,5 +1,6 @@
-__author__ = 'Mark Weinreuter'
 from py2cd.poly import AALinien
+
+__author__ = 'Mark Weinreuter'
 
 
 class Plot(AALinien):

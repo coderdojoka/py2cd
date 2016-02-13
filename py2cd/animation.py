@@ -15,9 +15,10 @@ class Animation(Aktualisierbar):
     Eine Animation, die für eine gegebene Zeit abgearbeitet wird.
     """
 
-    def __init__(self, zeit_in_ms, aktualisiere=lambda dt: None, animation_gestartet=lambda wiederholung: None,
-                 animation_geendet=lambda: None,
-                 animation_gestoppt=lambda: None, animation_pausiert=lambda: None, wiederhole=False):
+    def __init__(self, zeit_in_ms, aktualisiere=lambda dt: None,
+                 animation_gestartet=lambda wiederholung: None,
+                 animation_geendet=lambda: None, animation_gestoppt=lambda: None,
+                 animation_pausiert=lambda: None, wiederhole=False):
         """
         Ein neues Animationsobjekt.
 
@@ -116,7 +117,7 @@ class Animation(Aktualisierbar):
         self._aktualisiere_animation(0)
 
 
-class Warte(Animation):
+class Warten(Animation):
     def __init__(self, warte_ms, wenn_zeit_um, wiederhole=False, sofort_starten=True):
         super().__init__(warte_ms, animation_geendet=wenn_zeit_um, wiederhole=wiederhole)
 

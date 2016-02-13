@@ -116,8 +116,6 @@ class BildAnimation(ZeichenbaresElement, SkalierbaresElement):
             if animations_bild.get_height() > hoehe:
                 hoehe = animations_bild.get_height()
 
-
-
             # Zur List hinzufügen und Zeit addieren
             self._flaechen_zeiten.append((animations_bild, dauer))
             self._gesamt_zeit += dauer

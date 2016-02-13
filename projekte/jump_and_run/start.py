@@ -15,6 +15,7 @@ bilder_namen = ["p1_stand", "p1_vorne", "p1_aua"]
 figur = Figur(200, 300, bilder_namen)
 level = Level1(figur)
 Kamera.setze_zentrum(figur)
+t1 = Text('Hallo', 100, 200, schrift=Schrift(30, "Arial"), farbe=(0,0,0))
 
 
 #Spiel.zeichne_gitter()

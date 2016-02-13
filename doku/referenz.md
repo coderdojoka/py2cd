@@ -79,9 +79,9 @@ o1 = Oval(100, 50, 20, 30, GELB)
 ```
 
 ## Text
-Benötigte Werte: Der Text, x, y (linke obere Ecke) und Farbe.
+Benötigte Werte: Der Text, x, y (linke obere Ecke). Optional: Schrift und Farbe.
 ``` python
-t1 = Text('Hallo', 100, 200, SCHWARZ)
+t1 = Text('Hallo', 100, 200, schrift=Schrift(30, "Arial"), farbe=SCHWARZ)
 ```
 
 ## Polygone (Vielecke)
@@ -103,7 +103,8 @@ BildSpeicher.lade_bild("scratch", "bilder/scratch.png")
 bild1 = BildSpeicher.gib_bild("scratch", 100, 100)
 bild2 = BildSpeicher.gib_bild("scratch", 300, 250)
 ```
-
+## Mitgelieferte Bilder
+Mit py2cd kommmen beriets einige Bilder coole Grafiken und Bilder mit.
 
 ## Animationen
 Animation sind einfach ein Liste von Bildern, die schnell hintereinander angezeigt werden.

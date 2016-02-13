@@ -1,15 +1,15 @@
-__author__ = 'Mark Weinreuter'
-
 import math
 
 import pygame
 
 from py2cd.objekte import ZeichenbaresElement
 
+__author__ = 'Mark Weinreuter'
+
 
 class Kreis(ZeichenbaresElement):
     """
-    Ein Rechteck, das angezeigt werden kann.
+    Ein Kreis, der angezeigt werden kann.
     """
 
     def render(self, pyg_zeichen_flaeche, x_offset=0, y_offset=0):

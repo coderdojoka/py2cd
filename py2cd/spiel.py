@@ -137,7 +137,6 @@ class Spiel:
     :type: py2cd.EreignisBearbeiter()
     """
 
-
     @classmethod
     def init(cls, breite=640, hoehe=480, titel="Py2cd Zeichenbibliothek", aktualisierungs_funktion=lambda zeit: None,
              haupt_flaeche="py2cd.flaeche.HauptZeichenFlaeche"):
@@ -169,7 +168,7 @@ class Spiel:
         # Dimension des Fensters
         Spiel.breite = breite
         Spiel.hoehe = hoehe
-        Kamera.init(0,0, breite, hoehe)
+        Kamera.init(0, 0, breite, hoehe)
 
         # Die Hauptzeichenfläche erstellen
         import importlib

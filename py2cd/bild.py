@@ -1,13 +1,12 @@
-__author__ = 'Mark Weinreuter'
-
 import pygame
 
 from py2cd.objekte import SkalierbaresElement
 from py2cd.objekte import ZeichenbaresElement
 
+__author__ = 'Mark Weinreuter'
+
 
 class Bild(ZeichenbaresElement, SkalierbaresElement):
-    
     def render(self, pyg_zeichen_flaeche, x_off=0, y_off=0):
         pyg_zeichen_flaeche.blit(self.__pygame_bild, (self.x + x_off, self.y + y_off))
 
@@ -145,6 +144,57 @@ class BildSpeicher:
             cls.lade_bild(schluessel, pfad, alpha)
 
     @classmethod
+    def liste_bilder_aus_paket(cls):
+        """
+        Listet alle vorhanden Bilder auf, die aus dem Paket geladen werden können.
+        """
+
+        import os
+        here = os.path.dirname(__file__)
+        liste = []
+
+        def liste_rekursiv(pfad):
+            kompletter_pfad = os.path.join(here, 'resourcen/bilder', pfad)
+            dateien = os.listdir(kompletter_pfad)
+
+            for datei in dateien:
+
+                if os.path.isdir(os.path.join(here, 'resourcen/bilder', datei)):
+                    liste_rekursiv(os.path.join(pfad, datei))
+
+                elif len(datei) > 3 and datei[-3:] == "png":
+                    print(os.path.join(pfad, datei))
+
+        liste_rekursiv("")
+
+    @classmethod
+    def paket_bilder_lizenzen(cls):
+        """
+        Lädt die Lizenzsinformationen zu den in py2cd mitgelieferten Bildern.
+
+        :return: Liste mit Lizenzinfos
+        :rtype: list[str]
+        """
+        import os
+        here = os.path.dirname(__file__)
+
+        def lese_datei(dateipfad):
+            pfad = os.path.join(here, 'resourcen/bilder', dateipfad)
+            inhalt = ""
+            try:
+                datei = open(pfad)
+                inhalt = datei.read()
+                datei.close()
+
+            except IOError as e:
+                print(e)
+
+            return inhalt
+
+        lizensen = [lese_datei("license.txt")]
+        return lizensen
+
+    @classmethod
     def lade_bilder(cls, pfade_liste, alpha=True):
         """
 
@@ -157,8 +207,9 @@ class BildSpeicher:
         """
 
         for pfad in pfade_liste:
+            # bildname ohne endung als schluessel
             schluessel = pfad.rsplit("/")[-1].split(".")[0]
-            print(schluessel, pfad)
+
             cls.lade_bild(schluessel, pfad, alpha)
 
     @staticmethod
@@ -176,7 +227,8 @@ class BildSpeicher:
         """
         try:
             pyg_bild = pygame.image.load(pfad)
-        except pygame.error:
+        except pygame.error as e:
+            print("Fehler beim Laden des Bildes: ", e)
             raise AttributeError("Das Bild: %s konnte nicht geladen werden!" % pfad)
 
         # laut Doku soll convert() aufgerufen werden?!
@@ -191,6 +243,7 @@ class BildSpeicher:
     def lade_bild(cls, schluessel, pfad, alpha=True):
         bild = cls._lade_pygbild_aus_datei(pfad, alpha)
         cls.__alle_pyg_bilder[schluessel] = bild
+
         return bild
 
     @classmethod
@@ -218,3 +271,7 @@ class BildSpeicher:
             raise ValueError("%s ist nicht im BildSpeicher vorhanden. Füge es zuerst hinzu!" % schluessel)
 
         return cls.__alle_pyg_bilder[schluessel]
+
+
+if __name__ == "__main__":
+    print(BildSpeicher.paket_bilder_lizenzen())
